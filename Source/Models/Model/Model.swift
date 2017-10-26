@@ -20,10 +20,9 @@ protocol Save {
     func save();
 }
 
-class Model {
-    var state: ModelState?;
-    
+class Model: ObservableObject {    
     func load() {
-        let Int state = self.state;
+        let state = self.state;
+        print(state);
     }
 }

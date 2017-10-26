@@ -15,6 +15,8 @@
 		1D5F18DA1FA0F622006EAC73 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18D61FA0F622006EAC73 /* Info.plist */; };
 		1D5F18DB1FA0F622006EAC73 /* SwiftFB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F18D71FA0F622006EAC73 /* SwiftFB.xcdatamodeld */; };
 		1D5F18E41FA0FEB8006EAC73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F18E31FA0FEB8006EAC73 /* Model.swift */; };
+		1D74FE971FA2400F00D21039 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74FE961FA2400F00D21039 /* Observer.swift */; };
+		1D74FE9A1FA268E900D21039 /* AssignReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74FE991FA268E900D21039 /* AssignReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		1D5F18D61FA0F622006EAC73 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D5F18D81FA0F622006EAC73 /* SwiftFB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftFB.xcdatamodel; sourceTree = "<group>"; };
 		1D5F18E31FA0FEB8006EAC73 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1D74FE961FA2400F00D21039 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		1D74FE991FA268E900D21039 /* AssignReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 		1D5F18C11FA0F5CD006EAC73 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1D74FE931FA23FB200D21039 /* Classes */,
+				1D74FE941FA23FB200D21039 /* Extensions */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -156,6 +162,38 @@
 			children = (
 			);
 			path = UserModel;
+			sourceTree = "<group>";
+		};
+		1D74FE931FA23FB200D21039 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D74FE981FA2689900D21039 /* ReferenceWrapper */,
+				1D74FE951FA2400000D21039 /* Observer */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1D74FE941FA23FB200D21039 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1D74FE951FA2400000D21039 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				1D74FE961FA2400F00D21039 /* Observer.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
+		1D74FE981FA2689900D21039 /* ReferenceWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				1D74FE991FA268E900D21039 /* AssignReference.swift */,
+			);
+			path = ReferenceWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,8 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D5F18DB1FA0F622006EAC73 /* SwiftFB.xcdatamodeld in Sources */,
+				1D74FE971FA2400F00D21039 /* Observer.swift in Sources */,
 				1D5F18D91FA0F622006EAC73 /* AppDelegate.swift in Sources */,
 				1D5F18D01FA0F5CD006EAC73 /* ViewController.swift in Sources */,
+				1D74FE9A1FA268E900D21039 /* AssignReference.swift in Sources */,
 				1D5F18E41FA0FEB8006EAC73 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
