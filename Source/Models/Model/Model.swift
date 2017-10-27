@@ -8,21 +8,75 @@
 
 import Foundation
 
-enum ModelState: Int {
-    case ModelDidUnload
-    case ModelWillLoad
-    case ModelDidLoad
-    case ModelDidFailLoad
-    case ModelStateCount
-};
-
 protocol Save {
     func save();
 }
 
-class Model: ObservableObject {    
+protocol ModelObserver: Hashable {
+    func modelDidLoad(_ model:Model)
+    func modelWillLoad(_ model:Model)
+    func modelDidUnoad(_ model:Model)
+    func modelDidFailLoading(_ model:Model)
+}
+
+enum ModelState: Int {
+    case ModelDidUnload
+    case ModelWillLoad
+    case ModelDidLoad
+    case ModelDidFailLoading
+    case ModelStateCount
+};
+
+class Model: ObservableObject, Equatable, Hashable {
+    var hashValue: Int {
+        return self.hashValue;
+    }
+    
+    // MARK: Public methods
+    
+    static func == (lhs: Model, rhs: Model) -> Bool {
+        return lhs.hashValue == rhs.hashValue;
+    }
+    
     func load() {
         let state = self.state;
-        print(state);
+        if .ModelWillLoad == state || .ModelDidLoad == state {
+            self.notifyOfState(with: self.selector(for: state)!);
+            
+            return;
+        }
+        
+        self.state = .ModelWillLoad;
+        
+        //add synchronized above
+        
+        self.loadObject();
+    }
+    
+    func loadObject() {
+        //add background
+        self.performLoading();
+    }
+    
+    func performLoading() {
+        
+    }
+    
+    // MARK: Model observer 
+    
+    override func selector(for state: ModelState) -> Selector? {
+        switch state {
+        case .ModelDidUnload:
+            return NSSelectorFromString("modelDidUnload");
+        case .ModelDidLoad:
+            return NSSelectorFromString("modelDidLoad");
+        case .ModelWillLoad:
+            return NSSelectorFromString("modelWillLoad");
+        case .ModelDidFailLoading:
+            return NSSelectorFromString("modelDidFailLoading");
+            
+        default:
+            return super.selector(for: state);
+        }
     }
 }

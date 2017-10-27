@@ -11,7 +11,7 @@ import Foundation
 public class ObservableObject {
     
     // MARK: Public properties
-    var state: Int = 0 {
+    var state: ModelState = .ModelDidUnload {
         didSet {
             if notify {
                 self.notifyOfState(with: self.selector(for: self.state)!);
@@ -33,27 +33,29 @@ public class ObservableObject {
     }
     
     // MARK: Public methods
-    func add(_ observer: Any) {
-    
+    func add(_ observer: Model?) {
+        if let object = observer {
+           _ = self.observers!.insert(AssignReference.init(with: object))
+        }
     }
     
-    func remove(_ observer:ObservableObject) {
-    
+    func remove(_ observer:Model?) {
+        self.observers!.remove(AssignReference.init(with: observer))
     }
     
-    func add(_ observers:Array<ObservableObject>) {
+    func add(_ observers:Array<Model>) {
         for observer in observers {
             self.add(observer);
         }
     }
     
-    func remove(_ observers:Array<ObservableObject>) {
+    func remove(_ observers:Array<Model>) {
         for observer in observers {
             self.remove(observer);
         }
     }
     
-    func isObserved(by object:ObservableObject) -> Bool {
+    func isObserved(by object:Model) -> Bool {
         return false;
     }
     
@@ -61,23 +63,28 @@ public class ObservableObject {
         self.notifyOfState(with: selector, nil);
     }
     
-    func set(_ state:Int, with object:ObservableObject) {
+    func set(_ state:ModelState, with object:Model?) {
+        self.state = state
         
+        if notify {
+            self.notifyOfState(with: self.selector(for: state)!, object!)
+        }
     }
     
     //- (void)performBlockWithNotification:(void(^)())block;
     //- (void)performBlockWithoutNotification:(void(^)())block;
     
     //this method is intended for subclassing. Never call it directly
-    func notify(of state:Int) {
-        
+    func notify(of state:ModelState) {
+        self.notifyOfState(with: self.selector(for: state)!)
     }
     
-    func selector(for state:Int) -> Selector? {
+    func selector(for state:ModelState) -> Selector? {
         return nil;
     }
+    
     // MARK: Private methods
-    func notifyOfState(with selector:Selector, _ object:ObservableObject?) {
+    func notifyOfState(with selector:Selector, _ object:Model?) {
         let set = self.observers;
         for target in set! {
             if (target as NSObject).responds(to: selector) {
