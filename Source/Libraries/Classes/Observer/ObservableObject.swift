@@ -21,7 +21,7 @@ public class ObservableObject {
     }
     var notify: Bool = false;
     
-    var observers: Set<AnyHashable>?;
+    var observers: NSPointerArray?
     
     // MARK: Initialization and deinitialization
     deinit {
@@ -29,18 +29,20 @@ public class ObservableObject {
     }
     
     init() {
-        self.observers = Set<AnyHashable>();
+        self.observers = NSPointerArray(options: .weakMemory);
     }
     
     // MARK: Public methods
     func add(_ observer: Model?) {
         if let object = observer {
-           _ = self.observers!.insert(AssignReference.init(with: object))
+            _ = self.observers?.addObject(object)
         }
     }
     
     func remove(_ observer:Model?) {
-        self.observers!.remove(AssignReference.init(with: observer))
+        if let object = observer {
+            self.observers!.remove(object)
+        }
     }
     
     func add(_ observers:Array<Model>) {
@@ -85,10 +87,14 @@ public class ObservableObject {
     
     // MARK: Private methods
     func notifyOfState(with selector:Selector, _ object:Model?) {
-        let set = self.observers;
-        for target in set! {
-            if (target as NSObject).responds(to: selector) {
-                (target as NSObject).perform(selector, with: self, with: self);
+        let array = self.observers
+        if let count = array?.count {
+            for index in 0...count {
+                let item = array?.object(at: index) as! NSObject
+                
+                if item.responds(to: selector) {
+                    item.perform(selector, with: self, with: self)
+                }
             }
         }
     }

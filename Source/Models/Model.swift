@@ -67,13 +67,13 @@ class Model: ObservableObject, Equatable, Hashable {
     override func selector(for state: ModelState) -> Selector? {
         switch state {
         case .ModelDidUnload:
-            return NSSelectorFromString("modelDidUnload");
+            return Selector("modelDidUnload");
         case .ModelDidLoad:
-            return NSSelectorFromString("modelDidLoad");
+            return Selector("modelDidLoad");
         case .ModelWillLoad:
-            return NSSelectorFromString("modelWillLoad");
+            return Selector("modelWillLoad");
         case .ModelDidFailLoading:
-            return NSSelectorFromString("modelDidFailLoading");
+            return Selector("modelDidFailLoading");
             
         default:
             return super.selector(for: state);
