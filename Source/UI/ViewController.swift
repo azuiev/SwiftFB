@@ -8,11 +8,35 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
+    let mainView = UIView()
+    var context: Model
+    var model: Model
+    var currentUser: Model
+    
+    deinit {
+        self.context = nil;
+        self.model = nil;
+        self.currentUser = nil;
+    }
+    
+    func prepareNavigationBar() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        title: "Logout",
+        style: .UIBarButtonItemStyleDone,
+        target: self,
+        action: #selector(onLogout))
+    }
+    
+    func showViewController() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.prepareNavigationBar();
     }
 
     override func didReceiveMemoryWarning() {
