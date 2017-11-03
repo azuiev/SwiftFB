@@ -72,13 +72,13 @@ class FBViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.prepareNavigationBar();
     }
 
     func onLogout() {
         self.logout()
     }
-    
     
 }
 

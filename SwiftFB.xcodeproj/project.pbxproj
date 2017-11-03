@@ -16,6 +16,10 @@
 		1D687EA61FA8F48200499350 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA51FA8F48200499350 /* Context.swift */; };
 		1D687EA81FA9079500499350 /* NSPointerArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA71FA9079500499350 /* NSPointerArray+Extensions.swift */; };
 		1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74FE961FA2400F00D21039 /* ObservableObject.swift */; };
+		1DCA37711FACE5860078EF43 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DCA37701FACE5860078EF43 /* LoginViewController.xib */; };
+		1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37721FACE5A50078EF43 /* LoginViewController.swift */; };
+		1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37741FACE68E0078EF43 /* LoginView.swift */; };
+		1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37761FACE97B0078EF43 /* FBView.swift */; };
 		66DFA19A00B2AF1DF5FDC4F1 /* Pods_SwiftFB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +40,10 @@
 		1D9E12EF1FABEBAF00770AEC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		1D9E12F11FABEBBC00770AEC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		1D9E12F31FABEBCF00770AEC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		1DCA37701FACE5860078EF43 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		1DCA37721FACE5A50078EF43 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1DCA37741FACE68E0078EF43 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1DCA37761FACE97B0078EF43 /* FBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBView.swift; sourceTree = "<group>"; };
 		427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BB464E8A43251694963C84 /* Pods-SwiftFB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.debug.xcconfig"; sourceTree = "<group>"; };
 		F3D39EEF54D020C8BE821012 /* Pods-SwiftFB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +159,9 @@
 		1D687E9A1FA8F37300499350 /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1DCA37721FACE5A50078EF43 /* LoginViewController.swift */,
+				1DCA37741FACE68E0078EF43 /* LoginView.swift */,
+				1DCA37701FACE5860078EF43 /* LoginViewController.xib */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 		1D687E9C1FA8F37300499350 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1DCA37761FACE97B0078EF43 /* FBView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DCA37711FACE5860078EF43 /* LoginViewController.xib in Resources */,
 				1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */,
 				1D5F18CD1FA0F5CD006EAC73 /* Assets.xcassets in Resources */,
 				1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */,
@@ -391,11 +404,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */,
 				1D687EA81FA9079500499350 /* NSPointerArray+Extensions.swift in Sources */,
+				1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */,
 				1D687EA41FA8F43300499350 /* Model.swift in Sources */,
 				1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */,
 				1D687EA61FA8F48200499350 /* Context.swift in Sources */,
 				1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */,
+				1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */,
 				1D687E931FA8D8AB00499350 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
