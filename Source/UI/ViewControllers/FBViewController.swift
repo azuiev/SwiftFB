@@ -12,7 +12,6 @@ class FBViewController: UIViewController {
 
     // MARK: Public properties
     
-    let mainView = UIView()
     var context: Context? {
         willSet {
             if let old = self.context {
@@ -24,13 +23,13 @@ class FBViewController: UIViewController {
     }
     
     var model: Model
-    var currentUser: Model
+    var currentUser: CurrentUserModel
     
     // MARK: Initialization and Deallocation
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
         self.model = Model()
-        self.currentUser = Model()
+        self.currentUser = CurrentUserModel()
         
         super.init(nibName: nil, bundle: nil)
 
@@ -38,7 +37,7 @@ class FBViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         self.model = Model()
-        self.currentUser = Model()
+        self.currentUser = CurrentUserModel()
         
         super.init(coder: aDecoder)
     }
@@ -46,7 +45,6 @@ class FBViewController: UIViewController {
     deinit {
         self.context = nil
         self.model = Model()
-        self.currentUser = Model()
     }
     
     // MARK: Public Methods
@@ -56,7 +54,7 @@ class FBViewController: UIViewController {
     }
     
     func logout() {
-        self.context = Context(with: currentUser);
+        self.context = Context(with: self.currentUser);
     }
     
     // MARK: UI LifeCycle

@@ -20,6 +20,10 @@
 		1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37721FACE5A50078EF43 /* LoginViewController.swift */; };
 		1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37741FACE68E0078EF43 /* LoginView.swift */; };
 		1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37761FACE97B0078EF43 /* FBView.swift */; };
+		1DCA377D1FAD031B0078EF43 /* LoginContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA377C1FAD031B0078EF43 /* LoginContext.swift */; };
+		1DCA377F1FAD03AA0078EF43 /* GetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA377E1FAD03AA0078EF43 /* GetContext.swift */; };
+		1DCA37811FAD154F0078EF43 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37801FAD154F0078EF43 /* UserModel.swift */; };
+		1DCA37831FAD182B0078EF43 /* CurrentUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37821FAD182B0078EF43 /* CurrentUserModel.swift */; };
 		66DFA19A00B2AF1DF5FDC4F1 /* Pods_SwiftFB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +48,10 @@
 		1DCA37721FACE5A50078EF43 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1DCA37741FACE68E0078EF43 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1DCA37761FACE97B0078EF43 /* FBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBView.swift; sourceTree = "<group>"; };
+		1DCA377C1FAD031B0078EF43 /* LoginContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginContext.swift; sourceTree = "<group>"; };
+		1DCA377E1FAD03AA0078EF43 /* GetContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetContext.swift; sourceTree = "<group>"; };
+		1DCA37801FAD154F0078EF43 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		1DCA37821FAD182B0078EF43 /* CurrentUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserModel.swift; sourceTree = "<group>"; };
 		427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BB464E8A43251694963C84 /* Pods-SwiftFB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.debug.xcconfig"; sourceTree = "<group>"; };
 		F3D39EEF54D020C8BE821012 /* Pods-SwiftFB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				1D687EA51FA8F48200499350 /* Context.swift */,
+				1DCA377E1FAD03AA0078EF43 /* GetContext.swift */,
+				1DCA377A1FAD02ED0078EF43 /* LoginContext */,
+				1DCA37791FAD02EC0078EF43 /* FriendsContext */,
+				1DCA377B1FAD02ED0078EF43 /* UserDetailContext */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -217,6 +229,8 @@
 		1D687EA31FA8F43300499350 /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
+				1DCA37801FAD154F0078EF43 /* UserModel.swift */,
+				1DCA37821FAD182B0078EF43 /* CurrentUserModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -253,6 +267,28 @@
 				1D9E12EF1FABEBAF00770AEC /* FBSDKCoreKit.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		1DCA37791FAD02EC0078EF43 /* FriendsContext */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendsContext;
+			sourceTree = "<group>";
+		};
+		1DCA377A1FAD02ED0078EF43 /* LoginContext */ = {
+			isa = PBXGroup;
+			children = (
+				1DCA377C1FAD031B0078EF43 /* LoginContext.swift */,
+			);
+			path = LoginContext;
+			sourceTree = "<group>";
+		};
+		1DCA377B1FAD02ED0078EF43 /* UserDetailContext */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserDetailContext;
 			sourceTree = "<group>";
 		};
 		9664C0295CA1662917BBD30B /* Frameworks */ = {
@@ -404,14 +440,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DCA37831FAD182B0078EF43 /* CurrentUserModel.swift in Sources */,
 				1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */,
 				1D687EA81FA9079500499350 /* NSPointerArray+Extensions.swift in Sources */,
 				1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */,
+				1DCA377F1FAD03AA0078EF43 /* GetContext.swift in Sources */,
+				1DCA377D1FAD031B0078EF43 /* LoginContext.swift in Sources */,
 				1D687EA41FA8F43300499350 /* Model.swift in Sources */,
 				1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */,
 				1D687EA61FA8F48200499350 /* Context.swift in Sources */,
 				1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */,
 				1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */,
+				1DCA37811FAD154F0078EF43 /* UserModel.swift in Sources */,
 				1D687E931FA8D8AB00499350 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

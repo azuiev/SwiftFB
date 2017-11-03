@@ -10,4 +10,15 @@ import UIKit
 
 class LoginViewController: FBViewController {
     
+    // MARK: View Lifecycle
+    
+    @IBAction func onLoginButton(sender: UIButton) {
+        self.login();
+    }
+    
+    // MARK: Private Methods 
+    
+    func login() {
+        self.context = LoginContext(with: self.currentUser);
+    }
 }

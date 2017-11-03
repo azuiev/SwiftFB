@@ -13,23 +13,29 @@ class Context: Model {
     // MARK: Public Properties
     
     let model: Model
-    var currentUser: Model?
+    var currentUser: CurrentUserModel?
     
     // MARK: Initialization
     
     init(with model: Model) {
         self.model = model
-        
+
         super.init()
     }
     
     // MARK: Public Methods
     
-    func execute() {
-        
+    func token() -> String? {
+        return nil;
     }
     
-    func execute(with completionHandler:(ModelState)) {
+    func execute() {
+        self.execute {
+            self.model.state = $0
+        }
+    }
+    
+    func execute(with completionHandler: @escaping(ModelState) -> Void) {
         
     }
     

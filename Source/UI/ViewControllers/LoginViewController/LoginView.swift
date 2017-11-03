@@ -14,10 +14,4 @@ class LoginView: FBView {
     
     @IBOutlet var LoginButton: UIButton?
     
-    // MARK: View Lifecycle
-    
-    @IBAction func onLoginButton(sender: UIButton) {
-        print("Pressed login")
-    }
-    
 }

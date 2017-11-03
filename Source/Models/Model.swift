@@ -19,7 +19,7 @@ protocol ModelObserver: Hashable {
     func modelDidFailLoading(_ model:Model)
 }
 
-enum ModelState: Int {
+enum ModelState {
     case ModelDidUnload
     case ModelWillLoad
     case ModelDidLoad
@@ -28,6 +28,9 @@ enum ModelState: Int {
 };
 
 class Model: ObservableObject, Equatable, Hashable {
+    
+    // MARK: Public properties
+    
     var hashValue: Int {
         return self.hashValue;
     }
