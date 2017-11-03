@@ -11,15 +11,16 @@
 		1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18BC1FA0F5CD006EAC73 /* LaunchScreen.storyboard */; };
 		1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18BE1FA0F5CD006EAC73 /* Main.storyboard */; };
 		1D687E931FA8D8AB00499350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687E8F1FA8D8AB00499350 /* AppDelegate.swift */; };
-		1D687E941FA8D8AB00499350 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D687E901FA8D8AB00499350 /* Info.plist */; };
 		1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687E981FA8F37300499350 /* FBViewController.swift */; };
 		1D687EA41FA8F43300499350 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA21FA8F43300499350 /* Model.swift */; };
 		1D687EA61FA8F48200499350 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA51FA8F48200499350 /* Context.swift */; };
 		1D687EA81FA9079500499350 /* NSPointerArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA71FA9079500499350 /* NSPointerArray+Extensions.swift */; };
 		1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74FE961FA2400F00D21039 /* ObservableObject.swift */; };
+		66DFA19A00B2AF1DF5FDC4F1 /* Pods_SwiftFB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18BB1FA0F5CD006EAC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5F18BD1FA0F5CD006EAC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +33,12 @@
 		1D687EA51FA8F48200499350 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		1D687EA71FA9079500499350 /* NSPointerArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPointerArray+Extensions.swift"; sourceTree = "<group>"; };
 		1D74FE961FA2400F00D21039 /* ObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
+		1D9E12EF1FABEBAF00770AEC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		1D9E12F11FABEBBC00770AEC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		1D9E12F31FABEBCF00770AEC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7BB464E8A43251694963C84 /* Pods-SwiftFB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.debug.xcconfig"; sourceTree = "<group>"; };
+		F3D39EEF54D020C8BE821012 /* Pods-SwiftFB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DFA19A00B2AF1DF5FDC4F1 /* Pods_SwiftFB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +60,8 @@
 				1D5F18BA1FA0F5CD006EAC73 /* Resources */,
 				1D5F18901FA0F34D006EAC73 /* Products */,
 				1D5F18C91FA0F5CD006EAC73 /* SwiftFB.xcodeproj */,
+				9664C0295CA1662917BBD30B /* Frameworks */,
+				9D5EF695FA5C1D06D6724036 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +76,7 @@
 		1D5F18BA1FA0F5CD006EAC73 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1D9E12EE1FABEB9100770AEC /* Frameworks */,
 				1D5F18BB1FA0F5CD006EAC73 /* Assets.xcassets */,
 				1D5F18BC1FA0F5CD006EAC73 /* LaunchScreen.storyboard */,
 				1D5F18BE1FA0F5CD006EAC73 /* Main.storyboard */,
@@ -96,6 +107,8 @@
 		};
 		1D5F18CA1FA0F5CD006EAC73 /* Products */ = {
 			isa = PBXGroup;
+			children = (
+			);
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -220,6 +233,34 @@
 			path = Observer;
 			sourceTree = "<group>";
 		};
+		1D9E12EE1FABEB9100770AEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D9E12F31FABEBCF00770AEC /* FBSDKShareKit.framework */,
+				1D9E12F11FABEBBC00770AEC /* FBSDKLoginKit.framework */,
+				1D9E12EF1FABEBAF00770AEC /* FBSDKCoreKit.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		9664C0295CA1662917BBD30B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */,
+				427299F9C43D01B222BBE389 /* Pods_SwiftFB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D5EF695FA5C1D06D6724036 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7BB464E8A43251694963C84 /* Pods-SwiftFB.debug.xcconfig */,
+				F3D39EEF54D020C8BE821012 /* Pods-SwiftFB.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,9 +268,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D5F18A41FA0F34D006EAC73 /* Build configuration list for PBXNativeTarget "SwiftFB" */;
 			buildPhases = (
+				484A936EE189E8085390831A /* [CP] Check Pods Manifest.lock */,
 				1D5F188B1FA0F34D006EAC73 /* Sources */,
 				1D5F188C1FA0F34D006EAC73 /* Frameworks */,
 				1D5F188D1FA0F34D006EAC73 /* Resources */,
+				A259A70CBA595E715E8CB7CC /* [CP] Embed Pods Frameworks */,
+				4EEF9C550EBC7E8E0596E713 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,7 +291,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Aleksey Zuiev";
 				TargetAttributes = {
 					1D5F188E1FA0F34D006EAC73 = {
@@ -286,7 +330,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D687E941FA8D8AB00499350 /* Info.plist in Resources */,
 				1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */,
 				1D5F18CD1FA0F5CD006EAC73 /* Assets.xcassets in Resources */,
 				1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */,
@@ -294,6 +337,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		484A936EE189E8085390831A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4EEF9C550EBC7E8E0596E713 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A259A70CBA595E715E8CB7CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftFB/Pods-SwiftFB-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D5F188B1FA0F34D006EAC73 /* Sources */ = {
@@ -357,6 +448,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -406,6 +498,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -424,11 +517,16 @@
 		};
 		1D5F18A51FA0F34D006EAC73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7BB464E8A43251694963C84 /* Pods-SwiftFB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Source/SwiftFB/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Resources/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idap.SwiftFB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -438,11 +536,16 @@
 		};
 		1D5F18A61FA0F34D006EAC73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3D39EEF54D020C8BE821012 /* Pods-SwiftFB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Source/SwiftFB/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Resources/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idap.SwiftFB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
