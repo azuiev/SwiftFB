@@ -12,19 +12,12 @@ protocol Save {
     func save();
 }
 
-protocol ModelObserver: Hashable {
-    func modelDidLoad(_ model:Model)
-    func modelWillLoad(_ model:Model)
-    func modelDidUnoad(_ model:Model)
-    func modelDidFailLoading(_ model:Model)
-}
-
 enum ModelState {
-    case ModelDidUnload
-    case ModelWillLoad
-    case ModelDidLoad
-    case ModelDidFailLoading
-    case ModelStateCount
+    case DidUnload
+    case WillLoad
+    case DidLoad
+    case DidFailLoading
+    case StateCount
 };
 
 class Model: ObservableObject, Equatable, Hashable {
@@ -43,13 +36,13 @@ class Model: ObservableObject, Equatable, Hashable {
     
     func load() {
         let state = self.state;
-        if .ModelWillLoad == state || .ModelDidLoad == state {
-            self.notifyOfState(with: self.selector(for: state)!);
+        if .WillLoad == state || .DidLoad == state {
+            self.notifyOfState();
             
             return;
         }
         
-        self.state = .ModelWillLoad;
+        self.state = .WillLoad;
         
         //add synchronized above
         
@@ -63,23 +56,5 @@ class Model: ObservableObject, Equatable, Hashable {
     
     func performLoading() {
         
-    }
-    
-    // MARK: Model observer 
-    
-    override func selector(for state: ModelState) -> Selector? {
-        switch state {
-        case .ModelDidUnload:
-            return Selector("modelDidUnload");
-        case .ModelDidLoad:
-            return Selector("modelDidLoad");
-        case .ModelWillLoad:
-            return Selector("modelWillLoad");
-        case .ModelDidFailLoading:
-            return Selector("modelDidFailLoading");
-            
-        default:
-            return super.selector(for: state);
-        }
     }
 }

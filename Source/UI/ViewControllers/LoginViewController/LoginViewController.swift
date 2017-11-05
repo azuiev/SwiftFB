@@ -10,9 +10,18 @@ import UIKit
 
 class LoginViewController: FBViewController {
     
+    // MARK: Public Properties
+    
+    override var currentUser: CurrentUserModel {
+        didSet {
+            oldValue.remove(self)
+            currentUser.add(self)
+        }
+    }
+    
     // MARK: View Lifecycle
     
-    @IBAction func onLoginButton(sender: UIButton) {
+    @IBAction func onLogin() {
         self.login();
     }
     

@@ -12,17 +12,21 @@ import FacebookCore
 
 class GetContext: Context {
 
+    // MARK: Constants
+    
     struct Constants {
         static let requestMethod = "GET"
     }
+    
     // MARK: Public Methods
     
-    func graphPath() -> String? {
-        return nil
-    }
+    var graphPath = ""
+    var parameters: Dictionary<String, String> = [:]
     
-    func parameters() -> Dictionary<String, String>? {
-        return nil
+    // MARK: Public Methods
+    
+    func token() -> String? {
+        return self.currentUser?.token;
     }
     
     func fbUserModel() -> Model {
@@ -32,7 +36,7 @@ class GetContext: Context {
     // MARK: Override Methods
     
     override func execute(with completionHandler: @escaping(ModelState) -> Void) {
-        let request = GraphRequest(graphPath: self.graphPath()!)
+        let request = GraphRequest(graphPath: self.graphPath, parameters: self.parameters)
         
         request.start() {
             (URLResponse, requestResult) in
@@ -43,7 +47,7 @@ class GetContext: Context {
             case .success(let graphResponse):
                 if let responseDictionary = graphResponse.dictionaryValue {
                     print(responseDictionary)
-                    completionHandler(.ModelDidLoad)
+                    completionHandler(.DidLoad)
                 }
             }
         }

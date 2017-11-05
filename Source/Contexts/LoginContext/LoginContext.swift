@@ -12,12 +12,13 @@ import FacebookLogin
 
 class LoginContext: GetContext {
     
+    // MARK: Constants
+    
     struct Constants {
         static let TokenStringPath     = "token.tokenString"
         static let UserIDStringPath    = "token.userID"
         static let UserIDString        = "userID"
         static let TokenString         = "token"
-
     }
     
     // MARK: Public Methods
@@ -26,20 +27,19 @@ class LoginContext: GetContext {
         let user = self.model as! CurrentUserModel
         if !user.isAuthorized() {
             let manager = LoginManager()
-            manager.logIn([.publicProfile, .userFriends],
-                               viewController: nil)
+            manager.logIn([.publicProfile, .userFriends])
             { loginResult in
                 switch loginResult {
                 case .failed(let error):
                     print(error)
                 case .cancelled:
                     print("User cancelled login.")
-                case .success(_,_,let token):
+                case .success(_, _, let token):
                     self.fillUser(with: token)
                 }
             }
         } else {
-            completionHandler(.ModelDidLoad)
+            completionHandler(.DidLoad)
         }
     }
     
@@ -50,5 +50,4 @@ class LoginContext: GetContext {
         user.token = token.userId
         user.userID = token.authenticationToken
     }
-    
 }

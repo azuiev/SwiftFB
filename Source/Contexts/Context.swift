@@ -25,17 +25,13 @@ class Context: Model {
     
     // MARK: Public Methods
     
-    func token() -> String? {
-        return nil;
-    }
-    
     func execute() {
         self.execute {
             self.model.state = $0
         }
     }
     
-    func execute(with completionHandler: @escaping(ModelState) -> Void) {
+    func execute(with completionHandler: @escaping(ModelState) -> ()) {
         
     }
     
