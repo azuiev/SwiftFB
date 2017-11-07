@@ -12,10 +12,12 @@ class LoginViewController: FBViewController {
     
     // MARK: Public Properties
     
-    override var currentUser: CurrentUserModel {
+    override var model: Model {
         didSet {
             oldValue.remove(self)
-            currentUser.add(self)
+            self.model.add(self, for: .WillLoad) {user in
+                self.showViewController()
+            }
         }
     }
     
@@ -24,10 +26,15 @@ class LoginViewController: FBViewController {
     @IBAction func onLogin() {
         self.login();
     }
+  
+    // MARK: Public Methods
+    override func showViewController() {
+        print("TEST")
+    }
     
-    // MARK: Private Methods 
+    // MARK: Private Methods
     
     func login() {
-        self.context = LoginContext(with: self.currentUser);
+        self.context = LoginContext(with: self.model);
     }
 }

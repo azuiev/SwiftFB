@@ -27,8 +27,7 @@ class LoginContext: GetContext {
         let user = self.model as! CurrentUserModel
         if !user.isAuthorized() {
             let manager = LoginManager()
-            manager.logIn([.publicProfile, .userFriends])
-            { loginResult in
+            manager.logIn([.publicProfile, .userFriends]) { loginResult in
                 switch loginResult {
                 case .failed(let error):
                     print(error)
@@ -36,10 +35,11 @@ class LoginContext: GetContext {
                     print("User cancelled login.")
                 case .success(_, _, let token):
                     self.fillUser(with: token)
+                    completionHandler(.WillLoad)
                 }
             }
         } else {
-            completionHandler(.DidLoad)
+            completionHandler(.WillLoad)
         }
     }
     

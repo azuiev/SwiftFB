@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow();
         let controller = LoginViewController()
-    
+        controller.model = CurrentUserModel()
+        
         window!.rootViewController = controller
         window!.backgroundColor = UIColor.purple
         

@@ -14,7 +14,7 @@
 		1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687E981FA8F37300499350 /* FBViewController.swift */; };
 		1D687EA41FA8F43300499350 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA21FA8F43300499350 /* Model.swift */; };
 		1D687EA61FA8F48200499350 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D687EA51FA8F48200499350 /* Context.swift */; };
-		1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74FE961FA2400F00D21039 /* ObservableObject.swift */; };
+		1D70A1031FB24C7A00E8F793 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D70A1021FB24C7A00E8F793 /* ObservableObject.swift */; };
 		1DCA37711FACE5860078EF43 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DCA37701FACE5860078EF43 /* LoginViewController.xib */; };
 		1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37721FACE5A50078EF43 /* LoginViewController.swift */; };
 		1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA37741FACE68E0078EF43 /* LoginView.swift */; };
@@ -38,7 +38,7 @@
 		1D687E981FA8F37300499350 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
 		1D687EA21FA8F43300499350 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1D687EA51FA8F48200499350 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		1D74FE961FA2400F00D21039 /* ObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
+		1D70A1021FB24C7A00E8F793 /* ObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
 		1D9E12EF1FABEBAF00770AEC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		1D9E12F11FABEBBC00770AEC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		1D9E12F31FABEBCF00770AEC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -233,10 +233,18 @@
 			path = UserModel;
 			sourceTree = "<group>";
 		};
+		1D70A1011FB24C7A00E8F793 /* ObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				1D70A1021FB24C7A00E8F793 /* ObservableObject.swift */,
+			);
+			path = ObservableObject;
+			sourceTree = "<group>";
+		};
 		1D74FE931FA23FB200D21039 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D74FE951FA2400000D21039 /* Observer */,
+				1D70A1011FB24C7A00E8F793 /* ObservableObject */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -246,14 +254,6 @@
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		1D74FE951FA2400000D21039 /* Observer */ = {
-			isa = PBXGroup;
-			children = (
-				1D74FE961FA2400F00D21039 /* ObservableObject.swift */,
-			);
-			path = Observer;
 			sourceTree = "<group>";
 		};
 		1D9E12EE1FABEB9100770AEC /* Frameworks */ = {
@@ -442,8 +442,8 @@
 				1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */,
 				1DCA377F1FAD03AA0078EF43 /* GetContext.swift in Sources */,
 				1DCA377D1FAD031B0078EF43 /* LoginContext.swift in Sources */,
+				1D70A1031FB24C7A00E8F793 /* ObservableObject.swift in Sources */,
 				1D687EA41FA8F43300499350 /* Model.swift in Sources */,
-				1D74FE971FA2400F00D21039 /* ObservableObject.swift in Sources */,
 				1D687EA61FA8F48200499350 /* Context.swift in Sources */,
 				1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */,
 				1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */,

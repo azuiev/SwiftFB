@@ -16,26 +16,56 @@ func synchronized<T>(lock: AnyObject, _ block: () -> T) -> T {
 }
 
 extension ObservableObject {
-    class ObservationController {
+    class ObservationController: Equatable {
+        
+        // MARK : Private Properties
+        public static func ==(lhs: ObservationController, rhs: ObservationController) -> Bool {
+            return true
+        }
         
         // MARK : Private Properties
         
         typealias ObserverType = AnyObject
         typealias ActionType = (ObservableObject) -> ()
         
+        static var cache = Array<ObservationController>()
         private var observableObject: ObservableObject
         private var observer: ObserverType
         
-        var relation: [ModelState : ActionType] = [:]
+        private var relation: [ModelState : ActionType] = [:]
         
         // MARK : Initialization
         
-        init (observableObject: ObservableObject, observer: ObserverType) {
+        static func controller(with observableObject: ObservableObject, observer: ObserverType) -> ObservationController {
+            var cache = ObservationController.cache
+            let newController = ObservationController(observableObject: observableObject, observer: observer);
+            var result: ObservationController?
+            cache.forEach { controller in
+                if controller == newController {
+                    result = controller
+                    
+                    return
+                }
+            }
+            
+            if result == nil {
+                result = newController
+                ObservationController.cache.append(result!)
+            }
+            
+            return result!
+        }
+        
+        private init (observableObject: ObservableObject, observer: ObserverType) {
             self.observableObject = observableObject
             self.observer = observer
         }
-        
+    
         // MARK: Public Methods
+        
+        func set(_ action: @escaping ActionType, for state: ModelState) {
+            self.relation[state] = action
+        }
         
         func notify(of state: ModelState) {
             if let block = self.relation[state] {
@@ -50,6 +80,8 @@ extension ObservableObject {
 public class ObservableObject {
     
     typealias ObserverType = AnyObject
+    typealias ActionType = (ObservableObject) -> ()
+    
     
     // MARK: Public properties
     
@@ -62,7 +94,7 @@ public class ObservableObject {
         
     }
     
-    var notify: Bool = false;
+    var notify: Bool = true;
     
     var observers: NSHashTable<ObserverType>
     
@@ -72,7 +104,21 @@ public class ObservableObject {
         self.observers = NSHashTable.weakObjects();
     }
     
+    // MARK: Equtable protocol
+    
+    public static func ==(lhs: ObservableObject, rhs: ObservableObject) -> Bool {
+        return false
+    }
+
     // MARK: Public methods
+    
+    func add(_ observer: ObserverType, for state: ModelState, with block: @escaping ActionType) {
+        self.observers.add(observer);
+        
+        let controller = ObservationController.controller(with: self, observer: observer);
+        controller.set(block, for: state)
+    }
+    
     func add(_ observer: ObserverType?) {
         if let object = observer {
             _ = self.observers.add(object)
@@ -104,12 +150,12 @@ public class ObservableObject {
     // MARK : Private Methods
     
     func controller(for observer: ObserverType) -> ObservationController {
-        return ObservationController(observableObject: self, observer: observer)
+        return ObservationController.controller(with: self, observer: observer)
     }
     
     func notifyOfState() {
         self.observers.allObjects.forEach {
-            self.controller(for: $0).relation[self.state]?(self)
+            self.controller(for: $0).notify(of: self.state)
         }
     }
 }

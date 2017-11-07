@@ -22,7 +22,16 @@ class FBViewController: UIViewController {
         }
     }
     
-    var model: Model
+    var model: Model {
+        didSet {
+            oldValue.remove(self)
+            self.model.add(self, for: .DidLoad) {model in
+                self.showViewController()
+            }
+            
+        }
+    }
+    
     var currentUser: CurrentUserModel
     
     // MARK: Initialization and Deallocation
@@ -40,11 +49,6 @@ class FBViewController: UIViewController {
         self.currentUser = CurrentUserModel()
         
         super.init(coder: aDecoder)
-    }
-    
-    deinit {
-        self.context = nil
-        self.model = Model()
     }
     
     // MARK: Public Methods

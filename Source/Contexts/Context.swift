@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Context: Model {
+class Context {
     
     // MARK: Public Properties
     
@@ -19,8 +19,6 @@ class Context: Model {
     
     init(with model: Model) {
         self.model = model
-
-        super.init()
     }
     
     // MARK: Public Methods
