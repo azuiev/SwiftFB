@@ -16,12 +16,7 @@ func synchronized<T>(lock: AnyObject, _ block: () -> T) -> T {
 }
 
 extension ObservableObject {
-    class ObservationController: Equatable {
-        
-        // MARK : Private Properties
-        public static func ==(lhs: ObservationController, rhs: ObservationController) -> Bool {
-            return true
-        }
+    class ObservationController {
         
         // MARK : Private Properties
         
@@ -37,11 +32,10 @@ extension ObservableObject {
         // MARK : Initialization
         
         static func controller(with observableObject: ObservableObject, observer: ObserverType) -> ObservationController {
-            var cache = ObservationController.cache
-            let newController = ObservationController(observableObject: observableObject, observer: observer);
             var result: ObservationController?
-            cache.forEach { controller in
-                if controller == newController {
+            ObservationController.cache.forEach { controller in
+                if controller.observableObject === observableObject
+                    && controller.observer === observer {
                     result = controller
                     
                     return
@@ -49,7 +43,7 @@ extension ObservableObject {
             }
             
             if result == nil {
-                result = newController
+                result = ObservationController(observableObject: observableObject, observer: observer);
                 ObservationController.cache.append(result!)
             }
             
@@ -104,12 +98,6 @@ public class ObservableObject {
         self.observers = NSHashTable.weakObjects();
     }
     
-    // MARK: Equtable protocol
-    
-    public static func ==(lhs: ObservableObject, rhs: ObservableObject) -> Bool {
-        return false
-    }
-
     // MARK: Public methods
     
     func add(_ observer: ObserverType, for state: ModelState, with block: @escaping ActionType) {

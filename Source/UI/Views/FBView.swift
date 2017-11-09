@@ -10,6 +10,7 @@ import UIKit
 
 class FBView: UIView {
     
+    var loadingView: LoadingView?
     // MARK: Initialization
     
     override func awakeFromNib() {
@@ -22,6 +23,16 @@ class FBView: UIView {
     // MARK: Public Methods
     
     func addLoadingView() {
-        
+        if self.loadingView == nil {
+            let loadingView: LoadingView? = UINib.object(with: LoadingView.self) as? LoadingView
+            if let view = loadingView {
+                view.frame = self.bounds
+                
+                self.addSubview(view)
+                
+                self.loadingView = view;
+            }
+        }
+
     }
 }

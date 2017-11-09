@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5CC0E91FB4CFB7009D26FF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5CC0E81FB4CFB6009D26FF /* LoadingView.xib */; };
+		1D5CC0EB1FB4CFD3009D26FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CC0EA1FB4CFD3009D26FF /* LoadingView.swift */; };
+		1D5CC0ED1FB4E777009D26FF /* UINib+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CC0EC1FB4E777009D26FF /* UINib+Extension.swift */; };
 		1D5F18CD1FA0F5CD006EAC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18BB1FA0F5CD006EAC73 /* Assets.xcassets */; };
 		1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18BC1FA0F5CD006EAC73 /* LaunchScreen.storyboard */; };
 		1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F18BE1FA0F5CD006EAC73 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		1D5CC0E81FB4CFB6009D26FF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		1D5CC0EA1FB4CFD3009D26FF /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1D5CC0EC1FB4E777009D26FF /* UINib+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINib+Extension.swift"; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18BB1FA0F5CD006EAC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5F18BD1FA0F5CD006EAC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +73,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5CC0E61FB4CE87009D26FF /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		1D5CC0E71FB4CE87009D26FF /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				1D5CC0EA1FB4CFD3009D26FF /* LoadingView.swift */,
+				1D5CC0E81FB4CFB6009D26FF /* LoadingView.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		1D5F18861FA0F34D006EAC73 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				1DCA37761FACE97B0078EF43 /* FBView.swift */,
+				1D5CC0E71FB4CE87009D26FF /* LoadingView */,
+				1D5CC0E61FB4CE87009D26FF /* ImageView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +276,7 @@
 		1D74FE941FA23FB200D21039 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1D5CC0EC1FB4E777009D26FF /* UINib+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +404,7 @@
 				1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */,
 				1D5F18CD1FA0F5CD006EAC73 /* Assets.xcassets in Resources */,
 				1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */,
+				1D5CC0E91FB4CFB7009D26FF /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +466,7 @@
 				1DCA37831FAD182B0078EF43 /* CurrentUserModel.swift in Sources */,
 				1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */,
 				1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */,
+				1D5CC0ED1FB4E777009D26FF /* UINib+Extension.swift in Sources */,
 				1DCA377F1FAD03AA0078EF43 /* GetContext.swift in Sources */,
 				1DCA377D1FAD031B0078EF43 /* LoginContext.swift in Sources */,
 				1D70A1031FB24C7A00E8F793 /* ObservableObject.swift in Sources */,
@@ -448,6 +475,7 @@
 				1D687E9D1FA8F37300499350 /* FBViewController.swift in Sources */,
 				1DCA37751FACE68E0078EF43 /* LoginView.swift in Sources */,
 				1DCA37811FAD154F0078EF43 /* UserModel.swift in Sources */,
+				1D5CC0EB1FB4CFD3009D26FF /* LoadingView.swift in Sources */,
 				1D687E931FA8D8AB00499350 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
