@@ -14,4 +14,8 @@ class LoginView: FBView {
     
     @IBOutlet var LoginButton: UIButton?
     
+    // MARK: Override Methods
+    
+    
+    
 }

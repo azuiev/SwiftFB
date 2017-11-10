@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FBViewController: UIViewController {
+class FBViewController: UIViewController, rootView {
 
+    typealias viewType = FBView
     // MARK: Public properties
     
     var context: Context? {
@@ -25,28 +26,29 @@ class FBViewController: UIViewController {
     var model: Model {
         didSet {
             oldValue.remove(self)
+            
             self.model.add(self, for: .DidLoad) {model in
                 self.showViewController()
             }
             
+            self.model.add(self, for: .WillLoad) {model in
+                self.rootView.loadingView?.set(visible: true)
+            }
         }
     }
     
-    var currentUser: CurrentUserModel
+    var currentUser: CurrentUserModel?
     
     // MARK: Initialization and Deallocation
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
         self.model = Model()
-        self.currentUser = CurrentUserModel()
-        
-        super.init(nibName: nil, bundle: nil)
 
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.model = Model()
-        self.currentUser = CurrentUserModel()
         
         super.init(coder: aDecoder)
     }
@@ -58,7 +60,9 @@ class FBViewController: UIViewController {
     }
     
     func logout() {
-        self.context = Context(with: self.currentUser);
+        if let user = self.currentUser {
+            self.context = Context(with: user);
+        }
     }
     
     // MARK: UI LifeCycle

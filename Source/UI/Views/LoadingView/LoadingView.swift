@@ -25,13 +25,8 @@ class LoadingView: UIView {
     
     // MARK: Initialization
     
-    init(superView: UIView) {
-        super.init(frame: superView.bounds)
-        superView.addSubview(self)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 
     // MARK: Public Methods

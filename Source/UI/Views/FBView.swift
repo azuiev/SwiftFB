@@ -8,16 +8,28 @@
 
 import UIKit
 
+protocol rootView {
+    associatedtype viewType
+    
+    var rootView: viewType { get }
+}
+
+extension rootView where Self: UIViewController {
+    var rootView: viewType {
+        return (self.viewIfLoaded as? viewType)!
+    }
+}
+
 class FBView: UIView {
     
     var loadingView: LoadingView?
+    
     // MARK: Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.addLoadingView()
-    
     }
     
     // MARK: Public Methods

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5B2A361FB6738A005EC7B9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B2A341FB6738A005EC7B9 /* UserViewController.swift */; };
+		1D5B2A371FB6738A005EC7B9 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B2A351FB6738A005EC7B9 /* UserViewController.xib */; };
+		1D5B2A391FB6738A005EC7B9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B2A381FB6738A005EC7B9 /* UserView.swift */; };
 		1D5CC0E91FB4CFB7009D26FF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5CC0E81FB4CFB6009D26FF /* LoadingView.xib */; };
 		1D5CC0EB1FB4CFD3009D26FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CC0EA1FB4CFD3009D26FF /* LoadingView.swift */; };
 		1D5CC0ED1FB4E777009D26FF /* UINib+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CC0EC1FB4E777009D26FF /* UINib+Extension.swift */; };
@@ -31,6 +34,9 @@
 
 /* Begin PBXFileReference section */
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		1D5B2A341FB6738A005EC7B9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		1D5B2A351FB6738A005EC7B9 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
+		1D5B2A381FB6738A005EC7B9 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		1D5CC0E81FB4CFB6009D26FF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		1D5CC0EA1FB4CFD3009D26FF /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1D5CC0EC1FB4E777009D26FF /* UINib+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINib+Extension.swift"; sourceTree = "<group>"; };
@@ -197,6 +203,9 @@
 		1D687E9B1FA8F37300499350 /* UserViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1D5B2A341FB6738A005EC7B9 /* UserViewController.swift */,
+				1D5B2A381FB6738A005EC7B9 /* UserView.swift */,
+				1D5B2A351FB6738A005EC7B9 /* UserViewController.xib */,
 			);
 			path = UserViewController;
 			sourceTree = "<group>";
@@ -217,8 +226,8 @@
 				1D687EA51FA8F48200499350 /* Context.swift */,
 				1DCA377E1FAD03AA0078EF43 /* GetContext.swift */,
 				1DCA377A1FAD02ED0078EF43 /* LoginContext */,
-				1DCA37791FAD02EC0078EF43 /* FriendsContext */,
 				1DCA377B1FAD02ED0078EF43 /* UserDetailContext */,
+				1DCA37791FAD02EC0078EF43 /* FriendsContext */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -401,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DCA37711FACE5860078EF43 /* LoginViewController.xib in Resources */,
+				1D5B2A371FB6738A005EC7B9 /* UserViewController.xib in Resources */,
 				1D5F18CF1FA0F5CD006EAC73 /* Main.storyboard in Resources */,
 				1D5F18CD1FA0F5CD006EAC73 /* Assets.xcassets in Resources */,
 				1D5F18CE1FA0F5CD006EAC73 /* LaunchScreen.storyboard in Resources */,
@@ -464,7 +474,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DCA37831FAD182B0078EF43 /* CurrentUserModel.swift in Sources */,
+				1D5B2A361FB6738A005EC7B9 /* UserViewController.swift in Sources */,
 				1DCA37731FACE5A50078EF43 /* LoginViewController.swift in Sources */,
+				1D5B2A391FB6738A005EC7B9 /* UserView.swift in Sources */,
 				1DCA37771FACE97B0078EF43 /* FBView.swift in Sources */,
 				1D5CC0ED1FB4E777009D26FF /* UINib+Extension.swift in Sources */,
 				1DCA377F1FAD03AA0078EF43 /* GetContext.swift in Sources */,

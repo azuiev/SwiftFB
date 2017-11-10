@@ -10,6 +10,10 @@ import UIKit
 
 class LoginViewController: FBViewController {
     
+    // MARK: protocol rootView
+    
+    typealias viewType = LoginView
+    
     // MARK: Public Properties
     
     override var model: Model {
@@ -21,20 +25,31 @@ class LoginViewController: FBViewController {
         }
     }
     
-    // MARK: View Lifecycle
-    
-    @IBAction func onLogin() {
-        self.login();
-    }
   
     // MARK: Public Methods
     override func showViewController() {
-        print("TEST")
+        let user = self.model as! CurrentUserModel
+        let controller = UserViewController()
+        let navigationController = UINavigationController(rootViewController: controller)
+        controller.model = user
+        controller.currentUser = user;
+        
+        self.present(navigationController, animated: true)
     }
     
     // MARK: Private Methods
     
     func login() {
-        self.context = LoginContext(with: self.model);
+        self.context = LoginContext(with: self.model)
+    }
+    
+    // MARK: UI Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.rootView.loadingView?.set(visible: false)
+    }
+    
+    @IBAction func onLogin() {
+        self.login();
     }
 }
