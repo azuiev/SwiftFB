@@ -19,7 +19,7 @@ class LoginViewController: FBViewController {
     override var model: Model {
         didSet {
             oldValue.remove(self)
-            self.model.add(self, for: .WillLoad) {user in
+            self.model.add(self, for: .willLoad) {user in
                 self.showViewController()
             }
         }
@@ -40,7 +40,7 @@ class LoginViewController: FBViewController {
     // MARK: Private Methods
     
     func login() {
-        self.context = LoginContext(with: self.model)
+        self.context = LoginContext(currentUser:self.model as! CurrentUserModel)
     }
     
     // MARK: UI Lifecycle

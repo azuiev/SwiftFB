@@ -14,11 +14,16 @@ class LoginContext: GetContext {
     
     // MARK: Constants
     
-    struct Constants {
+    private struct Constants {
         static let TokenStringPath     = "token.tokenString"
         static let UserIDStringPath    = "token.userID"
         static let UserIDString        = "userID"
         static let TokenString         = "token"
+    }
+    
+    // MARK: Public Methods
+    init ?(currentUser: CurrentUserModel) {
+        super.init(model: currentUser, currentUser: currentUser)
     }
     
     // MARK: Public Methods
@@ -35,11 +40,11 @@ class LoginContext: GetContext {
                     print("User cancelled login.")
                 case .success(_, _, let token):
                     self.fillUser(with: token)
-                    completionHandler(.WillLoad)
+                    completionHandler(.willLoad)
                 }
             }
         } else {
-            completionHandler(.WillLoad)
+            completionHandler(.willLoad)
         }
     }
     

@@ -13,11 +13,10 @@ class Context {
     // MARK: Public Properties
     
     let model: Model
-    var currentUser: CurrentUserModel?
     
     // MARK: Initialization
     
-    init(with model: Model) {
+    init(model: Model) {
         self.model = model
     }
     

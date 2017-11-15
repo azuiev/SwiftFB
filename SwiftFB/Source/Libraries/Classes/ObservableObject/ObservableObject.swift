@@ -79,7 +79,7 @@ public class ObservableObject {
     
     // MARK: Public properties
     
-    var state: ModelState = .DidUnload {
+    var state: ModelState = .didUnload {
         didSet {
             if notify {
                 self.notifyOfState();

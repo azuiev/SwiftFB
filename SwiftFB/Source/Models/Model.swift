@@ -13,11 +13,11 @@ protocol Save {
 }
 
 enum ModelState {
-    case DidUnload
-    case WillLoad
-    case DidLoad
-    case DidFailLoading
-    case StateCount
+    case didUnload
+    case willLoad
+    case didLoad
+    case didFailLoading
+    case stateCount
 };
 
 class Model: ObservableObject, Equatable, Hashable {
@@ -25,33 +25,33 @@ class Model: ObservableObject, Equatable, Hashable {
     // MARK: Public properties
     
     var hashValue: Int {
-        return self.hashValue;
+        return self.hashValue
     }
     
     // MARK: Public methods
     
     static func == (lhs: Model, rhs: Model) -> Bool {
-        return lhs.hashValue == rhs.hashValue;
+        return lhs.hashValue == rhs.hashValue
     }
     
     func load() {
         let state = self.state;
-        if .WillLoad == state || .DidLoad == state {
-            self.notifyOfState();
+        if .willLoad == state || .didLoad == state {
+            self.notifyOfState()
             
             return;
         }
         
-        self.state = .WillLoad;
+        self.state = .willLoad
         
         //add synchronized above
         
-        self.loadObject();
+        self.loadObject()
     }
     
     func loadObject() {
         //add background
-        self.performLoading();
+        self.performLoading()
     }
     
     func performLoading() {

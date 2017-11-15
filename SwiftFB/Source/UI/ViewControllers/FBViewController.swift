@@ -27,11 +27,11 @@ class FBViewController: UIViewController, rootView {
         didSet {
             oldValue.remove(self)
             
-            self.model.add(self, for: .DidLoad) {model in
+            self.model.add(self, for: .didLoad) {model in
                 self.showViewController()
             }
             
-            self.model.add(self, for: .WillLoad) {model in
+            self.model.add(self, for: .willLoad) {model in
                 self.rootView.loadingView?.set(visible: true)
             }
         }
@@ -61,7 +61,7 @@ class FBViewController: UIViewController, rootView {
     
     func logout() {
         if let user = self.currentUser {
-            self.context = Context(with: user);
+            self.context = Context(model: user);
         }
     }
     
@@ -72,7 +72,7 @@ class FBViewController: UIViewController, rootView {
             title: "Logout",
             style: .done,
             target: self,
-            action: Selector("onLogout")
+            action: #selector(FBViewController.onLogout)
         )
     }
     

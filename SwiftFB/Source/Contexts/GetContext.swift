@@ -14,23 +14,37 @@ class GetContext: Context {
 
     // MARK: Constants
     
-    struct Constants {
+    private struct Constants {
         static let requestMethod = "GET"
     }
     
-    // MARK: Public Methods
+    // MARK: Public Properties
     
     var graphPath = ""
-    var parameters: Dictionary<String, String> = [:]
+    var parameters: [String : String] = [:]
+    var currentUser: CurrentUserModel
+    
+    // MARK: Initialization
+    
+    init?(model: Model, currentUser: CurrentUserModel) {
+        self.currentUser = currentUser
+        super.init(model: model)
+    }
     
     // MARK: Public Methods
     
     func token() -> String? {
-        return self.currentUser?.token;
+        return self.currentUser.token;
     }
     
-    func fbUserModel() -> Model {
-        return self.model as Model
+    func finishLoading(with response: Any) {
+        self.fill(model: self.model, with: response)
+    }
+    
+    func fill(model: Model, with response: Any) {
+        guard let user = model as? UserModel else { return }
+        
+        UserParser.update(user: user, with: response as! Dictionary<String, String>)
     }
 
     // MARK: Override Methods
@@ -47,7 +61,7 @@ class GetContext: Context {
             case .success(let graphResponse):
                 if let responseDictionary = graphResponse.dictionaryValue {
                     print(responseDictionary)
-                    completionHandler(.DidLoad)
+                    completionHandler(.didLoad)
                 }
             }
         }

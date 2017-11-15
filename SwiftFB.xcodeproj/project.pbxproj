@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D817BDC1FBCC7C800EC01F2 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D817BDB1FBCC7C800EC01F2 /* UserParser.swift */; };
 		1D943B8E1FBCD62700B07695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D943B5D1FBCD62700B07695 /* AppDelegate.swift */; };
 		1D943B8F1FBCD62700B07695 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D943B5E1FBCD62700B07695 /* Info.plist */; };
 		1D943B901FBCD62700B07695 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D943B601FBCD62700B07695 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18C91FA0F5CD006EAC73 /* SwiftFB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftFB.xcodeproj; sourceTree = "<group>"; };
+		1D817BDB1FBCC7C800EC01F2 /* UserParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		1D943B5D1FBCD62700B07695 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D943B5E1FBCD62700B07695 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D943B601FBCD62700B07695 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +109,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1D817BDA1FBCC79F00EC01F2 /* UserParser */ = {
+			isa = PBXGroup;
+			children = (
+				1D817BDB1FBCC7C800EC01F2 /* UserParser.swift */,
+			);
+			name = UserParser;
+			path = SwiftFB/Source/Libraries/Classes/UserParser;
+			sourceTree = SOURCE_ROOT;
+		};
 		1D943B5C1FBCD62700B07695 /* SwiftFB */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,10 +142,10 @@
 		1D943B651FBCD62700B07695 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1D943B661FBCD62700B07695 /* Contexts */,
-				1D943B6E1FBCD62700B07695 /* Libraries */,
 				1D943B751FBCD62700B07695 /* Models */,
+				1D943B661FBCD62700B07695 /* Contexts */,
 				1D943B7C1FBCD62700B07695 /* UI */,
+				1D943B6E1FBCD62700B07695 /* Libraries */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -187,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				1D943B701FBCD62700B07695 /* ObservableObject */,
+				1D817BDA1FBCC79F00EC01F2 /* UserParser */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -211,10 +223,10 @@
 		1D943B751FBCD62700B07695 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1D943B761FBCD62700B07695 /* ArrayModel */,
-				1D943B771FBCD62700B07695 /* ImageModel */,
 				1D943B781FBCD62700B07695 /* Model.swift */,
 				1D943B791FBCD62700B07695 /* UserModel */,
+				1D943B761FBCD62700B07695 /* ArrayModel */,
+				1D943B771FBCD62700B07695 /* ImageModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,8 +248,8 @@
 		1D943B791FBCD62700B07695 /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
-				1D943B7A1FBCD62700B07695 /* CurrentUserModel.swift */,
 				1D943B7B1FBCD62700B07695 /* UserModel.swift */,
+				1D943B7A1FBCD62700B07695 /* CurrentUserModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -255,9 +267,9 @@
 			isa = PBXGroup;
 			children = (
 				1D943B7E1FBCD62700B07695 /* FBViewController.swift */,
-				1D943B7F1FBCD62700B07695 /* FriendsViewController */,
 				1D943B801FBCD62700B07695 /* LoginViewController */,
 				1D943B841FBCD62700B07695 /* UserViewController */,
+				1D943B7F1FBCD62700B07695 /* FriendsViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -477,6 +489,7 @@
 				1D943B931FBCD62700B07695 /* Context.swift in Sources */,
 				1D943B981FBCD62700B07695 /* NSPointerArray+Extensions.swift in Sources */,
 				1D943BA11FBCD62700B07695 /* UserView.swift in Sources */,
+				1D817BDC1FBCC7C800EC01F2 /* UserParser.swift in Sources */,
 				1D943B941FBCD62700B07695 /* GetContext.swift in Sources */,
 				1D943B951FBCD62700B07695 /* LoginContext.swift in Sources */,
 				1D943B9D1FBCD62700B07695 /* FBViewController.swift in Sources */,
@@ -613,7 +626,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Source/SwiftFB/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftFB/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Resources/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idap.SwiftFB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -632,7 +645,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Source/SwiftFB/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftFB/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Resources/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idap.SwiftFB;
 				PRODUCT_NAME = "$(TARGET_NAME)";

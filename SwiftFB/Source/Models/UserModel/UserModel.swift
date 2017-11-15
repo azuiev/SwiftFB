@@ -9,8 +9,11 @@
 import UIKit
 
 class UserModel: Model {
-    struct Constants {
-        static let EmptyName = "Empty Empty"
+    
+    // MARK: Constants
+    
+    private struct Constants {
+        static let EmptyValue = "Empty"
     }
     
     // MARK: Public Properties 
@@ -24,16 +27,7 @@ class UserModel: Model {
     // MARK: Public Properties
     
     func fullName() -> String {
-        var result = "";
-        if let value = self.name {
-            result += value
-        }
-        
-        if let value = self.surname {
-            result += value
-        }
-        
-        return result == "" ? Constants.EmptyName : result
+        return "\(self.name ?? Constants.EmptyValue) \(self.surname ?? Constants.EmptyValue)"
     }
     
     // MARK: TODO NSCoding

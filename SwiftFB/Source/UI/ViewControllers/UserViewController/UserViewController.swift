@@ -29,7 +29,7 @@ class UserViewController: FBViewController {
     // MARK: Private Methods
     
     func loadUserInfo() {
-        self.context = LoginContext(with: self.model);
+        self.context = LoginContext(currentUser: self.model as! CurrentUserModel);
     }
     
     // MARK: UI Lifecycle

@@ -17,6 +17,6 @@ class CurrentUserModel: UserModel {
     // MARK: Public Methods
     
     func isAuthorized() -> Bool {
-        return false;
+        return false
     }
 }
