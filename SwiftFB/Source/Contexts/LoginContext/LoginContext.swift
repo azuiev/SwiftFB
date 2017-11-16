@@ -52,7 +52,7 @@ class LoginContext: GetContext {
     
     func fillUser(with token: AccessToken) {
         let user = self.model as! CurrentUserModel
-        user.token = token.userId
-        user.userID = token.authenticationToken
+        user.userID = token.userId
+        user.token = token.authenticationToken
     }
 }

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Gender: String {
+    case male
+    case female
+};
+
 class UserModel: Model {
     
     // MARK: Constants
@@ -15,14 +20,16 @@ class UserModel: Model {
     private struct Constants {
         static let EmptyValue = "Empty"
     }
-    
+   
     // MARK: Public Properties 
     
     var name: String?
     var surname: String?
+    var middleName: String?
     var picture: Any?
     var userID: String?
-    
+    var birthday: Date? 
+    var gender: Gender = .male
     
     // MARK: Public Properties
     

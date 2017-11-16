@@ -23,33 +23,30 @@ class FBViewController: UIViewController, rootView {
         }
     }
     
-    var model: Model {
+    var model: Model = Model() {
         didSet {
             oldValue.remove(self)
             
-            self.model.add(self, for: .didLoad) {model in
-                self.showViewController()
+            self.model.add(self, for: .didLoad) { [weak self] model in
+                self?.rootView.loadingView?.set(visible: false)
+                self?.rootView.fill(with: model as! Model)
             }
             
-            self.model.add(self, for: .willLoad) {model in
-                self.rootView.loadingView?.set(visible: true)
+            self.model.add(self, for: .willLoad) { [weak self] model in
+                self?.rootView.loadingView?.set(visible: true)
             }
         }
     }
     
-    var currentUser: CurrentUserModel?
+    var currentUser: CurrentUserModel = CurrentUserModel()
     
     // MARK: Initialization and Deallocation
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
-        self.model = Model()
-
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.model = Model()
-        
         super.init(coder: aDecoder)
     }
     
@@ -60,9 +57,7 @@ class FBViewController: UIViewController, rootView {
     }
     
     func logout() {
-        if let user = self.currentUser {
-            self.context = Context(model: user);
-        }
+        self.context = Context(model: self.currentUser);
     }
     
     // MARK: UI LifeCycle

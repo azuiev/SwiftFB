@@ -8,17 +8,34 @@
 
 import UIKit
 
-class UserView: UIView {
+class UserView: FBView {
 
     // MARK: Public properties
     
-    @IBOutlet var NameLabel: UILabel?
-    @IBOutlet var SurnameLabel: UILabel?
-    @IBOutlet var MiddleNameLabel: UILabel?
-    @IBOutlet var BirthdayLabel: UILabel?
-    @IBOutlet var GenderLabel: UILabel?
-    @IBOutlet var UserImage: UIImageView?
+    @IBOutlet var nameLabel: UILabel?
+    @IBOutlet var surnameLabel: UILabel?
+    @IBOutlet var middleNameLabel: UILabel?
+    @IBOutlet var birthdayLabel: UILabel?
+    @IBOutlet var genderLabel: UILabel?
+    @IBOutlet var userImage: UIImageView?
     
     @IBOutlet var FriendsButton: UIButton?
 
+    // MARK: Public Methods
+    
+    override func fill(with model: Model) {
+        guard let user = model as? UserModel else { return }
+        self.nameLabel?.text = user.name;
+        self.surnameLabel?.text = user.surname;
+        self.middleNameLabel?.text = user.middleName;
+        //self.userImage.model = user.userPicture;
+        if let date = user.birthday {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            self.birthdayLabel?.text = dateFormatter.string(from: date)
+        }
+    
+        self.genderLabel?.text = user.gender.rawValue;
+    }
+    
 }

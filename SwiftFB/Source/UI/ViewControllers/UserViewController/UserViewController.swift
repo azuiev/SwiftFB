@@ -26,12 +26,11 @@ class UserViewController: FBViewController {
         print("show friends controller")
     }
     
-    // MARK: Private Methods
-    
-    func loadUserInfo() {
-        self.context = LoginContext(currentUser: self.model as! CurrentUserModel);
-    }
-    
     // MARK: UI Lifecycle
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.context = UserContext(model: self.model, currentUser: self.currentUser);
+    }
 }

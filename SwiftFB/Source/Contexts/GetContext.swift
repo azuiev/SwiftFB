@@ -37,14 +37,14 @@ class GetContext: Context {
         return self.currentUser.token;
     }
     
-    func finishLoading(with response: Any) {
+    func finishLoading(with response: [String : Any]) {
         self.fill(model: self.model, with: response)
     }
     
-    func fill(model: Model, with response: Any) {
+    func fill(model: Model, with response: [String : Any]) {
         guard let user = model as? UserModel else { return }
         
-        UserParser.update(user: user, with: response as! Dictionary<String, String>)
+        UserParser.update(user: user, with: response)
     }
 
     // MARK: Override Methods
@@ -61,6 +61,7 @@ class GetContext: Context {
             case .success(let graphResponse):
                 if let responseDictionary = graphResponse.dictionaryValue {
                     print(responseDictionary)
+                    self.finishLoading(with: responseDictionary)
                     completionHandler(.didLoad)
                 }
             }

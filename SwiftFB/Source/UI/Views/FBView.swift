@@ -45,6 +45,9 @@ class FBView: UIView {
                 self.loadingView = view;
             }
         }
-
+    }
+    
+    func fill(with model: Model) {
+        
     }
 }

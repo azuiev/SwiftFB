@@ -18,35 +18,38 @@ class UserParser {
         static let middleNameKey        = "middle_name";
         static let genderKey            = "gender";
         static let birthdayKey          = "birthday";
-        static let pictureURLKey        = "picture.data.url";
-        static let pictureKey           = "userPicture";
+        static let pictureKey           = "picture";
+        static let dataKey              = "data";
+        static let urlKey               = "url";
         static let IDKey                = "id";
-        static let name                 = "name";
-        static let surname              = "surname";
-        static let middleName           = "middleName";
     }
     
     // MARK: Public Methods
-    static func update(user: UserModel, with object: Dictionary<String, String>) {
-        guard let imageURL = URL(string: object[Constants.pictureURLKey]!),
-            let name = object[Constants.nameKey],
-            let surname = object[Constants.surnameKey]
+    static func update(user: UserModel, with object: [String : Any]) {
+        guard let pictures = object[Constants.pictureKey] as? [String : Any]  else { return }
+        guard let data = pictures[Constants.dataKey] as? [String : String] else { return }
+        guard let url = URL(string: data[Constants.urlKey]!),
+            let name = object[Constants.nameKey] as? String,
+            let surname = object[Constants.surnameKey] as? String,
+            let dateString = object[Constants.birthdayKey] as? String,
+            let middleName = object[Constants.middleNameKey] as? String,
+            let gender = object[Constants.genderKey] as? String
         else {
             return
         }
         
+        user.picture = url
         user.name = name
         user.surname = surname
-        user.picture = imageURL
-
-//        AZImageModel *imageModel = [AZImageModel imageModelWithURL:imageURL];
-//        [user setValue:imageModel forKey:AZUserPictureKey];
-//        [user setValue:[object valueForKey:AZUserGenderKey] forKey:AZUserGenderKey];
-//        [user setValue:[object valueForKey:AZUserBirthdayKey] forKey:AZUserBirthdayKey];
-//        [user setValue:[object valueForKey:AZUserMiddleNameKey] forKey:AZUserMiddleName];
+        user.middleName = middleName
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        user.birthday = dateFormatter.date(from: dateString)
+        user.gender = Gender(rawValue: gender) ?? .female
     }
 
-    static func user(with object: Dictionary<String, String>) -> UserModel {
+    static func user(with object: [String : Any]) -> UserModel {
         let user = UserModel()
         self.update(user: user, with: object)
         

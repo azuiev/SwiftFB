@@ -19,14 +19,14 @@ class LoginViewController: FBViewController {
     override var model: Model {
         didSet {
             oldValue.remove(self)
-            self.model.add(self, for: .willLoad) {user in
-                self.showViewController()
+            self.model.add(self, for: .willLoad) { [weak self] user in
+                self?.showViewController()
             }
         }
     }
     
-  
     // MARK: Public Methods
+    
     override func showViewController() {
         let user = self.model as! CurrentUserModel
         let controller = UserViewController()
