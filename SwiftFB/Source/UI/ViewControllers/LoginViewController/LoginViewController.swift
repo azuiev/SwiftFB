@@ -16,10 +16,9 @@ class LoginViewController: FBViewController {
     
     // MARK: Public Properties
     
-    override var model: Model {
+    override var observationController: ObservableObject.ObservationController? {
         didSet {
-            oldValue.remove(self)
-            self.model.add(self, for: .willLoad) { [weak self] user in
+            self.observationController?[.didLoad] = { [weak self] user in
                 self?.showViewController()
             }
         }
@@ -33,14 +32,15 @@ class LoginViewController: FBViewController {
         let navigationController = UINavigationController(rootViewController: controller)
         controller.model = user
         controller.currentUser = user;
-        
+        self.observationController = nil
         self.present(navigationController, animated: true)
     }
     
     // MARK: Private Methods
     
     func login() {
-        self.context = LoginContext(currentUser:self.model as! CurrentUserModel)
+        guard let user = self.model as? CurrentUserModel else { return }
+        self.context = LoginContext(currentUser:user)
     }
     
     // MARK: UI Lifecycle

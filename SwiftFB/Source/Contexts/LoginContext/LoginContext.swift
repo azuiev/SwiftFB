@@ -29,7 +29,7 @@ class LoginContext: GetContext {
     // MARK: Public Methods
     
     override func execute(with completionHandler: @escaping(ModelState) -> Void) {
-        let user = self.model as! CurrentUserModel
+        guard let user = self.model as? CurrentUserModel else { return }
         if !user.isAuthorized() {
             let manager = LoginManager()
             manager.logIn([.publicProfile, .userFriends]) { loginResult in
@@ -40,7 +40,7 @@ class LoginContext: GetContext {
                     print("User cancelled login.")
                 case .success(_, _, let token):
                     self.fillUser(with: token)
-                    completionHandler(.willLoad)
+                    completionHandler(.didLoad)
                 }
             }
         } else {
@@ -51,7 +51,7 @@ class LoginContext: GetContext {
     // MARK: Private Methods
     
     func fillUser(with token: AccessToken) {
-        let user = self.model as! CurrentUserModel
+        guard let user = self.model as? CurrentUserModel else { return }
         user.userID = token.userId
         user.token = token.authenticationToken
     }

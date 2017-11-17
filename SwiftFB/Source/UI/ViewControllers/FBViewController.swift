@@ -11,7 +11,21 @@ import UIKit
 class FBViewController: UIViewController, rootView {
 
     typealias viewType = FBView
+    
     // MARK: Public properties
+    
+    var observationController: ObservableObject.ObservationController? {
+        didSet {
+            self.observationController?[.didLoad] = { [weak self] model in
+                self?.rootView.loadingView?.set(visible: false)
+                self?.rootView.fill(with: model as! Model)
+            }
+            
+            self.observationController?[.willLoad] = { [weak self] model in
+                self?.rootView.loadingView?.set(visible: true)
+            }
+        }
+    }
     
     var context: Context? {
         willSet {
@@ -25,9 +39,9 @@ class FBViewController: UIViewController, rootView {
     
     var model: Model = Model() {
         didSet {
-            oldValue.remove(self)
+            self.observationController = self.model.controller(for: self)
             
-            self.model.add(self, for: .didLoad) { [weak self] model in
+            /*self.model.add(self, for: .didLoad) { [weak self] model in
                 self?.rootView.loadingView?.set(visible: false)
                 self?.rootView.fill(with: model as! Model)
             }
@@ -35,6 +49,7 @@ class FBViewController: UIViewController, rootView {
             self.model.add(self, for: .willLoad) { [weak self] model in
                 self?.rootView.loadingView?.set(visible: true)
             }
+            */
         }
     }
     
