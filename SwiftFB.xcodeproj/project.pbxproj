@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6E81B91FBFB15C00B94CF8 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E81B81FBFB15C00B94CF8 /* ImageView.swift */; };
+		1D6E81BB1FBFB24800B94CF8 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E81BA1FBFB24800B94CF8 /* ImageModel.swift */; };
+		1D6E81BE1FBFB4B300B94CF8 /* ImageModelCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E81BD1FBFB4B300B94CF8 /* ImageModelCache.swift */; };
 		1D817BDC1FBCC7C800EC01F2 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D817BDB1FBCC7C800EC01F2 /* UserParser.swift */; };
 		1D943B8E1FBCD62700B07695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D943B5D1FBCD62700B07695 /* AppDelegate.swift */; };
 		1D943B8F1FBCD62700B07695 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D943B5E1FBCD62700B07695 /* Info.plist */; };
@@ -40,6 +43,9 @@
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18C91FA0F5CD006EAC73 /* SwiftFB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftFB.xcodeproj; sourceTree = "<group>"; };
+		1D6E81B81FBFB15C00B94CF8 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		1D6E81BA1FBFB24800B94CF8 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		1D6E81BD1FBFB4B300B94CF8 /* ImageModelCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModelCache.swift; sourceTree = "<group>"; };
 		1D817BDB1FBCC7C800EC01F2 /* UserParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		1D943B5D1FBCD62700B07695 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D943B5E1FBCD62700B07695 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +115,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1D6E81BC1FBFB46200B94CF8 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				1D6E81BD1FBFB4B300B94CF8 /* ImageModelCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		1D817BDA1FBCC79F00EC01F2 /* UserParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				1D943B671FBCD62700B07695 /* Context.swift */,
-				1D943B681FBCD62700B07695 /* FriendsContext */,
 				1D943B691FBCD62700B07695 /* GetContext.swift */,
+				1D943B681FBCD62700B07695 /* FriendsContext */,
 				1D943B6A1FBCD62700B07695 /* LoginContext */,
 				1D943B6C1FBCD62700B07695 /* UserDetailContext */,
 			);
@@ -197,6 +211,7 @@
 		1D943B6F1FBCD62700B07695 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1D6E81BC1FBFB46200B94CF8 /* Cache */,
 				1D943B701FBCD62700B07695 /* ObservableObject */,
 				1D817BDA1FBCC79F00EC01F2 /* UserParser */,
 			);
@@ -241,6 +256,7 @@
 		1D943B771FBCD62700B07695 /* ImageModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D6E81BA1FBFB24800B94CF8 /* ImageModel.swift */,
 			);
 			path = ImageModel;
 			sourceTree = "<group>";
@@ -314,6 +330,7 @@
 		1D943B8A1FBCD62700B07695 /* ImageView */ = {
 			isa = PBXGroup;
 			children = (
+				1D6E81B81FBFB15C00B94CF8 /* ImageView.swift */,
 			);
 			path = ImageView;
 			sourceTree = "<group>";
@@ -479,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6E81B91FBFB15C00B94CF8 /* ImageView.swift in Sources */,
 				1D943B9F1FBCD62700B07695 /* LoginViewController.swift in Sources */,
 				1D943BA21FBCD62700B07695 /* UserViewController.swift in Sources */,
 				1D943B9B1FBCD62700B07695 /* CurrentUserModel.swift in Sources */,
@@ -490,7 +508,9 @@
 				1D943B981FBCD62700B07695 /* NSPointerArray+Extensions.swift in Sources */,
 				1D943BA11FBCD62700B07695 /* UserView.swift in Sources */,
 				1D817BDC1FBCC7C800EC01F2 /* UserParser.swift in Sources */,
+				1D6E81BE1FBFB4B300B94CF8 /* ImageModelCache.swift in Sources */,
 				1D943B941FBCD62700B07695 /* GetContext.swift in Sources */,
+				1D6E81BB1FBFB24800B94CF8 /* ImageModel.swift in Sources */,
 				1D943B951FBCD62700B07695 /* LoginContext.swift in Sources */,
 				1D943B9D1FBCD62700B07695 /* FBViewController.swift in Sources */,
 				1D943B971FBCD62700B07695 /* ObservableObject.swift in Sources */,
