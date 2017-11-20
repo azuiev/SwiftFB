@@ -12,85 +12,63 @@ class ImageView: FBView {
 
     // MARK: Public properties
     
-    var contentImageView: UIImageView?
-    var model: ImageModel?
-    
-    /*
-    - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-    [self initSubviews];
+    var contentImageView: UIImageView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            if let newValue = self.contentImageView {
+                self.addSubview(newValue)
+                if let loadingView = self.loadingView {
+                    self.bringSubview(toFront: loadingView)
+                }
+            }
+        }
     }
     
-    return self;
+    var model: ImageModel? {
+        didSet {
+            if let newValue = self.model {
+                self.observationController = newValue.controller(for: self)
+                newValue.state = .didUnload
+                
+                newValue.load()
+            }
+        }
     }
     
-    - (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    if (!self.contentImageView) {
-    [self initSubviews];
-    }
-    }
-    
-    - (void)initSubviews {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    imageView.autoresizingMask = AZViewResizableWithFixedPosition;
-    
-    self.contentImageView = imageView;
-    }
-    
-    #pragma mark -
-    #pragma mark Accessors
-    
-    - (void)setModel:(AZImageModel *)model {
-    if (_model != model) {
-    [_model removeObserver:self];
-    
-    _model = model;
-    
-    [_model addObserver:self];
+    var observationController: ObservableObject.ObservationController? {
+        didSet {
+            self.observationController?[.didLoad] = { [weak self] model in
+                guard let imageModel = model as? ImageModel else { return }
+                self?.loadingView?.set(visible: false)
+                self?.contentImageView?.image = imageModel.image
+            }
+            
+            self.observationController?[.willLoad] = { [weak self] model in
+                self?.loadingView?.set(visible: true)
+            }
+            
+            self.observationController?[.didFailLoading] = { [weak self] model in
+                self?.model?.load()
+            }
+        }
     }
     
-    model.state = AZModelDidUnload;
-    [model load];
+    // MARK: Initialization
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.initSubviews()
     }
     
-    - (void)setContentImageView:(UIImageView *)contentImageView {
-    if (_contentImageView != contentImageView) {
-    [_contentImageView removeFromSuperview];
-    _contentImageView = contentImageView;
-    
-    [self addSubview:contentImageView];
-    [self bringSubviewToFront:self.loadingView];
-    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    #pragma mark -
-    #pragma mark Loading Model Observer
-    
-    - (void)modelDidUnload:(AZImageModel *)imageModel {
-    
+    func initSubviews() {
+        let imageView = UIImageView(frame: self.bounds)
+        imageView.autoresizingMask = ViewConstants.ViewResizableWithFixedPosition
+        
+        self.contentImageView = imageView
     }
-    
-    - (void)modelWillLoad:(AZImageModel *)imageModel {
-    [AZGCD dispatchAsyncOnMainQueue:^ {
-    [self.loadingView setVisible:YES];
-    }];
-    }
-    
-    - (void)modelDidLoad:(AZImageModel *)imageModel {
-    [AZGCD dispatchAsyncOnMainQueue:^ {
-    [self.loadingView setVisible:NO];
-    
-    self.contentImageView.image = imageModel.image;
-    }];
-    }
-    
-    - (void)modelDidFailLoad:(AZImageModel *)imageModel {
-    [AZGCD dispatchAsyncOnMainQueue:^ {
-    [self.model load];
-    }];
-    }
-    */
 }

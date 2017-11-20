@@ -12,7 +12,7 @@ class LoginViewController: FBViewController {
     
     // MARK: protocol rootView
     
-    typealias viewType = LoginView
+    typealias ViewType = LoginView
     
     // MARK: Public Properties
     

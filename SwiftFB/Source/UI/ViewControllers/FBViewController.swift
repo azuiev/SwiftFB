@@ -8,9 +8,9 @@
 
 import UIKit
 
-class FBViewController: UIViewController, rootView {
+class FBViewController: UIViewController, RootView {
 
-    typealias viewType = FBView
+    typealias ViewType = FBView
     
     // MARK: Public properties
     
@@ -40,16 +40,6 @@ class FBViewController: UIViewController, rootView {
     var model: Model = Model() {
         didSet {
             self.observationController = self.model.controller(for: self)
-            
-            /*self.model.add(self, for: .didLoad) { [weak self] model in
-                self?.rootView.loadingView?.set(visible: false)
-                self?.rootView.fill(with: model as! Model)
-            }
-            
-            self.model.add(self, for: .willLoad) { [weak self] model in
-                self?.rootView.loadingView?.set(visible: true)
-            }
-            */
         }
     }
     

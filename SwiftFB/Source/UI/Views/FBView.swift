@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol rootView {
-    associatedtype viewType
+protocol RootView {
+    associatedtype ViewType
     
-    var rootView: viewType { get }
+    var rootView: ViewType { get }
 }
 
-extension rootView where Self: UIViewController {
-    var rootView: viewType {
-        return (self.viewIfLoaded as? viewType)!
+extension RootView where Self: UIViewController {
+    var rootView: ViewType {
+        return (self.viewIfLoaded as? ViewType)!
     }
 }
 

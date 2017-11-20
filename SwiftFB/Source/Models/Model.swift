@@ -17,7 +17,6 @@ enum ModelState {
     case willLoad
     case didLoad
     case didFailLoading
-    case stateCount
 };
 
 class Model: ObservableObject, Equatable, Hashable {
