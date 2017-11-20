@@ -71,27 +71,15 @@ class InternetImageModel: FileSystemImageModel {
     // MARK : Private Methods
     
     private func saveTemporaryFile(with url: URL?) {
-        let url = self.fileSystemUrl()
-        let saved = FileManager.default m
+        
+        let destinationUrl = self.fileSystemUrl()
+        let saved = FileManager.default.moveItem(from: url, to: destinationUrl)
+        if !saved {
+            print("Failed to save \(String(describing: url)) to \(destinationUrl)")
+        }
     }
     
     private func fileSystemUrl() -> URL {
         return URL(fileURLWithPath: self.fileSystemName)
     }
-
-    /*
-     #pragma mark -
-     #pragma mark Private methods
-     
-     - (void)saveTemporaryFile:(NSURL *)location {
-     NSURL *url = [self fileSystemURL];
-     BOOL saved = [NSFileManager.defaultManager moveItemAtURL:location toURL:url];
-     
-     if (!saved) {
-     NSLog(@"Failed to save %@ to %@", location.path, url.path);
-     }
-     }
-     
-
- */
 }

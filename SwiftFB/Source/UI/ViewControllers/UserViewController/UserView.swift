@@ -17,7 +17,7 @@ class UserView: FBView {
     @IBOutlet var middleNameLabel: UILabel?
     @IBOutlet var birthdayLabel: UILabel?
     @IBOutlet var genderLabel: UILabel?
-    @IBOutlet var userImage: UIImageView?
+    @IBOutlet var userImage: ImageView?
     
     @IBOutlet var FriendsButton: UIButton?
 
@@ -25,10 +25,10 @@ class UserView: FBView {
     
     override func fill(with model: Model) {
         guard let user = model as? UserModel else { return }
-        self.nameLabel?.text = user.name;
-        self.surnameLabel?.text = user.surname;
-        self.middleNameLabel?.text = user.middleName;
-        //self.userImage.model = user.userPicture;
+        self.nameLabel?.text = user.name
+        self.surnameLabel?.text = user.surname
+        self.middleNameLabel?.text = user.middleName
+        self.userImage?.model = user.picture
         if let date = user.birthday {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"

@@ -10,54 +10,56 @@ import UIKit
 
 extension FileManager {
     
-    typealias OperationBlock = (sourceURL: URL, destinationURL: URL, error: Error)
+    typealias OperationBlock = (_ sourceURL: URL?, _ destinationURL: URL?) -> Bool
     
-    func moveItem(from sourceUrl: URL, to destinationUrl: URL) -> Bool {
-        self.performOperation(with: sourceUrl, destinationUrl: destinationUrl) {
+    func moveItem(from sourceUrl: URL?, to destinationUrl: URL?) -> Bool {
+        return self.performOperation(with: sourceUrl, destinationUrl: destinationUrl) { url1, url2 in
+            var result = true
+            do {
+                try self.moveItem(at: url1!, to: url2!)
+            } catch let error {
+                result = false
+                print ("Unable to perform operation \(error)")
+            }
             
+            return result
         }
     }
     
-    func performOperation(with sourceUrl: URL, destinationUrl: URL, operation: OperationBlock) -> Bool { (url1, url2, error) in
-        //return self.move
+    // MARL: Private Methods
+    
+    private func performOperation(with sourceUrl: URL?, destinationUrl: URL?, operation: OperationBlock) -> Bool {
+        guard self.checkSource(url: sourceUrl) && self.checkdestination(url: destinationUrl) else { return false }
+        
+        return operation(sourceUrl, destinationUrl)
     }
     
-    /*
-    - (BOOL)moveItemAtURL:(NSURL *)sourceURL toURL:(NSURL *)destinationURL {
-    AZWeakify(self);
-    
-    return [self performOperationWithSourceURL:sourceURL
-    destinationURL:destinationURL
-    block:^BOOL(NSURL *url1, NSURL *url2, NSError *error) {
-    AZStrongify(self);
-    
-    return [self moveItemAtURL:url1 toURL:url2 error:&error];
-    }];
-    
+    private func checkSource(url: URL?) -> Bool {
+        guard let checkedUrl = url else { return false }
+        let filePath = checkedUrl.path
+        if !self.fileExists(atPath: filePath) {
+            print("File not found at \(filePath)")
+            
+            return false
+        }
+        
+        return true
     }
     
-    #pragma mark -
-    #pragma mark Private Methods
-    
-    - (BOOL)performOperationWithSourceURL:(NSURL *)sourceURL
-    destinationURL:(NSURL *)destinationURL
-    block:(AZFileManagerBlock)block
-    {
-    if (![self checkSourceURL:sourceURL]
-    || ![self checkDestinationURL:destinationURL]
-    || !block)
-    {
-    return NO;
+    private func checkdestination(url: URL?) -> Bool {
+        guard let checkedUrl = url, checkedUrl.isFileURL else { return false }
+        let path = checkedUrl.deletingLastPathComponent().path
+        
+        if !self.fileExists(atPath: path) {
+            do {
+                try self.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                print ("Achtung. Unable to create directory \(error)")
+                
+                return false
+            }
+        }
+        
+        return true
     }
-    
-    NSError *error = nil;
-    
-    BOOL result = block(sourceURL, destinationURL, error);
-    if (!result) {
-    NSLog(@"%@", error);
-    }
-    
-    return result;
-    }
- */
 }
