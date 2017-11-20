@@ -12,17 +12,15 @@ class ImageModelCache {
     
     // MARK: Public properties
     
-    var sharedInstance: ImageModelCache {
-        struct Static {
-            static let instance = ImageModelCache()
-        }
-        
-        return Static.instance
-    }
-    
-    // MARK: Public properties
+    static let sharedInstance = ImageModelCache()
     
     private var cache = Dictionary<URL, ImageModel>()
+    
+    // MARK: Initialization
+    
+    private init() {
+        
+    }
     
     // MARK: Public Methods
     

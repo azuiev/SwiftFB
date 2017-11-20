@@ -38,10 +38,10 @@ class UserParser {
             return
         }
         
-        user.picture = url
         user.name = name
         user.surname = surname
         user.middleName = middleName
+        user.picture = ImageModel.model(with: url)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"

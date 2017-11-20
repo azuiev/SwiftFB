@@ -34,23 +34,26 @@ class Model: ObservableObject, Equatable, Hashable {
     }
     
     func load() {
-        let state = self.state;
-        if .willLoad == state || .didLoad == state {
-            self.notifyOfState()
+        synchronized(lockObject: self) { [weak self] in
+            let state = self?.state;
+            if .willLoad == state || .didLoad == state {
+                self?.notifyOfState()
+                
+                return
+            }
             
-            return;
+            self?.state = .willLoad
         }
-        
-        self.state = .willLoad
-        
         //add synchronized above
         
         self.loadObject()
     }
     
     func loadObject() {
-        //add background
-        self.performLoading()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.performLoading()
+        }
+
     }
     
     func performLoading() {

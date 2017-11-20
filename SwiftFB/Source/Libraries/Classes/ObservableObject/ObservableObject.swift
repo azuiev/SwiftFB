@@ -15,13 +15,6 @@ func synchronized<T>(lockObject: AnyObject, _ block: () -> T) -> T {
     return block()
 }
 
-func synchronized(lockObject: AnyObject, _ block: () -> ())  {
-    objc_sync_enter(lockObject)
-    defer { objc_sync_exit(lockObject) }
-    
-    block()
-}
-
 extension ObservableObject {
     class ObservationController {
         

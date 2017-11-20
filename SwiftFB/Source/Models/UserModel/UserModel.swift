@@ -26,10 +26,15 @@ class UserModel: Model {
     var name: String?
     var surname: String?
     var middleName: String?
-    var picture: Any?
     var userID: String?
     var birthday: Date? 
     var gender: Gender = .male
+ 
+    var picture: ImageModel? {
+        didSet {
+            self.picture?.load()
+        }
+    }
     
     // MARK: Public Properties
     
