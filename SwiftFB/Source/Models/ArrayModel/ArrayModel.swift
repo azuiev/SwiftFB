@@ -8,20 +8,18 @@
 
 import UIKit
 
-class ArrayModel: Model {
+class ArrayModel<T: Equatable>: Model {
     
     // MARK: Public Properties
     
-    var array: Array<Any> {
+    var array: Array<T> {
         get {
             return synchronized(lockObject: self) {
                 return self.array
             }
         }
         
-        set {
-            
-        }
+        set { }
     }
     
     var count: Int {
@@ -34,7 +32,7 @@ class ArrayModel: Model {
     
     // MARK: Initialization
     
-    init(array: Array<Any>) {
+    init(array: Array<T>) {
         super.init()
         
         self.array = array
@@ -43,97 +41,89 @@ class ArrayModel: Model {
     
     // MARK: Public Methods
     
-    func add(object: Any) {
-        
+    func add(object: T) {
+        self.insert(object: object, at: self.count)
     }
     
-    func insert(object: Any?, at index: Int) {
-        
+    func remove(object: T) {
+        self.removeObject(at:self.array.index(of: object))
+    }
+    
+    func add(objects: [T]) {
+        objects.forEach {
+            self.add(object: $0)
+        }
+    }
+    
+    func remove(objects: [T]) {
+        objects.forEach {
+            self.remove(object: $0)
+        }
+    }
+
+    func object(at index: Int) -> T? {
+        return self.count > index ? self.array[index] : nil
+    }
+    
+    func set(object: T?, at index: Int) {
+        synchronized(lockObject: self) {
+            guard let item = object, self.count > index else { return }
+            
+            self.array[index] = item
+            
+            //[self notifyWithObject:[AZArrayModelChange arrayModelRemoveChangeWithIndex:index]];
+        }
+    }
+
+    func moveRow(from sourceIndex: Int, to destinationIndex: Int) {
+        synchronized(lockObject: self) {
+            if sourceIndex != destinationIndex {
+                
+                let object = self.object(at: sourceIndex)
+                self.removeObject(at: sourceIndex)
+                self.insert(object: object, at: destinationIndex)
+                
+                //[self notifyWithObject:[AZArrayModelChange arrayModelMoveChangeFromIndex:sourceIndex toIndex:destinationIndex]];
+            }
+        }
+    }
+    
+    // MARK: Subscripts
+    
+    subscript(index: Int) -> T? {
+        get {
+            return self.object(at: index)
+        }
+        set {
+            self.set(object: newValue, at: index)
+        }
+    }
+    
+    // MARK: Private Methods
+    
+    private func insert(object: T?, at index: Int) {
         synchronized(lockObject: self) {
             guard let item = object, self.count >= index else { return }
             
             self.array[index] = item
- 
-       // [self notifyWithObject:[AZArrayModelChange arrayModelAddChangeWithIndex:index]];
+            
+            // [self notifyWithObject:[AZArrayModelChange arrayModelAddChangeWithIndex:index]];
+        }
+    }
+    
+    private func removeObject(at index: Int?) {
+        synchronized(lockObject: self) {
+            guard let number = index, self.count > number else { return }
+            
+            self.array.remove(at: number)
+            //[self notifyWithObject:[AZArrayModelChange arrayModelRemoveChangeWithIndex:index]];
         }
     }
 }
 
 /*
-     #pragma mark -
-    #pragma mark Public Methods
-    
-    - (void)addObject:(NSObject *)object {
-    [self insertObject:object atIndex:self.count];
-    }
-    
-    - (void)removeObject:(NSObject *)object {
-    [self removeObjectAtIndex:[self.array indexOfObject:object]];
-    }
-    
-    - (void)addObjects:(NSArray *)objects {
-    for (id object in objects) {
-    [self addObject:object];
-    }
-    }
-    
-    - (void)removeObjects:(NSArray *)objects {
-    for (id object in objects) {
-    [self removeObject:object];
-    }
-    }
-    
-    - (id)objectAtIndex:(NSUInteger)index {
-    return self.count > index ? [self.mutableArray objectAtIndex:index] : nil;
-    }
-    
-    - (void)setObject:(id)object atIndex:(NSUInteger)index {
-    @synchronized (self) {
-    if (object && self.count > index) {
-    [self.mutableArray setObject:object atIndexedSubscript:index];
-    }
-    }
-    }
-    
-    - (void)moveFromIndex:(NSUInteger)sourceIndex
-    toIndex:(NSUInteger)destinationIndex
-    {
-    @synchronized (self) {
-    if (sourceIndex != destinationIndex) {
-    [self.mutableArray moveRowAtIndex:sourceIndex toIndex:destinationIndex];
-    [self notifyWithObject:[AZArrayModelChange arrayModelMoveChangeFromIndex:sourceIndex
-    toIndex:destinationIndex]];
-    }
-    }
-    }
-    
-    #pragma mark -
-    #pragma mark Private Methods
-    
- 
-    
-    - (void)removeObjectAtIndex:(NSUInteger)index {
-    @synchronized (self) {
-    if (self.count > index) {
-    [self.mutableArray removeObjectAtIndex:index];
-    [self notifyWithObject:[AZArrayModelChange arrayModelRemoveChangeWithIndex:index]];
-    }
-    }
-    }
-    
     - (void)notifyWithObject:(AZArrayModelChange *)arrayModelChange {
     [self setState:AZArrayModelChanged withObject:arrayModelChange];
-    }
-    
-    #pragma mark -
-    #pragma mark Subscripts
-    
-    - (id)objectAtIndexedSubscript:(NSUInteger)index NS_AVAILABLE(10_8, 6_0) {
-    return [self objectAtIndex:index];
-    }
-    
-    - (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)index {
-    return [self setObject:obj atIndex:index];
     }
     
     #pragma mark -

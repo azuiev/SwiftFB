@@ -39,6 +39,8 @@ extension ObservableObject {
             }
         }
         
+        // MARK: Subscripts
+        
         subscript(state: ModelState) -> ActionType? {
             get {
                 return self.relation[state]
