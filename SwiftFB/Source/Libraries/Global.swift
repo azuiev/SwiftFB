@@ -23,3 +23,10 @@ struct ViewConstants {
     
     static let ViewResizable: UIViewAutoresizing = [.flexibleWidth, .flexibleHeight]
 }
+
+func synchronized<T>(lockObject: AnyObject, _ block: () -> T) -> T {
+    objc_sync_enter(lockObject)
+    defer { objc_sync_exit(lockObject) }
+    
+    return block()
+}

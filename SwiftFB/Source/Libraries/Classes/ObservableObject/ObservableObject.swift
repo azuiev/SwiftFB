@@ -8,13 +8,6 @@
 
 import Foundation
 
-func synchronized<T>(lockObject: AnyObject, _ block: () -> T) -> T {
-    objc_sync_enter(lockObject)
-    defer { objc_sync_exit(lockObject) }
-    
-    return block()
-}
-
 extension ObservableObject {
     class ObservationController {
         
@@ -28,6 +21,8 @@ extension ObservableObject {
         private var observer: ObserverType
         
         private var relation: [ModelState : ActionType] = [:]
+        
+        // MARK: Initialization
         
         init(observableObject: ObservableObject, observer: ObserverType) {
             self.observableObject = observableObject

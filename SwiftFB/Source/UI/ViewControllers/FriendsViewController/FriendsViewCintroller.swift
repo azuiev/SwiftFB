@@ -17,9 +17,9 @@ class FriendsViewCintroller: FBViewController {
     // Public Properties
     var friends: Model {
         get {
-            guard let result = self.model as? Model else { return Model() }
+            //guard let result = self.model as? Model else { return Model() }
             
-            return result
+            return self.model
         }
         
         set(newValue) {
@@ -32,7 +32,7 @@ class FriendsViewCintroller: FBViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Frinds"
+        self.title = "Friends"
     }
     
     override func viewWillAppear(_ animated: Bool) {
