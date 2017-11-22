@@ -1,5 +1,5 @@
 //
-//  FriendsViewCintroller.swift
+//  FriendsViewController.swift
 //  SwiftFB
 //
 //  Created by Aleksey Zuiev on 21/11/2017.
@@ -8,24 +8,38 @@
 
 import UIKit
 
-class FriendsViewCintroller: FBViewController {
+class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // MARK: protocol rootView
+    // MARK: protocol RootView
     
-    typealias viewType = UserView
+    typealias ViewType = FriendsView
     
     // Public Properties
-    var friends: Model {
-        get {
-            //guard let result = self.model as? Model else { return Model() }
+
+    var rootView: FriendsView {
+        return (self.viewIfLoaded as? FriendsView)!
+    }
+    
+    override var observationController: ObservableObject.ObservationController? {
+        didSet {
+            self.observationController?[.didLoad] = { [weak self] model in
+                self?.rootView.loadingView?.set(visible: false)
+                self?.rootView.tableView?.reloadData()
+            }
             
-            return self.model
-        }
-        
-        set(newValue) {
-            self.model = newValue
+            self.observationController?[.willLoad] = { [weak self] model in
+                self?.rootView.loadingView?.set(visible: true)
+            }
         }
     }
+    
+    var friends: UsersModel {
+        guard let result = self.model as? UsersModel else { return UsersModel() }
+        
+        return result
+    }
+    
+    var user: UserModel = UserModel()
     
     // MARK: View Lifecycle
     
@@ -38,17 +52,17 @@ class FriendsViewCintroller: FBViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.context = UserContext(model: self.friends, currentUser: self.currentUser);
+        self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
     }
-    
-    // MARK: protocol UITableViewDataSource
 
-    func tableView(table: UITableView, numberOfRowsInSection: Int) {
-        //return self.friends.count
+    // MARK: protocol UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.friends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell? = tableView.reusableCell(with: UITableViewCell.self)
+        let cell: UITableViewCell? = tableView.reusableCell(with: UserCell.self)
         
         if cell == nil {
             

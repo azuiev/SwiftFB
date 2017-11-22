@@ -36,7 +36,7 @@ class FBView: UIView {
     
     func addLoadingView() {
         if self.loadingView == nil {
-            let loadingView: LoadingView? = UINib.object(with: LoadingView.self) as? LoadingView
+            let loadingView: LoadingView? = UINib.object(with: LoadingView.self)
             if let view = loadingView {
                 view.frame = self.bounds
                 

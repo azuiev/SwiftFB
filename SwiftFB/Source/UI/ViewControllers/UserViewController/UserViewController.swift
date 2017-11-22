@@ -12,25 +12,42 @@ class UserViewController: FBViewController {
 
     // MARK: protocol rootView
     
-    typealias viewType = UserView
+    typealias ViewType = UserView
     
-    // MARK: View Lifecycle
+    // MARK: Public Properties
     
-    @IBAction func onFriends() {
-        self.showViewController();
+    var user: UserModel {
+        guard let result = self.model as? UserModel else { return UserModel() }
+        
+        return result
     }
     
     // MARK: Public Methods
     
     override func showViewController() {
-        print("show friends controller")
+        self.showFriendsController()
     }
     
-    // MARK: UI Lifecycle
+    // MARK: IBActions
+    
+    @IBAction func onFriends() {
+        self.showViewController();
+    }
 
+    // MARK: View Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.context = UserContext(model: self.model, currentUser: self.currentUser);
+    }
+    
+    private func showFriendsController() {
+        let controller = FriendsViewController()
+        controller.currentUser = self.currentUser
+        controller.user = self.user
+        controller.model = UsersModel()
+        
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

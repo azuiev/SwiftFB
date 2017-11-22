@@ -12,30 +12,21 @@ class ArrayModel<T: Equatable>: Model {
     
     // MARK: Public Properties
     
-    var array: Array<T> {
-        get {
-            return synchronized(lockObject: self) {
-                return self.array
-            }
-        }
-        
-        set { }
-    }
+    var array: Array<T>
     
     var count: Int {
-        get {
-            return synchronized(lockObject: self) {
-                return self.array.count
-            }
+        return synchronized(lockObject: self) {
+            return self.array.count
         }
     }
     
     // MARK: Initialization
     
     init(array: Array<T>) {
-        super.init()
-        
         self.array = array
+        
+        super.init()
+
         self.notify = true
     }
     
@@ -105,7 +96,7 @@ class ArrayModel<T: Equatable>: Model {
         synchronized(lockObject: self) {
             guard let item = object, self.count >= index else { return }
             
-            self.array[index] = item
+            self.array.insert(item, at: index)
             
             // [self notifyWithObject:[AZArrayModelChange arrayModelAddChangeWithIndex:index]];
         }

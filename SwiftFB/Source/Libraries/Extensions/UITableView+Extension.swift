@@ -10,21 +10,16 @@ import UIKit
 
 extension UITableView {
 
-    func reusableCell(with cls: Any) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: String(describing: type(of: cls)))
+    func reusableCell<T: UITableViewCell>(with cls: T.Type) -> T? {
+        var cell = self.dequeueReusableCell(withIdentifier: String(describing: type(of: cls)))
         
-        return cell!
+        if cell == nil {
+            cell = UINib.object(with: cls)
+        }
+        
+        return cell as? T
     }
     /*
-    - (UITableViewCell *)reusableCellWithClass:(Class)cls {
-    UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:NSStringFromClass(cls)];
-    if (!cell) {
-    cell = [UINib objectWithClass:cls];
-    }
-    
-    return cell;
-    }
-    
     - (void)applyChangesWithObject:(AZArrayModelChange *)object {
     [self beginUpdates];
     

@@ -26,7 +26,7 @@ class GetContext: Context {
     
     // MARK: Initialization
     
-    init?(model: Model, currentUser: CurrentUserModel) {
+    init(model: Model, currentUser: CurrentUserModel) {
         self.currentUser = currentUser
         super.init(model: model)
     }
@@ -60,7 +60,6 @@ class GetContext: Context {
                 print("error in graph request:", error)
             case .success(let graphResponse):
                 if let responseDictionary = graphResponse.dictionaryValue {
-                    print(responseDictionary)
                     self.finishLoading(with: responseDictionary)
                     completionHandler(.didLoad)
                 }

@@ -10,11 +10,11 @@ import UIKit
 
 extension UINib {
     
-    static func nib(with type: AnyClass, bundle: Bundle? = nil) -> UINib? {
+    static func nib<T>(with type: T.Type, bundle: Bundle? = nil) -> UINib? {
         return UINib.init(nibName: String(describing: type), bundle: bundle)
     }
     
-    static func object(with type: AnyClass, bundle: Bundle? = nil, owner: Any? = nil, options: [AnyHashable : Any]? = nil) -> Any? {
+    static func object<T>(with type: T.Type, bundle: Bundle? = nil, owner: Any? = nil, options: [AnyHashable : Any]? = nil) -> T? {
         let nib = self.nib(with: type, bundle: bundle)
         if nib != nil {
             return nib?.object(with: type, owner: owner, options: options)
@@ -23,9 +23,9 @@ extension UINib {
         return nil
     }
     
-    func object(with type: Any, owner: Any? = nil, options: [AnyHashable : Any]?) -> Any? {
+    func object<T>(with type: T.Type, owner: Any? = nil, options: [AnyHashable : Any]?) -> T? {
         let objects = self.instantiate(withOwner: owner, options: options)
         
-        return objects.first
+        return objects.first as? T
     }
 }
