@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D263AA61FC486620048FDE3 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D263AA51FC486620048FDE3 /* UsersModel.swift */; };
+		1D5A0F891FC58FCF0059AFAF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A0F871FC58FCF0059AFAF /* UserCell.swift */; };
+		1D5A0F8A1FC58FCF0059AFAF /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A0F881FC58FCF0059AFAF /* UserCell.xib */; };
 		1D5FB6521FC44BDB008BEE38 /* FriendsViewCintroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6501FC44BDB008BEE38 /* FriendsViewCintroller.swift */; };
 		1D5FB6531FC44BDB008BEE38 /* FriendsViewCintroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5FB6511FC44BDB008BEE38 /* FriendsViewCintroller.xib */; };
 		1D5FB6551FC44BDB008BEE38 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6541FC44BDB008BEE38 /* FriendsView.swift */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1D263AA51FC486620048FDE3 /* UsersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		1D5A0F871FC58FCF0059AFAF /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		1D5A0F881FC58FCF0059AFAF /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18C91FA0F5CD006EAC73 /* SwiftFB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftFB.xcodeproj; sourceTree = "<group>"; };
 		1D5FB6501FC44BDB008BEE38 /* FriendsViewCintroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewCintroller.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5A0F861FC58F840059AFAF /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				1D5A0F871FC58FCF0059AFAF /* UserCell.swift */,
+				1D5A0F881FC58FCF0059AFAF /* UserCell.xib */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
 		1D5F18861FA0F34D006EAC73 = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +343,7 @@
 				1D5FB6501FC44BDB008BEE38 /* FriendsViewCintroller.swift */,
 				1D5FB6541FC44BDB008BEE38 /* FriendsView.swift */,
 				1D5FB6511FC44BDB008BEE38 /* FriendsViewCintroller.xib */,
+				1D5A0F861FC58F840059AFAF /* UserCell */,
 			);
 			path = FriendsViewController;
 			sourceTree = "<group>";
@@ -521,6 +535,7 @@
 				1D943BA31FBCD62700B07695 /* UserViewController.xib in Resources */,
 				1D943B911FBCD62700B07695 /* LaunchScreen.storyboard in Resources */,
 				1D943B901FBCD62700B07695 /* Assets.xcassets in Resources */,
+				1D5A0F8A1FC58FCF0059AFAF /* UserCell.xib in Resources */,
 				1D943BA61FBCD62700B07695 /* LoadingView.xib in Resources */,
 				1D5FB6531FC44BDB008BEE38 /* FriendsViewCintroller.xib in Resources */,
 				1D943B921FBCD62700B07695 /* Main.storyboard in Resources */,
@@ -590,6 +605,7 @@
 				1D943B9B1FBCD62700B07695 /* CurrentUserModel.swift in Sources */,
 				1D943B9A1FBCD62700B07695 /* Model.swift in Sources */,
 				1D7D11901FC3029100878834 /* URL+Extension.swift in Sources */,
+				1D5A0F891FC58FCF0059AFAF /* UserCell.swift in Sources */,
 				1D943B961FBCD62700B07695 /* UserContext.swift in Sources */,
 				1D5FB6571FC44BDB008BEE38 /* UITableView+Extension.swift in Sources */,
 				1D7D118C1FC2F53000878834 /* FileSystemImageModel.swift in Sources */,

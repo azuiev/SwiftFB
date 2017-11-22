@@ -8,9 +8,10 @@
 
 import UIKit
 
-class UsersModel: ArrayModel<UserModel> {
+class UsersModel: ArrayModel<UserModel>, Save {
     
     var plistName = "users.plist"
+    var notificationList = [NSNotification.Name.UIApplicationDidEnterBackground, NSNotification.Name.UIApplicationWillTerminate]
     
     // MARK: Initializtion and Deallocation
     
@@ -21,7 +22,7 @@ class UsersModel: ArrayModel<UserModel> {
     init(users: [UserModel]) {
         super.init(array: users)
         
-        //self.subscribeToNotifications()
+        self.subscribeToNotifications()
     }
     
     convenience init() {
@@ -38,15 +39,37 @@ class UsersModel: ArrayModel<UserModel> {
         self.add(objects: users)
         self.state = .didLoad
     }
-    /*
- 
-    - (void)save {
-    [NSKeyedArchiver archiveRootObject:self.array toFile:[self plistName]];
+    
+    // MARK: Protocol Save
+    
+    func save() {
+        NSKeyedArchiver.archiveRootObject(self.array, toFile: self.plistName)
     }
     
-    #pragma mark -
-    #pragma mark Private
+    // MARL: Private Methods
     
+    private func subscribeToNotifications() {
+        self.notificationList.forEach {
+            NotificationCenter.default.addObserver(forName: $0,
+                                                   object: nil,
+                                                   queue: nil)
+            { [weak self] notification in
+                print("Received the notification \(notification)")
+                
+                self?.save()
+            }
+        }
+    }
+    
+    private func unsubscribeToNotifications() {
+        self.notificationList.forEach {
+            NotificationCenter.default.removeObserver(self,
+                                                      name: $0,
+                                                      object: nil)
+        }
+    }
+    
+    /*
     - (NSString *)fullPlistName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *result = [paths firstObject];
@@ -55,44 +78,5 @@ class UsersModel: ArrayModel<UserModel> {
     
     return result;
     }
-    
-    - (NSString *)plistName {
-    return self.mutablePlistName;
-    }
-    
-    - (void)subscribeToNotification {
-    NSArray *notifications = [self notificationList];
-    
-    AZWeakify(self);
-    for (NSString *notification in notifications) {
-    [[NSNotificationCenter defaultCenter] addObserverForName:notification
-    object:nil
-    queue:nil
-    usingBlock:^(NSNotification *note) {
-    AZStrongify(self);
-    NSLog(@"Received the notification!");
-    [self save];
-    }];
-    }
-    }
-    
-    - (void)unsubscribeToNotification {
-    NSArray *notifications = [self notificationList];
-    
-    for (NSString *notification in notifications) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:notification
-    object:nil];
-    }
-    }
-    
-    - (NSArray *)notificationList {
-    return @[@"UIApplicationDidEnterBackgroundNotification", @"UIApplicationWillTerminateNotification"];
-    }
-    
-    - (void)initPlist {
-    self.mutablePlistName = @"users.plist";
-    }
-    @end
- */
+   */
 }

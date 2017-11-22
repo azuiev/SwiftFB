@@ -36,11 +36,11 @@ class UserModel: Model {
         }
     }
     
-    // MARK: Public Properties
-    
-    func fullName() -> String {
+    var fullName: String {
         return "\(self.name ?? Constants.EmptyValue) \(self.surname ?? Constants.EmptyValue)"
     }
+    
+    
     
     // MARK: TODO NSCoding
 }
