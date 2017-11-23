@@ -16,12 +16,12 @@ class FBViewController: UIViewController, RootView {
     
     var observationController: ObservableObject.ObservationController? {
         didSet {
-            self.observationController?[.didLoad] = { [weak self] model in
+            self.observationController?[.didLoad] = { [weak self] model, _ in
                 self?.rootView.loadingView?.set(visible: false)
                 self?.rootView.fill(with: model as! Model)
             }
             
-            self.observationController?[.willLoad] = { [weak self] model in
+            self.observationController?[.willLoad] = { [weak self] model, _ in
                 self?.rootView.loadingView?.set(visible: true)
             }
         }

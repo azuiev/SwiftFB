@@ -16,7 +16,7 @@ class UsersModel: ArrayModel<UserModel>, Save {
     // MARK: Initializtion and Deallocation
     
     deinit {
-        //self.unsubscribeToNotification()
+        self.unsubscribeToNotifications()
     }
     
     init(users: [UserModel]) {

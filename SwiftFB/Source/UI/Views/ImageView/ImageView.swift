@@ -37,17 +37,17 @@ class ImageView: FBView {
     
     var observationController: ObservableObject.ObservationController? {
         didSet {
-            self.observationController?[.didLoad] = { [weak self] model in
+            self.observationController?[.didLoad] = { [weak self] model, _ in
                 guard let imageModel = model as? ImageModel else { return }
                 self?.loadingView?.set(visible: false)
                 self?.contentImageView?.image = imageModel.image
             }
             
-            self.observationController?[.willLoad] = { [weak self] model in
+            self.observationController?[.willLoad] = { [weak self] model, _ in
                 self?.loadingView?.set(visible: true)
             }
             
-            self.observationController?[.didFailLoading] = { [weak self] model in
+            self.observationController?[.didFailLoading] = { [weak self] model, _ in
                 self?.model?.load()
             }
         }

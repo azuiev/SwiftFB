@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Save {
-    func save();
+    func save()
 }
 
 enum ModelState {
@@ -17,7 +17,8 @@ enum ModelState {
     case willLoad
     case didLoad
     case didFailLoading
-};
+    case didChange
+}
 
 class Model: ObservableObject, Equatable, Hashable {
     

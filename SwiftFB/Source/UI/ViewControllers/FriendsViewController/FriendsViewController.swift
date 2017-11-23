@@ -22,13 +22,18 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     
     override var observationController: ObservableObject.ObservationController? {
         didSet {
-            self.observationController?[.didLoad] = { [weak self] model in
+            self.observationController?[.didLoad] = { [weak self] model, _ in
                 self?.rootView.loadingView?.set(visible: false)
                 self?.rootView.tableView?.reloadData()
             }
             
-            self.observationController?[.willLoad] = { [weak self] model in
+            self.observationController?[.willLoad] = { [weak self] model, _ in
                 self?.rootView.loadingView?.set(visible: true)
+            }
+            
+            self.observationController?[.didChange] = { [weak self] model, options in
+                guard let arrayOptions = options as? ArrayModelOption else { return }
+                self?.rootView.tableView?.applyChanges(with: arrayOptions)
             }
         }
     }
@@ -40,6 +45,13 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     }
     
     var user: UserModel = UserModel()
+    
+    // MARK: UI Actions
+    
+    func onDelete() {
+        let userModel = self.friends[0]
+        self.friends.remove(object: userModel!)
+    }
     
     // MARK: View Lifecycle
     
@@ -55,6 +67,16 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
         self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
     }
 
+    override func prepareNavigationBar() {
+        super.prepareNavigationBar()
+        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(
+            title: "Delete",
+            style: .done,
+            target: self,
+            action: #selector(FriendsViewController.onDelete)
+        ))
+    }
+    
     // MARK: protocol UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,33 +148,6 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
      - (IBAction)changeDeleteMode:(id)sender {
      self.editingStyle = UITableViewCellEditingStyleDelete;
      [self.mainView changeEditMode];
-     }
-     
-     #pragma mark -
-     #pragma mark AZModelObserver
-     
-     - (void)modelDidLoad:(AZModel *)model {
-     [AZGCD dispatchAsyncOnMainQueue:^ {
-     [self.mainView.loadingView setVisible:NO];
-     
-     //[self.mainView.tableView reloadData];
-     }];
-     }
-     
-     - (void)modelWillLoad:(AZModel *)model {
-     [AZGCD dispatchAsyncOnMainQueue:^ {
-     [self.mainView.loadingView setVisible:YES];
-     }];
-     }
-     
-     - (void)modelDidUnload:(AZModel *)model {
-     [AZGCD dispatchAsyncOnMainQueue:^ {
-     [self.mainView.loadingView setVisible:NO];
-     }];
-     }
-     
-     - (void)modelDidFailLoad:(AZModel *)model {
-     
      }
      
      #pragma mark -

@@ -37,7 +37,7 @@ class ArrayModel<T: Equatable>: Model {
     }
     
     func remove(object: T) {
-        self.removeObject(at:self.array.index(of: object))
+        self.removeObject(at: self.array.index(of: object))
     }
     
     func add(objects: [T]) {
@@ -107,26 +107,8 @@ class ArrayModel<T: Equatable>: Model {
             guard let number = index, self.count > number else { return }
             
             self.array.remove(at: number)
-            //[self notifyWithObject:[AZArrayModelChange arrayModelRemoveChangeWithIndex:index]];
+            self.set(state: .didChange, with: ArrayModelOption.removeOption(with: number))
         }
     }
-}
+ }
 
-/*
-    - (void)notifyWithObject:(AZArrayModelChange *)arrayModelChange {
-    [self setState:AZArrayModelChanged withObject:arrayModelChange];
-    }
-    
-    #pragma mark -
-    #pragma mark Observable Object
-    
-    - (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-    case AZArrayModelChanged:
-    return @selector(arrayModelDidChange:withObject:);
-    
-    default:
-    return [super selectorForState:state];
-    }
-    }
-*/

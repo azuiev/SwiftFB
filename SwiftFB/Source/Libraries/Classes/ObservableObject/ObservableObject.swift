@@ -14,7 +14,7 @@ extension ObservableObject {
         // MARK : Private Properties
         
         typealias ObserverType = AnyObject
-        typealias ActionType = (ObservableObject) -> ()
+        typealias ActionType = (ObservableObject, Any?) -> ()
         
         static var cache = Array<ObservationController>()
         private var observableObject: ObservableObject
@@ -31,11 +31,11 @@ extension ObservableObject {
     
         // MARK: Public Methods
         
-        func notify(of state: ModelState) {
+        func notify(of state: ModelState, with object: Any? = nil) {
             if let block = self.relation[state] {
-                block(self.observableObject)
+                block(self.observableObject, object)
             } else {
-                print("No block fo state")
+                print("No block fo state \(state) and object - \(object ?? "noObject")")
             }
         }
         
@@ -55,18 +55,18 @@ extension ObservableObject {
 public class ObservableObject {
     
     typealias ObserverType = AnyObject
-    typealias ActionType = (ObservableObject) -> ()
+    typealias ActionType = (ObservableObject, Any?) -> ()
     
     // MARK: Public properties
     
     var state: ModelState = .didUnload {
         didSet {
-            if notify {
+            if self.notify {
                 self.notifyOfState();
             }
         }
     }
-    
+
     var notify: Bool = true;
     
     var observationControllers: NSHashTable<ObservationController>
@@ -86,9 +86,24 @@ public class ObservableObject {
         return controller
     }
     
+    func set(state: ModelState, with object: Any) {
+        self.notify = false
+        self.state = state
+        self.notify = true
+        
+        self.notifyOfState(with: object)
+    }
+    
     func notifyOfState() {
+        /// add if notify
         self.observationControllers.allObjects.forEach {
             $0.notify(of: self.state)
+        }
+    }
+    
+    func notifyOfState(with object: Any) {
+        self.observationControllers.allObjects.forEach {
+            $0.notify(of: self.state, with: object)
         }
     }
     

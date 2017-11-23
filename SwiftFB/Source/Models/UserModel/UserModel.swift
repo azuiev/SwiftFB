@@ -15,6 +15,12 @@ enum Gender: String {
 
 class UserModel: Model {
     
+    // MARK: Hash
+    
+    override var hashValue: Int {
+        return self.fullName.hashValue
+    }
+    
     // MARK: Constants
     
     private struct Constants {
