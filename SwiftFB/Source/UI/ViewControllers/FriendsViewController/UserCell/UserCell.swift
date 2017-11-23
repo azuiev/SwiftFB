@@ -18,9 +18,10 @@ class UserCell: UITableViewCell {
     // MARK Public Properties
     
     var userModel: UserModel? {
-        didSet(newValue) {
-            if newValue != nil {
-                self.fill(with: newValue!)
+        didSet {
+            let user = self.userModel
+            if user != nil {
+                self.fill(with: user!)
             }
         }
     }

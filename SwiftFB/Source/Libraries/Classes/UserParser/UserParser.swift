@@ -26,27 +26,31 @@ class UserParser {
     
     // MARK: Public Methods
     static func update(user: UserModel, with object: [String : Any]) {
-        guard let pictures = object[Constants.pictureKey] as? [String : Any]  else { return }
-        guard let data = pictures[Constants.dataKey] as? [String : String] else { return }
-        guard let url = URL(string: data[Constants.urlKey]!),
-            let name = object[Constants.nameKey] as? String,
-            let surname = object[Constants.surnameKey] as? String,
-            let dateString = object[Constants.birthdayKey] as? String,
-            let middleName = object[Constants.middleNameKey] as? String,
-            let gender = object[Constants.genderKey] as? String
-        else {
-            return
-        }
+        let pictures = object[Constants.pictureKey] as? [String : Any]
+        let data = pictures?[Constants.dataKey] as? [String : String]
+        let url = URL(string: data?[Constants.urlKey] ?? "")
+        let name = object[Constants.nameKey] as? String
+        let surname = object[Constants.surnameKey] as? String
+        let dateString = object[Constants.birthdayKey] as? String
+        let middleName = object[Constants.middleNameKey] as? String
+        let gender = object[Constants.genderKey] as? String
         
         user.name = name
         user.surname = surname
         user.middleName = middleName
-        user.picture = ImageModel.model(with: url)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        user.birthday = dateFormatter.date(from: dateString)
-        user.gender = Gender(rawValue: gender) ?? .female
+        if url != nil {
+            user.picture = ImageModel.model(with: url!)
+        }
+        
+        
+        if dateString != nil {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            user.birthday = dateFormatter.date(from: dateString!)
+        }
+
+        user.gender = gender != nil ? Gender(rawValue: gender!) ?? .female : .female
     }
 
     static func user(with object: [String : Any]) -> UserModel {

@@ -11,6 +11,10 @@
 		1D5A0F891FC58FCF0059AFAF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A0F871FC58FCF0059AFAF /* UserCell.swift */; };
 		1D5A0F8A1FC58FCF0059AFAF /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A0F881FC58FCF0059AFAF /* UserCell.xib */; };
 		1D5A0F8D1FC5B0050059AFAF /* FriendsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A0F8C1FC5B0050059AFAF /* FriendsContext.swift */; };
+		1D5BBB3D1FC708A8004A5A6C /* ArrayModelOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BBB3C1FC708A8004A5A6C /* ArrayModelOption.swift */; };
+		1D5BBB3F1FC70A27004A5A6C /* ArrayModelRemoveOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BBB3E1FC70A27004A5A6C /* ArrayModelRemoveOption.swift */; };
+		1D5BBB411FC71013004A5A6C /* ArrayModelAddOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BBB401FC71013004A5A6C /* ArrayModelAddOption.swift */; };
+		1D5BBB431FC713A2004A5A6C /* ArrayModelMoveOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BBB421FC713A2004A5A6C /* ArrayModelMoveOption.swift */; };
 		1D5FB6521FC44BDB008BEE38 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6501FC44BDB008BEE38 /* FriendsViewController.swift */; };
 		1D5FB6531FC44BDB008BEE38 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5FB6511FC44BDB008BEE38 /* FriendsViewController.xib */; };
 		1D5FB6551FC44BDB008BEE38 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6541FC44BDB008BEE38 /* FriendsView.swift */; };
@@ -57,6 +61,10 @@
 		1D5A0F871FC58FCF0059AFAF /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		1D5A0F881FC58FCF0059AFAF /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		1D5A0F8C1FC5B0050059AFAF /* FriendsContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsContext.swift; sourceTree = "<group>"; };
+		1D5BBB3C1FC708A8004A5A6C /* ArrayModelOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayModelOption.swift; sourceTree = "<group>"; };
+		1D5BBB3E1FC70A27004A5A6C /* ArrayModelRemoveOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayModelRemoveOption.swift; sourceTree = "<group>"; };
+		1D5BBB401FC71013004A5A6C /* ArrayModelAddOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayModelAddOption.swift; sourceTree = "<group>"; };
+		1D5BBB421FC713A2004A5A6C /* ArrayModelMoveOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayModelMoveOption.swift; sourceTree = "<group>"; };
 		1D5F188F1FA0F34D006EAC73 /* SwiftFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5F18C91FA0F5CD006EAC73 /* SwiftFB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftFB.xcodeproj; sourceTree = "<group>"; };
 		1D5FB6501FC44BDB008BEE38 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +417,10 @@
 		1DA7810F1FC4492700E12EA0 /* ArrayModelOptions */ = {
 			isa = PBXGroup;
 			children = (
+				1D5BBB3C1FC708A8004A5A6C /* ArrayModelOption.swift */,
+				1D5BBB3E1FC70A27004A5A6C /* ArrayModelRemoveOption.swift */,
+				1D5BBB401FC71013004A5A6C /* ArrayModelAddOption.swift */,
+				1D5BBB421FC713A2004A5A6C /* ArrayModelMoveOption.swift */,
 			);
 			path = ArrayModelOptions;
 			sourceTree = "<group>";
@@ -593,11 +605,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D6E81B91FBFB15C00B94CF8 /* ImageView.swift in Sources */,
+				1D5BBB431FC713A2004A5A6C /* ArrayModelMoveOption.swift in Sources */,
 				1D943B9F1FBCD62700B07695 /* LoginViewController.swift in Sources */,
 				1D263AA61FC486620048FDE3 /* UsersModel.swift in Sources */,
 				1D943BA21FBCD62700B07695 /* UserViewController.swift in Sources */,
 				1D5FB6521FC44BDB008BEE38 /* FriendsViewController.swift in Sources */,
 				1D943B9B1FBCD62700B07695 /* CurrentUserModel.swift in Sources */,
+				1D5BBB3D1FC708A8004A5A6C /* ArrayModelOption.swift in Sources */,
 				1D943B9A1FBCD62700B07695 /* Model.swift in Sources */,
 				1D7D11901FC3029100878834 /* URL+Extension.swift in Sources */,
 				1D5A0F8D1FC5B0050059AFAF /* FriendsContext.swift in Sources */,
@@ -605,9 +619,11 @@
 				1D943B961FBCD62700B07695 /* UserContext.swift in Sources */,
 				1D5FB6571FC44BDB008BEE38 /* UITableView+Extension.swift in Sources */,
 				1D7D118C1FC2F53000878834 /* FileSystemImageModel.swift in Sources */,
+				1D5BBB411FC71013004A5A6C /* ArrayModelAddOption.swift in Sources */,
 				1D943B8E1FBCD62700B07695 /* AppDelegate.swift in Sources */,
 				1D7D11881FC2ECE400878834 /* Global.swift in Sources */,
 				1D943BA41FBCD62700B07695 /* FBView.swift in Sources */,
+				1D5BBB3F1FC70A27004A5A6C /* ArrayModelRemoveOption.swift in Sources */,
 				1D943B931FBCD62700B07695 /* Context.swift in Sources */,
 				1D943BA11FBCD62700B07695 /* UserView.swift in Sources */,
 				1D5FB6551FC44BDB008BEE38 /* FriendsView.swift in Sources */,

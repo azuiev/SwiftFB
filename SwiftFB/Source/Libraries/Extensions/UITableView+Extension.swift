@@ -19,13 +19,12 @@ extension UITableView {
         
         return cell as? T
     }
-    /*
-    - (void)applyChangesWithObject:(AZArrayModelChange *)object {
-    [self beginUpdates];
     
-    [object applyChangeToTableView:self];
-    
-    [self endUpdates];
+    func applyChanges(with object: ArrayModelOption) {
+        self.beginUpdates()
+        
+        object.applyChanges(to: self)
+        
+        self.endUpdates()
     }
-*/
 }

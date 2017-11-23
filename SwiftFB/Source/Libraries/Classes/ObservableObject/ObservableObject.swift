@@ -65,7 +65,6 @@ public class ObservableObject {
                 self.notifyOfState();
             }
         }
-        
     }
     
     var notify: Bool = true;
@@ -85,7 +84,6 @@ public class ObservableObject {
         self.observationControllers.add(controller)
         
         return controller
-        
     }
     
     func notifyOfState() {
