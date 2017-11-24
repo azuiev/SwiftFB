@@ -24,7 +24,10 @@ class ArrayModelRemoveOption: ArrayModelOption {
     
     // MARK: Override Methods
     
-    override func applyChanges(to tableView: UITableView, with animation: UITableViewRowAnimation = UITableViewRowAnimation.automatic, in section: Int = 0) {
+    override func applyChanges(to tableView: UITableView,
+                               with animation: UITableViewRowAnimation = UITableViewRowAnimation.automatic,
+                               in section: Int = 0)
+    {
         let indexPath = self.indexPath(with: self.index, in: section)
         
         tableView.deleteRows(at: [indexPath], with: animation)

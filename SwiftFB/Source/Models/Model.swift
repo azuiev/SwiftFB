@@ -54,7 +54,6 @@ class Model: ObservableObject, Equatable, Hashable {
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.performLoading()
         }
-
     }
     
     func performLoading() {

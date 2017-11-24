@@ -26,8 +26,6 @@ class ArrayModel<T: Equatable>: Model {
         self.array = array
         
         super.init()
-
-        self.notify = true
     }
     
     // MARK: Public Methods

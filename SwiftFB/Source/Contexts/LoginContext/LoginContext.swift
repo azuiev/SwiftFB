@@ -21,14 +21,26 @@ class LoginContext: GetContext {
         static let TokenString         = "token"
     }
     
-    // MARK: Public Methods
-    init ?(currentUser: CurrentUserModel) {
+    // MARK: Public Properties
+    
+    override var user: UserModel? {
+        get {
+            guard let result = self.model as? CurrentUserModel else { return nil }
+            
+            return result
+        }
+        set { }
+    }
+    
+    // MARK: Initialization
+    
+    init(currentUser: CurrentUserModel) {
         super.init(model: currentUser, currentUser: currentUser)
     }
     
     // MARK: Public Methods
     
-    override func execute(with completionHandler: @escaping(ModelState) -> Void) {
+    override func execute(withCompletion completionHandler: @escaping(ModelState) -> Void) {
         guard let user = self.model as? CurrentUserModel else { return }
         if !user.isAuthorized() {
             let manager = LoginManager()

@@ -28,7 +28,7 @@ class Context {
         }
     }
     
-    func execute(with completionHandler: @escaping(ModelState) -> ()) {
+    func execute(withCompletion completionHandler: @escaping(ModelState) -> ()) {
         
     }
     

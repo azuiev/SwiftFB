@@ -20,8 +20,8 @@ class ArrayModelOption {
         return ArrayModelAddOption(index: index)
     }
     
-    static func moveoption(with sourceIndex: Int, destinationIndex: Int) {
-        
+    static func moveOption(with sourceIndex: Int, destinationIndex: Int) -> ArrayModelMoveOption {
+        return ArrayModelMoveOption(sourceIndex: sourceIndex, destinationIndex: destinationIndex)
     }
     
     // MARK: Public Methods

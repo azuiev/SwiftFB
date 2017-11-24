@@ -431,16 +431,8 @@
 				1DA781141FC44A4300E12EA0 /* ArrayModel.swift */,
 				1DA7810F1FC4492700E12EA0 /* ArrayModelOptions */,
 				1DA781131FC4493600E12EA0 /* UsersModel */,
-				1DA781121FC4493600E12EA0 /* ArrayModelOptions */,
 			);
 			path = ArrayModel;
-			sourceTree = "<group>";
-		};
-		1DA781121FC4493600E12EA0 /* ArrayModelOptions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ArrayModelOptions;
 			sourceTree = "<group>";
 		};
 		1DA781131FC4493600E12EA0 /* UsersModel */ = {

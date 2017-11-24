@@ -11,17 +11,12 @@ import FacebookLogin
 import FacebookCore
 
 class GetContext: Context {
-
-    // MARK: Constants
-    
-    private struct Constants {
-        static let requestMethod = "GET"
-    }
     
     // MARK: Public Properties
     
-    var graphPath = ""
-    var parameters: [String : String] = [:]
+    var graphPath: String { return "" }
+    var user: UserModel? 
+    var parameters: [String : String] { return [:] }
     var currentUser: CurrentUserModel
     
     // MARK: Initialization
@@ -49,7 +44,7 @@ class GetContext: Context {
 
     // MARK: Override Methods
     
-    override func execute(with completionHandler: @escaping(ModelState) -> Void) {
+    override func execute(withCompletion completionHandler: @escaping(ModelState) -> Void) {
         let request = GraphRequest(graphPath: self.graphPath, parameters: self.parameters)
         
         request.start() {

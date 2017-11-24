@@ -46,7 +46,5 @@ class UserModel: Model {
         return "\(self.name ?? Constants.EmptyValue) \(self.surname ?? Constants.EmptyValue)"
     }
     
-    
-    
     // MARK: TODO NSCoding
 }

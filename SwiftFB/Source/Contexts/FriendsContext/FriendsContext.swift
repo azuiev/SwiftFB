@@ -11,15 +11,32 @@ import UIKit
 class FriendsContext: GetContext {
     
     // MARK: Constants
+    
     private enum Constants {
         static let DataKey          = "data"
         static let SummaryKey       = "summary"
         static let TotalCountKey    = "total_count"
     }
+    // MARK: Private Properties
+    
+    private var privateUser: UserModel?
     
     // MARK: Public Properties
     
-    var user: UserModel
+    override var graphPath: String { return self.userID + "/friends/"}
+    override var parameters: [String : String] {
+        return ["fields" : "id,first_name,last_name,picture{url}"]
+    }
+    
+    override var user: UserModel? {
+        get {
+            return self.privateUser
+        }
+        set { privateUser = newValue }
+    }
+    
+    var userID: String { return self.user?.userID ?? "" }
+    
     var friends: UsersModel {
         guard let result = self.model as? UsersModel else { return UsersModel() }
         
@@ -29,13 +46,9 @@ class FriendsContext: GetContext {
     // MARK: Initialization
     
     init(model: Model, user: UserModel, currentUser: CurrentUserModel) {
-        self.user = user
-        
         super.init(model: model, currentUser: currentUser)
-       
-        self.parameters = ["fields" : "id,first_name,last_name,picture{url}"]
-        let userID = user.userID ?? ""
-        self.graphPath = userID + "/friends/"
+        
+        self.user = user
     }
     
     // MARK: Override Methods

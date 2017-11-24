@@ -9,15 +9,23 @@
 import UIKit
 
 class UserContext: GetContext {
-
-    // MARK: Initialization
     
-    override init(model: Model, currentUser: CurrentUserModel) {
-        super.init(model: model, currentUser: currentUser)
-        
-        guard let user = model as? UserModel else { return }
-        
-        self.parameters = ["fields" : "first_name,last_name,middle_name,birthday,gender,picture.height(9999){url}"]
-        self.graphPath = user.userID ?? ""
+    // MARK: Public Properties
+    
+    override var parameters: [String : String] {
+        return ["fields" : "first_name,last_name,middle_name,birthday,gender,picture.height(9999){url}"]
+    }
+    
+    override var user: UserModel? {
+        get {
+            guard let result = self.model as? UserModel else { return nil }
+            
+            return result
+        }
+        set { }
+    }
+    
+    override var graphPath: String {
+        return self.user?.userID ?? ""
     }
 }
