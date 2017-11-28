@@ -8,20 +8,32 @@
 
 import UIKit
 
-struct ViewConstants {
-    static let ViewResizableWithFixedPosition:UIViewAutoresizing = [.flexibleLeftMargin,
-                                                                    .flexibleWidth,
-                                                                    .flexibleRightMargin,
-                                                                    .flexibleTopMargin,
-                                                                    .flexibleHeight,
-                                                                    .flexibleBottomMargin]
+
+// MARK: Typealias
+
+typealias JSON = [String : String]
+typealias JSONArray = [[String : String]]
+
+struct ViewAutoresizing {
+    static var resizableWithFixedPosition: UIViewAutoresizing {
+        return [UIViewAutoresizing.flexibleLeftMargin,
+                UIViewAutoresizing.flexibleWidth,
+                UIViewAutoresizing.flexibleRightMargin,
+                UIViewAutoresizing.flexibleTopMargin,
+                UIViewAutoresizing.flexibleHeight,
+                UIViewAutoresizing.flexibleBottomMargin]
+    }
     
-    static let ViewFixedPosition: UIViewAutoresizing = [.flexibleLeftMargin,
-                                                        .flexibleRightMargin,
-                                                        .flexibleTopMargin,
-                                                        .flexibleBottomMargin]
+    static var fixedPosition: UIViewAutoresizing {
+        return [UIViewAutoresizing.flexibleLeftMargin,
+                UIViewAutoresizing.flexibleRightMargin,
+                UIViewAutoresizing.flexibleTopMargin,
+                UIViewAutoresizing.flexibleBottomMargin]
+    }
     
-    static let ViewResizable: UIViewAutoresizing = [.flexibleWidth, .flexibleHeight]
+    static var resizable: UIViewAutoresizing {
+        return [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+    }
 }
 
 func synchronized<T>(lockObject: AnyObject, _ block: () -> T) -> T {

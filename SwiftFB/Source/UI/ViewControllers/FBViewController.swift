@@ -8,24 +8,11 @@
 
 import UIKit
 
-class FBViewController: UIViewController, RootView {
+class FBViewController: UIViewController {
 
-    typealias ViewType = FBView
+    // Public Properties
     
-    // MARK: Public properties
-    
-    var observationController: ObservableObject.ObservationController? {
-        didSet {
-            self.observationController?[.didLoad] = { [weak self] model, _ in
-                self?.rootView.loadingView?.set(visible: false)
-                self?.rootView.fill(with: model as! Model)
-            }
-            
-            self.observationController?[.willLoad] = { [weak self] model, _ in
-                self?.rootView.loadingView?.set(visible: true)
-            }
-        }
-    }
+    var observationController: ObservableObject.ObservationController?
     
     var context: Context? {
         willSet {

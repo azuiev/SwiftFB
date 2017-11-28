@@ -77,6 +77,10 @@ class ArrayModel<T: Equatable>: Model {
         }
     }
     
+    func first() -> T? {
+        return self.array.first
+    }
+    
     // MARK: Subscripts
     
     subscript(index: Int) -> T? {

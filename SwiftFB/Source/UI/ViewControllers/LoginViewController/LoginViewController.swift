@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: FBViewController {
+class LoginViewController: FBViewController, RootView {
     
     // MARK: protocol rootView
     
@@ -45,8 +45,10 @@ class LoginViewController: FBViewController {
     
     // MARK: UI Lifecycle
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.rootView.loadingView?.set(visible: false)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.rootView?.loadingView?.set(visible: false)
     }
     
     @IBAction func onLogin() {

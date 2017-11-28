@@ -12,7 +12,7 @@ class ImageModelCache {
     
     // MARK: Public properties
     
-    static let sharedInstance = ImageModelCache()
+    static let shared = ImageModelCache()
     
     private var cache = Dictionary<URL, ImageModel>()
     

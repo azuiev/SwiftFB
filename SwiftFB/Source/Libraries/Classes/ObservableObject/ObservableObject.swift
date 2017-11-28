@@ -61,9 +61,7 @@ public class ObservableObject {
     
     var state: ModelState = .didUnload {
         didSet {
-            if self.notify {
-                self.notifyOfState();
-            }
+            self.notifyOfState();
         }
     }
 
@@ -86,29 +84,40 @@ public class ObservableObject {
         return controller
     }
     
-    func set(state: ModelState, with object: Any) {
-        self.notify = false
-        self.state = state
+    func performNotification(notify: Bool, with block: () -> ()) {
+        self.notify = notify
+        
+        block()
+        
         self.notify = true
+    }
+    
+    func set(state: ModelState, with object: Any) {
+        self.performNotification(notify: false) { [weak self] in
+            self?.state = state
+        }
         
         self.notifyOfState(with: object)
     }
     
+    func remove(controller: ObservationController) {
+        self.observationControllers.remove(controller)
+    }
+    
     func notifyOfState() {
-        /// add if notify
-        self.observationControllers.allObjects.forEach {
-            $0.notify(of: self.state)
+        if self.notify {
+            self.observationControllers.allObjects.forEach {
+                $0.notify(of: self.state)
+            }
         }
     }
     
     func notifyOfState(with object: Any) {
-        self.observationControllers.allObjects.forEach {
-            $0.notify(of: self.state, with: object)
+        if self.notify {
+            self.observationControllers.allObjects.forEach {
+                $0.notify(of: self.state, with: object)
+            }
         }
-    }
-    
-    func remove(controller: ObservationController) {
-        self.observationControllers.remove(controller)
     }
     
     // TODO

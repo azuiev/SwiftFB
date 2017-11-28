@@ -69,7 +69,7 @@ class ImageView: FBView {
     
     func initSubviews() {
         let imageView = UIImageView(frame: self.bounds)
-        imageView.autoresizingMask = ViewConstants.ViewResizableWithFixedPosition
+        imageView.autoresizingMask = ViewAutoresizing.resizableWithFixedPosition
         
         self.contentImageView = imageView
     }

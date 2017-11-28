@@ -49,8 +49,10 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     // MARK: UI Actions
     
     func onDelete() {
-        let userModel = self.friends[0]
-        self.friends.remove(object: userModel!)
+        let user = self.friends.first()
+        if let deleteUser = user {
+            self.friends.remove(object: deleteUser)
+        }
     }
     
     // MARK: View Lifecycle
@@ -59,14 +61,9 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         self.title = "Friends"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
     }
-
+    
     override func prepareNavigationBar() {
         super.prepareNavigationBar()
         self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(

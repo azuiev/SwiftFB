@@ -8,18 +8,6 @@
 
 import UIKit
 
-protocol RootView {
-    associatedtype ViewType
-    
-    var rootView: ViewType { get }
-}
-
-extension RootView where Self: UIViewController {
-    var rootView: ViewType {
-        return (self.viewIfLoaded as? ViewType)!
-    }
-}
-
 class FBView: UIView {
     
     var loadingView: LoadingView?
@@ -45,9 +33,5 @@ class FBView: UIView {
                 self.loadingView = view;
             }
         }
-    }
-    
-    func fill(with model: Model) {
-        
     }
 }

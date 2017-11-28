@@ -37,15 +37,14 @@ class Model: ObservableObject, Equatable, Hashable {
     func load() {
         synchronized(lockObject: self) { [weak self] in
             let state = self?.state;
-            if .willLoad == state || .didLoad == state {
-                self?.notifyOfState()
+            if .didLoad == state {
+                self?.state = .didLoad
                 
                 return
             }
             
             self?.state = .willLoad
         }
-        //add synchronized above
         
         self.loadObject()
     }

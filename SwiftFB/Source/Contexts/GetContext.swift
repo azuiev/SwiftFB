@@ -45,6 +45,8 @@ class GetContext: Context {
     // MARK: Override Methods
     
     override func execute(withCompletion completionHandler: @escaping(ModelState) -> Void) {
+        model.state = .willLoad
+        
         let request = GraphRequest(graphPath: self.graphPath, parameters: self.parameters)
         
         request.start() {

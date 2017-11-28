@@ -18,10 +18,9 @@ class UserCell: UITableViewCell {
     // MARK Public Properties
     
     var userModel: UserModel? {
-        didSet {
-            let user = self.userModel
-            if user != nil {
-                self.fill(with: user!)
+        willSet {
+            if let user = newValue {
+                self.fill(with: user)
             }
         }
     }
@@ -34,6 +33,6 @@ class UserCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.userImageView?.contentImageView = nil
+        self.userImageView?.contentImageView?.image = nil
     }
 }

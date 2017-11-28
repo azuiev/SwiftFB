@@ -17,6 +17,7 @@ class FriendsContext: GetContext {
         static let SummaryKey       = "summary"
         static let TotalCountKey    = "total_count"
     }
+    
     // MARK: Private Properties
     
     private var privateUser: UserModel?

@@ -8,13 +8,26 @@
 
 import UIKit
 
-class UserViewController: FBViewController {
+class UserViewController: FBViewController, RootView {
 
     // MARK: protocol rootView
     
     typealias ViewType = UserView
     
-    // MARK: Public Properties
+    // MARK: Public properties
+    
+    override var observationController: ObservableObject.ObservationController? {
+        didSet {
+            self.observationController?[.didLoad] = { [weak self] model, _ in
+                self?.rootView?.loadingView?.set(visible: false)
+                self?.rootView?.fill(with: model as? UserModel)
+            }
+            
+            self.observationController?[.willLoad] = { [weak self] model, _ in
+                self?.rootView?.loadingView?.set(visible: true)
+            }
+        }
+    }
     
     var user: UserModel {
         guard let result = self.model as? UserModel else { return UserModel() }
@@ -36,8 +49,8 @@ class UserViewController: FBViewController {
 
     // MARK: View Lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.context = UserContext(model: self.model, currentUser: self.currentUser);
     }

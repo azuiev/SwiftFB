@@ -23,19 +23,18 @@ class UserView: FBView {
 
     // MARK: Public Methods
     
-    override func fill(with model: Model) {
-        guard let user = model as? UserModel else { return }
-        self.nameLabel?.text = user.name
-        self.surnameLabel?.text = user.surname
-        self.middleNameLabel?.text = user.middleName
-        self.userImage?.model = user.picture
-        if let date = user.birthday {
+    func fill(with model: UserModel?) {
+        self.nameLabel?.text = model?.name
+        self.surnameLabel?.text = model?.surname
+        self.middleNameLabel?.text = model?.middleName
+        self.userImage?.model = model?.picture
+        if let date = model?.birthday {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
             self.birthdayLabel?.text = dateFormatter.string(from: date)
         }
     
-        self.genderLabel?.text = user.gender.rawValue;
+        self.genderLabel?.text = model?.gender.rawValue;
     }
     
 }

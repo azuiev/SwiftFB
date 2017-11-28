@@ -17,7 +17,7 @@ class ImageModel: Model {
         static let LoadImageDelay = 0.5
     }
     
-    typealias CompletionBlock = (_ image: UIImage?, _ error: Error?) -> ()
+    typealias CompletionBlock = (UIImage?, Error?) -> ()
 
     // MARK : Public properties
     
@@ -35,7 +35,7 @@ class ImageModel: Model {
     // MARK: Initialization
     
     static func model(with url: URL) -> ImageModel {
-        let cache = ImageModelCache.sharedInstance
+        let cache = ImageModelCache.shared
         var model = cache.object(with: url)
         
         if model == nil {
