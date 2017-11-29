@@ -24,14 +24,24 @@ class LoginViewController: FBViewController, RootView {
         }
     }
     
+    // MARK: Initialization
+    
+    init(model: Model) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.model = model
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: Public Methods
     
     override func showViewController() {
-        let user = self.model as! CurrentUserModel
-        let controller = UserViewController()
+        guard let user = self.model as? CurrentUserModel else { return }
+        let controller = UserViewController(model: self.model, currentUser: user)
         let navigationController = UINavigationController(rootViewController: controller)
-        controller.model = user
-        controller.currentUser = user;
         self.observationController = nil
         self.present(navigationController, animated: true)
     }

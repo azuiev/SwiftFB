@@ -32,16 +32,6 @@ class FBViewController: UIViewController {
     
     var currentUser: CurrentUserModel = CurrentUserModel()
     
-    // MARK: Initialization and Deallocation
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     // MARK: Public Methods
     
     func showViewController() {

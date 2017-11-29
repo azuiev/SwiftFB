@@ -10,14 +10,10 @@ import UIKit
 
 extension UITableView {
 
-    func reusableCell<T: UITableViewCell>(with cls: T.Type) -> T? {
-        var cell = self.dequeueReusableCell(withIdentifier: String(describing: type(of: cls)))
+    func reusableCell<T: UITableViewCell>(with cls: T.Type, indexPath: IndexPath) -> T {
+        let cell = self.dequeueReusableCell(withIdentifier: String.toString(cls), for: indexPath)
         
-        if cell == nil {
-            cell = UINib.object(with: cls)
-        }
-        
-        return cell as? T
+        return cell as! T
     }
     
     func applyChanges(with object: ArrayModelOption) {

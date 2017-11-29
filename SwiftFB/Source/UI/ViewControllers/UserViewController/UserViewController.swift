@@ -35,6 +35,19 @@ class UserViewController: FBViewController, RootView {
         return result
     }
     
+    // MARK: Initialization
+    
+    init(model: Model, currentUser: CurrentUserModel) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.currentUser = currentUser
+        self.model = model
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: Public Methods
     
     override func showViewController() {
@@ -56,10 +69,7 @@ class UserViewController: FBViewController, RootView {
     }
     
     private func showFriendsController() {
-        let controller = FriendsViewController()
-        controller.currentUser = self.currentUser
-        controller.user = self.user
-        controller.model = UsersModel()
+        let controller = FriendsViewController(model: UsersModel(), user: self.user, currentUser: self.currentUser)
         
         self.navigationController?.pushViewController(controller, animated: true)
     }

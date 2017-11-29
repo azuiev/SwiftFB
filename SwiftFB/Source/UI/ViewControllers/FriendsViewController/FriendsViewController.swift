@@ -46,6 +46,20 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     
     var user: UserModel = UserModel()
     
+    // MARK: Initialization
+    
+    init(model: Model, user: UserModel, currentUser: CurrentUserModel) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.model = model
+        self.user = user
+        self.currentUser = currentUser
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: UI Actions
     
     func onDelete() {
@@ -59,6 +73,10 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: "UserCell", bundle: nil)
+        
+        self.rootView.tableView?.register(nib, forCellReuseIdentifier: String.toString(UserCell.self))
         
         self.title = "Friends"
         self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
@@ -81,11 +99,11 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.reusableCell(with: UserCell.self)
+        let cell = tableView.reusableCell(with: UserCell.self, indexPath: indexPath)
 
-        cell?.userModel = self.friends[indexPath.row]
+        cell.userModel = self.friends[indexPath.row]
         
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -95,63 +113,13 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         self.friends.moveRow(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
-    /*
-     
-     #pragma mark -
-     #pragma mark UITableViewDelegate
-     
-     - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-     return self.editingStyle;
-     }
-     
-     - (void)    tableView:(UITableView *)tableView
-     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
-     {
-     if (UITableViewCellEditingStyleDelete == editingStyle) {
-     [self.users removeObjectAtIndex:indexPath.row];
-     }
-     
-     if (UITableViewCellEditingStyleInsert == editingStyle) {
-     [self.users insertObject:[AZUserModel new] atIndex:indexPath.row];
-     }
-     
-     [self.mainView changeEditMode];
-     }
-     
-     #pragma mark -
-     #pragma mark Buttons Actions
-     
-     - (IBAction)insertUser:(id)sender {
-     AZUsersModel *model = self.users;
-     [model insertObject:[AZUserModel new] atIndex:AZRandomNumberWithMaxValue(model.count)];
-     }
-     
-     - (IBAction)removeUser:(id)sender {
-     AZUsersModel *model = self.users;
-     [model removeObjectAtIndex:AZRandomNumberWithMaxValue(model.count - 1)];
-     }
-     
-     - (IBAction)changeMoveMode:(id)sender {
-     self.editingStyle = UITableViewCellEditingStyleNone;
-     [self.mainView changeEditMode];
-     }
-     
-     - (IBAction)changeEditMode:(id)sender {
-     self.editingStyle = UITableViewCellEditingStyleInsert;
-     [self.mainView changeEditMode];
-     }
-     
-     - (IBAction)changeDeleteMode:(id)sender {
-     self.editingStyle = UITableViewCellEditingStyleDelete;
-     [self.mainView changeEditMode];
-     }
-     
-     #pragma mark -
-     #pragma mark AZArrayModelObserver
-     
-     - (void)arrayModelDidChange:(AZArrayModel *)arrayModel withObject:(AZArrayModelChange *)object {
-     [self.mainView.tableView applyChangesWithObject:object];
-     }
-*/
+    
+    // MARK: protocol UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let friend = self.friends[indexPath.row] else { return }
+        let controller = UserViewController(model: friend, currentUser: self.currentUser)
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }

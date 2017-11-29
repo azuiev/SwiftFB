@@ -35,7 +35,9 @@ class UserParser {
         let dateString = object[Constants.birthdayKey] as? String
         let middleName = object[Constants.middleNameKey] as? String
         let gender = object[Constants.genderKey] as? String
+        let id = object[Constants.IDKey] as? String
         
+        user.userID = id
         user.name = name
         user.surname = surname
         user.middleName = middleName
