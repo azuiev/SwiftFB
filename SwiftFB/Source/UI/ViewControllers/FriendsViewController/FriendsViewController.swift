@@ -31,6 +31,10 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
                 self?.rootView.loadingView?.set(visible: true)
             }
             
+            self.observationController?[.didUnload] = { [weak self] model, _ in
+                self?.dismiss(animated: true, completion: nil)
+            }
+            
             self.observationController?[.didChange] = { [weak self] model, options in
                 guard let arrayOptions = options as? ArrayModelOption else { return }
                 self?.rootView.tableView?.applyChanges(with: arrayOptions)

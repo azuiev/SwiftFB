@@ -26,6 +26,10 @@ class UserViewController: FBViewController, RootView {
             self.observationController?[.willLoad] = { [weak self] model, _ in
                 self?.rootView?.loadingView?.set(visible: true)
             }
+            
+            self.observationController?[.didUnload] = { [weak self] model, _ in
+                self?.dismiss(animated: true, completion: nil)
+            }
         }
     }
     

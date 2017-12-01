@@ -20,7 +20,14 @@ class ImageModel: Model {
     
     typealias CompletionBlock = (UIImage?, Error?) -> ()
 
-    // MARK : Public properties
+    
+    // MARK: Protocol Hashable
+    
+    override public var hashValue: Int {
+        return self.url.hashValue
+    }
+    
+    // MARK: Public properties
     
     var image: UIImage?
     var imagePath: String? {

@@ -14,7 +14,7 @@ extension ObservableObject {
         // MARL : Protocol Hashable
         
         var hashValue: Int {
-            return self.observableObject.hashValue | self.observer.hashValue
+            return self.observableObject.hashValue ^ self.observer.hashValue
         }
         
         // MARK: Protocol Equatable
@@ -118,15 +118,17 @@ public class ObservableObject: Equatable, Hashable {
         self.notifyOfState(with: object)
     }
     
-    func remove(controller: ObservationController) {
-        self.observationControllers.remove(ReferenceWrapper(controller))
+    func remove(controller: ObservationController?) {
+        guard let object = controller else { return }
+        self.observationControllers.remove(ReferenceWrapper(object))
     }
     
     func notifyOfState(with object: Any? = nil) {
         if self.notify {
             self.observationControllers.forEach {
-                guard let controller = $0.object as? ObservationController else { return }
-                controller.notify(of: self.state, with: object)
+                if let controller = $0.object as? ObservationController {
+                    controller.notify(of: self.state, with: object)
+                }
             }
         }
     }

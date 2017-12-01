@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D263AA61FC486620048FDE3 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D263AA51FC486620048FDE3 /* UsersModel.swift */; };
+		1D2891491FD1B92E001FB882 /* LogoutContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2891481FD1B92E001FB882 /* LogoutContext.swift */; };
 		1D5A0F891FC58FCF0059AFAF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A0F871FC58FCF0059AFAF /* UserCell.swift */; };
 		1D5A0F8A1FC58FCF0059AFAF /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A0F881FC58FCF0059AFAF /* UserCell.xib */; };
 		1D5A0F8D1FC5B0050059AFAF /* FriendsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A0F8C1FC5B0050059AFAF /* FriendsContext.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		1D1C7D421FABF54700A207A4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/SwiftFB-dwghhnvhpmqevrfbpyriqypdxrzz/Build/Products/Debug-iphonesimulator/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1D263AA51FC486620048FDE3 /* UsersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		1D2891481FD1B92E001FB882 /* LogoutContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutContext.swift; sourceTree = "<group>"; };
 		1D5A0F871FC58FCF0059AFAF /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		1D5A0F881FC58FCF0059AFAF /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		1D5A0F8C1FC5B0050059AFAF /* FriendsContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsContext.swift; sourceTree = "<group>"; };
@@ -128,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D2891471FD1B8F5001FB882 /* LogoutContext */ = {
+			isa = PBXGroup;
+			children = (
+				1D2891481FD1B92E001FB882 /* LogoutContext.swift */,
+			);
+			path = LogoutContext;
+			sourceTree = "<group>";
+		};
 		1D5A0F861FC58F840059AFAF /* UserCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +262,7 @@
 				1D943B681FBCD62700B07695 /* FriendsContext */,
 				1D943B6A1FBCD62700B07695 /* LoginContext */,
 				1D943B6C1FBCD62700B07695 /* UserDetailContext */,
+				1D2891471FD1B8F5001FB882 /* LogoutContext */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -651,6 +662,7 @@
 				1D943B9C1FBCD62700B07695 /* UserModel.swift in Sources */,
 				1D943BA51FBCD62700B07695 /* LoadingView.swift in Sources */,
 				1D7D118E1FC2FDC300878834 /* InternetImageModel.swift in Sources */,
+				1D2891491FD1B92E001FB882 /* LogoutContext.swift in Sources */,
 				1DB72E551FC32F9E00164758 /* FileManager+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,7 +42,6 @@ class LoginViewController: FBViewController, RootView {
         guard let user = self.model as? CurrentUserModel else { return }
         let controller = UserViewController(model: self.model, currentUser: user)
         let navigationController = UINavigationController(rootViewController: controller)
-        self.observationController = nil
         self.present(navigationController, animated: true)
     }
     

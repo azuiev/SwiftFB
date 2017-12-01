@@ -39,7 +39,7 @@ class FBViewController: UIViewController {
     }
     
     func logout() {
-        self.context = Context(model: self.currentUser);
+        self.context = LogoutContext(model: self.currentUser);
     }
     
     // MARK: UI LifeCycle
@@ -62,6 +62,5 @@ class FBViewController: UIViewController {
     func onLogout() {
         self.logout()
     }
-    
 }
 
