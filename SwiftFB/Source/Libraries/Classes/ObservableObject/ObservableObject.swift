@@ -9,7 +9,19 @@
 import Foundation
 
 extension ObservableObject {
-    class ObservationController {
+    class ObservationController: Hashable, Equatable {
+        
+        // MARL : Protocol Hashable
+        
+        var hashValue: Int {
+            return self.observableObject.hashValue | self.observer.hashValue
+        }
+        
+        // MARK: Protocol Equatable
+        
+        public static func == (lhs: ObservationController, rhs: ObservationController) -> Bool {
+            return lhs.hashValue == rhs.hashValue
+        }
         
         // MARK : Private Properties
         
@@ -52,10 +64,22 @@ extension ObservableObject {
     }
 }
 
-public class ObservableObject {
+public class ObservableObject: Equatable, Hashable {
     
     typealias ObserverType = AnyObject
     typealias ActionType = (ObservableObject, Any?) -> ()
+    
+    // MARK: Protocol Hashable
+    
+    public var hashValue: Int {
+        return 0
+    }
+    
+    // MARK: Protocol Equatable
+    
+    public static func == (lhs: ObservableObject, rhs: ObservableObject) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
     
     // MARK: Public properties
     
@@ -67,19 +91,13 @@ public class ObservableObject {
 
     var notify: Bool = true;
     
-    var observationControllers: NSHashTable<ObservationController>
+    var observationControllers = Set<ReferenceWrapper<ObservationController>>()
     
-    // MARK: Initialization and deinitialization
-    
-    init() {
-        self.observationControllers = NSHashTable.weakObjects();
-    }
-
     // MARK : Public Methods
     
     func controller(for observer: ObserverType) -> ObservationController {
         let controller = ObservationController(observableObject: self, observer: observer)
-        self.observationControllers.add(controller)
+        self.observationControllers.insert(ReferenceWrapper(controller))
         
         return controller
     }
@@ -101,21 +119,14 @@ public class ObservableObject {
     }
     
     func remove(controller: ObservationController) {
-        self.observationControllers.remove(controller)
+        self.observationControllers.remove(ReferenceWrapper(controller))
     }
     
-    func notifyOfState() {
+    func notifyOfState(with object: Any? = nil) {
         if self.notify {
-            self.observationControllers.allObjects.forEach {
-                $0.notify(of: self.state)
-            }
-        }
-    }
-    
-    func notifyOfState(with object: Any) {
-        if self.notify {
-            self.observationControllers.allObjects.forEach {
-                $0.notify(of: self.state, with: object)
+            self.observationControllers.forEach {
+                guard let controller = $0.object as? ObservationController else { return }
+                controller.notify(of: self.state, with: object)
             }
         }
     }

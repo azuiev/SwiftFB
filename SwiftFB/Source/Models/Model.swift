@@ -20,19 +20,9 @@ enum ModelState {
     case didChange
 }
 
-class Model: ObservableObject, Equatable, Hashable {
-    
-    // MARK: Public properties
-    
-    var hashValue: Int {
-        return self.hashValue
-    }
+class Model: ObservableObject {
     
     // MARK: Public methods
-    
-    static func == (lhs: Model, rhs: Model) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
     
     func load() {
         synchronized(lockObject: self) { [weak self] in
