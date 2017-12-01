@@ -56,7 +56,7 @@ class LoginContext: GetContext {
                 }
             }
         } else {
-            completionHandler(.willLoad)
+            completionHandler(.didLoad)
         }
     }
     

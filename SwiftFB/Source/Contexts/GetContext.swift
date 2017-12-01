@@ -23,6 +23,7 @@ class GetContext: Context {
     
     init(model: Model, currentUser: CurrentUserModel) {
         self.currentUser = currentUser
+        
         super.init(model: model)
     }
     
@@ -62,6 +63,5 @@ class GetContext: Context {
                 }
             }
         }
-        
     }
 }

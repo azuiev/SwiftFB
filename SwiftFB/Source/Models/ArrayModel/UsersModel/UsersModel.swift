@@ -43,7 +43,9 @@ class UsersModel: ArrayModel<UserModel>, Save {
     // MARK: Protocol Save
     
     func save() {
-        NSKeyedArchiver.archiveRootObject(self.array, toFile: self.plistName)
+        let result = NSKeyedArchiver.archiveRootObject(self.array, toFile: self.fullPlistName())
+        
+        print("\(result)")
     }
     
     // MARL: Private Methods
@@ -69,14 +71,11 @@ class UsersModel: ArrayModel<UserModel>, Save {
         }
     }
     
-    /*
-    - (NSString *)fullPlistName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *result = [paths firstObject];
-    
-    result = [result stringByAppendingPathComponent:self.plistName];
-    
-    return result;
+    private func fullPlistName() -> String {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        
+        let result = documentsPath?.appending("/\(self.plistName)") ?? ""
+        
+        return result
     }
-   */
 }

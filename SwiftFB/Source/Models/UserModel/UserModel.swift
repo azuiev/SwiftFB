@@ -15,19 +15,22 @@ enum Gender: String {
 
 class UserModel: Model {
     
-    // MARK: Hash
+    // MARK: Constants
+    
+    private struct Constants {
+        static let EmptyValue = "Empty"
+        static let NameKey = "Name"
+        static let SurnameKey = "Surname"
+        static let PictureKey = "Picture"
+    }
+    
+    // MARK: Protocol Hashable
     
     override var hashValue: Int {
         return self.fullName.hashValue
     }
     
-    // MARK: Constants
-    
-    private struct Constants {
-        static let EmptyValue = "Empty"
-    }
-   
-    // MARK: Public Properties 
+    // MARK: Public Properties
     
     var name: String?
     var surname: String?
@@ -46,5 +49,36 @@ class UserModel: Model {
         return "\(self.name ?? Constants.EmptyValue) \(self.surname ?? Constants.EmptyValue)"
     }
     
+    // MARK: Initialization
+
+    override init() {
+        super.init()
+    }
+    
+    convenience init(name: String, surname: String, imagePath: String) {
+        self.init()
+        
+        self.name = name
+        self.surname = surname
+        if let url = URL(string: imagePath) {
+            self.picture = ImageModel(url: url)
+        }
+    }
+    
     // MARK: TODO NSCoding
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let name = aDecoder.decodeObject(forKey: Constants.NameKey) as? String,
+            let surname = aDecoder.decodeObject(forKey: Constants.SurnameKey) as? String,
+            let picture = aDecoder.decodeObject(forKey: Constants.PictureKey) as? String
+            else { return nil }
+        
+        self.init(name: name, surname: surname, imagePath: picture)
+    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: Constants.NameKey)
+        aCoder.encode(self.surname, forKey: Constants.SurnameKey)
+        aCoder.encode(self.picture, forKey: Constants.PictureKey)
+    }
 }

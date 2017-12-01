@@ -346,7 +346,6 @@
 		1D943B791FBCD62700B07695 /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
-				1DA7810E1FC4492700E12EA0 /* ArrayModel */,
 				1D943B7B1FBCD62700B07695 /* UserModel.swift */,
 				1D943B7A1FBCD62700B07695 /* CurrentUserModel.swift */,
 			);
@@ -430,14 +429,6 @@
 			);
 			path = LoadingView;
 			sourceTree = "<group>";
-		};
-		1DA7810E1FC4492700E12EA0 /* ArrayModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ArrayModel;
-			path = SwiftFB/Source/Models/ArrayModel;
-			sourceTree = SOURCE_ROOT;
 		};
 		1DA7810F1FC4492700E12EA0 /* ArrayModelOptions */ = {
 			isa = PBXGroup;
