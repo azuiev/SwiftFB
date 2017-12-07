@@ -27,7 +27,7 @@ class LoginViewController: FBViewController, RootView {
     // MARK: Initialization
     
     init(model: Model) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: String.toString(type(of: self)), bundle: .main)
         
         self.model = model
     }

@@ -34,14 +34,9 @@ class GetContext: Context {
     }
     
     func finishLoading(with response: [String : Any]) {
-        self.fill(model: self.model, with: response)
+        
     }
     
-    func fill(model: Model, with response: [String : Any]) {
-        guard let user = model as? UserModel else { return }
-        
-        UserParser.update(user: user, with: response)
-    }
 
     // MARK: Override Methods
     

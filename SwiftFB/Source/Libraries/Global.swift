@@ -8,31 +8,30 @@
 
 import UIKit
 
-
 // MARK: Typealias
 
 typealias JSON = [String : String]
 typealias JSONArray = [[String : String]]
 
-struct ViewAutoresizing {
+extension UIViewAutoresizing {
     static var resizableWithFixedPosition: UIViewAutoresizing {
-        return [UIViewAutoresizing.flexibleLeftMargin,
-                UIViewAutoresizing.flexibleWidth,
-                UIViewAutoresizing.flexibleRightMargin,
-                UIViewAutoresizing.flexibleTopMargin,
-                UIViewAutoresizing.flexibleHeight,
-                UIViewAutoresizing.flexibleBottomMargin]
+        return [.flexibleLeftMargin,
+                .flexibleWidth,
+                .flexibleRightMargin,
+                .flexibleTopMargin,
+                .flexibleHeight,
+                .flexibleBottomMargin]
     }
     
-    static var fixedPosition: UIViewAutoresizing {
-        return [UIViewAutoresizing.flexibleLeftMargin,
-                UIViewAutoresizing.flexibleRightMargin,
-                UIViewAutoresizing.flexibleTopMargin,
-                UIViewAutoresizing.flexibleBottomMargin]
+    var fixedPosition: UIViewAutoresizing {
+        return [.flexibleLeftMargin,
+                .flexibleRightMargin,
+                .flexibleTopMargin,
+                .flexibleBottomMargin]
     }
     
-    static var resizable: UIViewAutoresizing {
-        return [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+    var resizable: UIViewAutoresizing {
+        return [.flexibleWidth, .flexibleHeight]
     }
 }
 

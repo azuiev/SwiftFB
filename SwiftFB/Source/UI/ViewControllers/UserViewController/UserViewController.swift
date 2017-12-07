@@ -8,12 +8,14 @@
 
 import UIKit
 
+// MARK: Protocol RootView
+
+extension UserViewController {
+    typealias ViewType = UserView
+}
+
 class UserViewController: FBViewController, RootView {
 
-    // MARK: protocol rootView
-    
-    typealias ViewType = UserView
-    
     // MARK: Public properties
     
     override var observationController: ObservableObject.ObservationController? {
@@ -42,7 +44,7 @@ class UserViewController: FBViewController, RootView {
     // MARK: Initialization
     
     init(model: Model, currentUser: CurrentUserModel) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: String.toString(type(of: self)), bundle: .main)
         
         self.currentUser = currentUser
         self.model = model

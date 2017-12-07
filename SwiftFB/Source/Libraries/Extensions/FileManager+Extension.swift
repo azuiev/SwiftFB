@@ -10,7 +10,7 @@ import UIKit
 
 extension FileManager {
     
-    typealias OperationBlock = (_ sourceURL: URL?, _ destinationURL: URL?) -> Bool
+    typealias OperationBlock = (URL?, URL?) -> Bool
     
     func moveItem(from sourceUrl: URL?, to destinationUrl: URL?) -> Bool {
         return self.performOperation(with: sourceUrl, destinationUrl: destinationUrl) { url1, url2 in

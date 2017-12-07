@@ -91,23 +91,24 @@ public class ObservableObject: Equatable, Hashable {
 
     var notify: Bool = true;
     
-    var observationControllers = Set<ReferenceWrapper<ObservationController>>()
+    var observationControllers = Set<WeakReference<ObservationController>>()
     
     // MARK : Public Methods
     
     func controller(for observer: ObserverType) -> ObservationController {
         let controller = ObservationController(observableObject: self, observer: observer)
-        self.observationControllers.insert(ReferenceWrapper(controller))
+        self.observationControllers.insert(WeakReference(controller))
         
         return controller
     }
     
     func performNotification(notify: Bool, with block: () -> ()) {
+        let currentNotify = self.notify
         self.notify = notify
         
         block()
         
-        self.notify = true
+        self.notify = currentNotify
     }
     
     func set(state: ModelState, with object: Any) {
@@ -120,7 +121,7 @@ public class ObservableObject: Equatable, Hashable {
     
     func remove(controller: ObservationController?) {
         guard let object = controller else { return }
-        self.observationControllers.remove(ReferenceWrapper(object))
+        self.observationControllers.remove(WeakReference(object))
     }
     
     func notifyOfState(with object: Any? = nil) {

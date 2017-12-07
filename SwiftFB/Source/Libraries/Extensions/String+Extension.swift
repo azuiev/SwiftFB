@@ -9,11 +9,10 @@
 import Foundation
 
 extension String {
-    static func toString(_ cls: AnyClass) -> String {
-        return String(describing: type(of: cls))
-    }
- 
-    static func toString(_ object: AnyObject) -> String {
-        return "\(object)"
+    static func toString<T>(_ cls: T.Type) -> String {
+        var result = String(describing: type(of: cls))
+        result = result.substring(to: result.index(result.endIndex, offsetBy: -5))
+        
+        return result
     }
 }

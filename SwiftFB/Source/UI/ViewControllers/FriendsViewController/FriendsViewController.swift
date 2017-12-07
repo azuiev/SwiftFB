@@ -8,12 +8,14 @@
 
 import UIKit
 
+// MARK: Protocol RootView
+
+extension FriendsViewController {
+    typealias ViewType = FriendsView
+}
+
 class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // MARK: protocol RootView
-    
-    typealias ViewType = FriendsView
-    
     // Public Properties
 
     var rootView: FriendsView {
@@ -53,7 +55,7 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     // MARK: Initialization
     
     init(model: Model, user: UserModel, currentUser: CurrentUserModel) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: String.toString(type(of: self)), bundle: .main)
         
         self.model = model
         self.user = user
@@ -73,14 +75,16 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "UserCell", bundle: nil)
+        let nib = UINib(nibName: String.toString(UserCell.self), bundle: .main)
         
         self.rootView.tableView?.register(nib, forCellReuseIdentifier: String.toString(UserCell.self))
+        self.rootView.tableView?.isEditing = true
         
         self.title = "Friends"
         self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
@@ -115,15 +119,24 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sourceIndexPath.row == destinationIndexPath.row { return }
+        
         self.friends.moveRow(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        
+        self.rootView.tableView?.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
     // MARK: protocol UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let friend = self.friends[indexPath.row] else { return }
-        let controller = UserViewController(model: friend, currentUser: self.currentUser)
-        
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.friends[indexPath.row].map() { [weak self] in
+            guard let user = self?.currentUser else { return }
+            let controller = UserViewController(model: $0, currentUser: user)
+            
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

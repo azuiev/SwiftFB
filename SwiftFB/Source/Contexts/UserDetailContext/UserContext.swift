@@ -28,4 +28,14 @@ class UserContext: GetContext {
     override var graphPath: String {
         return self.user?.userID ?? ""
     }
+    
+    override func finishLoading(with response: [String : Any]) {
+        self.fill(user: self.model as? UserModel, with: response)
+    }
+    
+    func fill(user: UserModel?, with response: [String : Any]) {
+        user.map() {
+            UserParser.update(user: $0, with: response)
+        }
+    }
 }

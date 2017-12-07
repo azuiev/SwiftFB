@@ -13,5 +13,4 @@ class LoginView: FBView {
     // MARK: Public properties
     
     @IBOutlet var LoginButton: UIButton?
-
 }
