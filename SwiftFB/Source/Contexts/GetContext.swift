@@ -50,13 +50,44 @@ class GetContext: Context {
             
             switch requestResult {
             case .failed(let error):
-                print("error in graph request:", error)
+                print("Error \(error). Trying to load data from FS")
+                let response = self.loadSavedResponse()
+                response.map() { [weak self] in
+                    self?.finishLoading(with: $0)
+                    
+                    completionHandler(.didLoad)
+                }
             case .success(let graphResponse):
-                if let responseDictionary = graphResponse.dictionaryValue {
-                    self.finishLoading(with: responseDictionary)
+                graphResponse.dictionaryValue.map() { [weak self] in
+                    self?.save(response: $0)
+                    self?.finishLoading(with: $0)
+                    
                     completionHandler(.didLoad)
                 }
             }
+        }
+    }
+    
+   // MARK: Private methods
+    
+    func save(response : [String : Any]) {
+        NSKeyedArchiver.archiveRootObject(response, toFile: self.fileName())
+    }
+    
+    func loadSavedResponse() -> [String : Any]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: self.fileName()) as? [String : Any]
+    }
+    
+    func fileName() -> String {
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            var result = dir.appendingPathComponent(String.removeIllegalSymbols(from: self.graphPath)).path
+            
+            print("PATH = \(result)")
+            
+            return result
+            //return [NSString stringWithFormat:@"%@/%@.plist", result, [NSString removeIllegalSymbols:self.graphPath]];
+        } else {
+            return ""
         }
     }
 }

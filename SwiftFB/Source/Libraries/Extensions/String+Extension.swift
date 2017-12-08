@@ -15,4 +15,10 @@ extension String {
         
         return result
     }
+    
+    static func removeIllegalSymbols(from string: String) -> String {
+        let removal: [Character] = ["/", "\\", "?", "%", "*", "|", "\"", "<", ">"]
+        
+        return String(string.characters.filter { !removal.contains($0) })
+    }
 }

@@ -55,7 +55,7 @@ class FriendsContext: GetContext {
     // MARK: Override Methods
     
     override func finishLoading(with response: [String : Any]) {
-        guard let data = response[Constants.DataKey] as? JSONArray else { return }
+        guard let data = response[Constants.DataKey] as? [[String : Any]] else { return }
         
         var users = [UserModel]()
         

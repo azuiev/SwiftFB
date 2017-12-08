@@ -1,5 +1,5 @@
 //
-//  ImageModelCache.swift
+//  Cache.swift
 //  SwiftFB
 //
 //  Created by Aleksey Zuiev on 18/11/2017.
@@ -8,13 +8,24 @@
 
 import UIKit
 
-class ImageModelCache {
+class Cache {
     
-    // MARK: Public properties
+    // MARK: Class Methods 
     
-    static let shared = ImageModelCache()
+    static private var store : [String : Cache] = [:]
     
-    private var cache = Dictionary<URL, ImageModel>()
+    static func shared<T>(_ cls: T.Type) -> Cache {
+        if let result = self.store[String.toString(cls)] {
+            return result
+        } else {
+            let result = Cache()
+            self.store[String.toString(cls)] = result
+            
+            return result
+        }
+    }
+    
+    private var cache = [URL : AnyObject]()
     
     // MARK: Initialization
     
@@ -24,19 +35,19 @@ class ImageModelCache {
     
     // MARK: Public Methods
     
-    func set(object: ImageModel, for key: URL) {
+    func set(object: AnyObject?, for key: URL) {
         synchronized(lockObject: self) { [weak self] in
             self?.cache[key] = object
         }
     }
     
-    func removeObject(for key: URL) -> ImageModel? {
+    func removeObject(for key: URL) -> AnyObject? {
         return synchronized(lockObject: self) { [weak self] in
             return self?.cache.removeValue(forKey: key)
         }
     }
     
-    func object(with key: URL) -> ImageModel? {
+    func object(with key: URL) -> AnyObject? {
         return synchronized(lockObject: self) { [weak self] in
             return self?.cache[key]
         }
