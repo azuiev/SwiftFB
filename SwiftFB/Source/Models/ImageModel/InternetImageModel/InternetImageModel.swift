@@ -17,11 +17,12 @@ class InternetImageModel: FileSystemImageModel {
             oldValue?.cancel()
         }
     }
-    // MARK: Initialization
     
+    // MARK: Initialization
+    /*
     override init(url: URL) {
         super.init(url: url)
-    }
+    }*/
     
     // MARK: Public Methods
     

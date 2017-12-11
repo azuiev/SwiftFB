@@ -16,11 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        let controller = LoginViewController(model: CurrentUserModel())
-        
-        window = UIWindow(controller);
-        window?.makeKeyAndVisible()
+
+        window = UIWindow();
+        window?.perform {
+            let controller = LoginViewController(model: CurrentUserModel())
+            
+            $0.rootViewController = controller
+            $0.makeKeyAndVisible()
+        }
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         

@@ -18,6 +18,10 @@ class FileSystemImageModel: ImageModel {
         }
     }
     
+    /*override init(url: URL) {
+        super.init(url: url)
+    }*/
+    
     // MARK: Public Methods
     
     override func loadImage(with completionBlock: @escaping CompletionBlock) {

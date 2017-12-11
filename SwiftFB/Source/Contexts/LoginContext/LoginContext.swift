@@ -51,8 +51,11 @@ class LoginContext: GetContext {
                 case .cancelled:
                     print("User cancelled login.")
                 case .success(_, _, let token):
-                    self.fillUser(with: token)
-                    completionHandler(.didLoad)
+                    let result = self.fillUser(with: token)
+                    result.map {_ in 
+                          completionHandler(.didLoad)
+                    }
+                    
                 }
             }
         } else {
@@ -62,9 +65,11 @@ class LoginContext: GetContext {
     
     // MARK: Private Methods
     
-    func fillUser(with token: AccessToken) {
-        guard let user = self.model as? CurrentUserModel else { return }
+    func fillUser(with token: AccessToken) -> Result<UserModel> {
+        guard let user = self.model as? CurrentUserModel else { return Result.Failure() }
         user.userID = token.userId
         user.token = token.authenticationToken
+        
+        return Result.Success(value: user)
     }
 }

@@ -10,8 +10,22 @@ import UIKit
 
 // MARK: Typealias
 
-typealias JSON = [String : String]
-typealias JSONArray = [[String : String]]
+typealias JSON = [String : Any]
+typealias JSONArray = [[String : Any]]
+
+enum Result<T> {
+    case Success(value: T)
+    case Failure()
+    
+    func map<U>(f: (T) -> U) -> Result<U> {
+        switch self {
+        case let .Success(value: value):
+            return Result<U>.Success(value: f(value))
+        case .Failure():
+            return Result<U>.Failure()
+        }
+    }
+}
 
 extension UIViewAutoresizing {
     static var resizableWithFixedPosition: UIViewAutoresizing {

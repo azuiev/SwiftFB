@@ -9,9 +9,7 @@
 import UIKit
 
 extension UIWindow {
-    convenience init(_ controller: UIViewController) {
-        self.init()
-        
-        self.rootViewController = controller
+    func perform(block: (UIWindow) -> ()) {
+        block(self)
     }
 }

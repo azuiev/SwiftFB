@@ -42,19 +42,20 @@ class ImageModel: Model {
     
     // MARK: Initialization
     
-    static func model(with url: URL) -> ImageModel {
+    static func model(with url: URL) -> ImageModel? {
         let cache = Cache.shared(ImageModel.self)
         var model = cache.object(with: url)
         
         if model == nil {
-            model = url.isFileURL ? FileSystemImageModel(url: url) : InternetImageModel(url: url)
+            let imageType = url.isFileURL ? FileSystemImageModel.self : InternetImageModel.self
+            model = imageType.init(url: url)
             cache.set(object: model, for: url)
         }
         
-        return (model as? ImageModel)!
+        return model as? ImageModel
     }
     
-    init(url: URL) {
+    required init(url: URL) {
         self.url = url
         super.init()
     }

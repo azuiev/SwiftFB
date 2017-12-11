@@ -70,7 +70,7 @@ class GetContext: Context {
     
    // MARK: Private methods
     
-    func save(response : [String : Any]) {
+    func save(response : JSON) {
         NSKeyedArchiver.archiveRootObject(response, toFile: self.fileName())
     }
     

@@ -26,9 +26,9 @@ class UserParser {
     
     // MARK: Public Methods
     
-    static func update(user: UserModel, with object: [String : Any]) {
-        let pictures = object[Constants.pictureKey] as? [String : Any]
-        let data = pictures?[Constants.dataKey] as? JSON
+    static func update(user: UserModel, with object: JSON) {
+        let pictures = object[Constants.pictureKey] as? JSON
+        let data = pictures?[Constants.dataKey] as? [String : String]
         let url = URL(string: data?[Constants.urlKey] ?? "")
         let name = object[Constants.nameKey] as? String
         let surname = object[Constants.surnameKey] as? String
@@ -45,7 +45,6 @@ class UserParser {
         if url != nil {
             user.picture = ImageModel.model(with: url!)
         }
-        
         
         if dateString != nil {
             let dateFormatter = DateFormatter()

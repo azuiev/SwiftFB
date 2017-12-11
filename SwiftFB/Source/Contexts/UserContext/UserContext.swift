@@ -18,9 +18,7 @@ class UserContext: GetContext {
     
     override var user: UserModel? {
         get {
-            guard let result = self.model as? UserModel else { return nil }
-            
-            return result
+            return self.model as? UserModel
         }
         set { }
     }
