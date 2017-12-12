@@ -80,7 +80,7 @@ class GetContext: Context {
     
     func fileName() -> String {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            var result = dir.appendingPathComponent(String.removeIllegalSymbols(from: self.graphPath)).path
+            let result = dir.appendingPathComponent(String.removeIllegalSymbols(from: self.graphPath)).path
             
             print("PATH = \(result)")
             

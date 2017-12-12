@@ -55,7 +55,7 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     // MARK: Initialization
     
     init(model: Model, user: UserModel, currentUser: CurrentUserModel) {
-        super.init(nibName: String.toString(type(of: self)), bundle: .main)
+        super.init()
         
         self.model = model
         self.user = user
@@ -81,9 +81,9 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: String.toString(UserCell.self), bundle: .main)
+        let nib = UINib(nibName: toString(UserCell.self), bundle: .main)
         
-        self.rootView.tableView?.register(nib, forCellReuseIdentifier: String.toString(UserCell.self))
+        self.rootView.tableView?.register(nib, forCellReuseIdentifier: toString(UserCell.self))
         self.rootView.tableView?.isEditing = true
         
         self.title = "Friends"
@@ -129,14 +129,16 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
     }
+    
     // MARK: protocol UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.friends[indexPath.row].map() { [weak self] in
-            guard let user = self?.currentUser else { return }
-            let controller = UserViewController(model: $0, currentUser: user)
-            
-            self?.navigationController?.pushViewController(controller, animated: true)
+        self.friends[indexPath.row]
+            .map() { [weak self] in
+                guard let user = self?.currentUser else { return }
+                let controller = UserViewController(model: $0, currentUser: user)
+                
+                self?.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

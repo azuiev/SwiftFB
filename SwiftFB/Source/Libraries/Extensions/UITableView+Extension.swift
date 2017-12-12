@@ -11,7 +11,7 @@ import UIKit
 extension UITableView {
 
     func reusableCell<T: UITableViewCell>(with cls: T.Type, indexPath: IndexPath) -> T {
-        let cell = self.dequeueReusableCell(withIdentifier: String.toString(cls), for: indexPath)
+        let cell = self.dequeueReusableCell(withIdentifier: toString(cls), for: indexPath)
         
         return cell as! T
     }

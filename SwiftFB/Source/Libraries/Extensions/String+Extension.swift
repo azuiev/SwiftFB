@@ -9,13 +9,6 @@
 import Foundation
 
 extension String {
-    static func toString<T>(_ cls: T.Type) -> String {
-        var result = String(describing: type(of: cls))
-        result = result.substring(to: result.index(result.endIndex, offsetBy: -5))
-        
-        return result
-    }
-    
     static func removeIllegalSymbols(from string: String) -> String {
         let removal: [Character] = ["/", "\\", "?", "%", "*", "|", "\"", "<", ">"]
         

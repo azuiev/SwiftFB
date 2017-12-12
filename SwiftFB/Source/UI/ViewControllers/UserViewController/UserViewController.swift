@@ -44,10 +44,10 @@ class UserViewController: FBViewController, RootView {
     // MARK: Initialization
     
     init(model: Model, currentUser: CurrentUserModel) {
-        super.init(nibName: String.toString(type(of: self)), bundle: .main)
+        super.init()
         
-        self.currentUser = currentUser
         self.model = model
+        self.currentUser = currentUser
     }
     
     required init?(coder aDecoder: NSCoder) {

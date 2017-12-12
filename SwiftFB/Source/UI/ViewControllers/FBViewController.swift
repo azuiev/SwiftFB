@@ -32,6 +32,16 @@ class FBViewController: UIViewController {
     
     var currentUser: CurrentUserModel = CurrentUserModel()
     
+    // MARK: Initialization
+    
+    init() {
+        super.init(nibName: toString(type(of: self)), bundle: .main)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: Public Methods
     
     func showViewController() {

@@ -15,11 +15,11 @@ class Cache {
     static private var store : [String : Cache] = [:]
     
     static func shared<T>(_ cls: T.Type) -> Cache {
-        if let result = self.store[String.toString(cls)] {
+        if let result = self.store[toString(cls)] {
             return result
         } else {
             let result = Cache()
-            self.store[String.toString(cls)] = result
+            self.store[toString(cls)] = result
             
             return result
         }
