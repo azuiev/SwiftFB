@@ -82,16 +82,4 @@ class ImageModel: Model {
     func cancel() {
         
     }
-    
-    // MARK: NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-        guard let url = decoder.decodeObject(forKey: Constants.URLKey) as? URL else { return nil }
-    
-        self.init(url: url)
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encode(self.url, forKey: Constants.URLKey)
-    }
 }

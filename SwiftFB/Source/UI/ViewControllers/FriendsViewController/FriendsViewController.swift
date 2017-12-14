@@ -75,6 +75,9 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func onMove() {
+        self.rootView.tableView?.isEditing = !(self.rootView.tableView?.isEditing ?? true)
+    }
 
     // MARK: View Lifecycle
     
@@ -84,7 +87,6 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
         let nib = UINib(nibName: toString(UserCell.self), bundle: .main)
         
         self.rootView.tableView?.register(nib, forCellReuseIdentifier: toString(UserCell.self))
-        self.rootView.tableView?.isEditing = true
         
         self.title = "Friends"
         self.context = FriendsContext(model: self.model, user: self.user, currentUser: self.currentUser);
@@ -97,6 +99,13 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
             style: .done,
             target: self,
             action: #selector(FriendsViewController.onDelete)
+        ))
+        
+        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(
+            title: "Move",
+            style: .done,
+            target: self,
+            action: #selector(FriendsViewController.onMove)
         ))
     }
     
@@ -133,12 +142,12 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     // MARK: protocol UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.currentUser
         self.friends[indexPath.row]
-            .map() { [weak self] in
-                guard let user = self?.currentUser else { return }
-                let controller = UserViewController(model: $0, currentUser: user)
-                
-                self?.navigationController?.pushViewController(controller, animated: true)
+            .map { UserViewController(model: $0, currentUser: user) }
+            .map { [weak self] in
+                self?.navigationController?.pushViewController($0, animated: true)
         }
     }
 }
+

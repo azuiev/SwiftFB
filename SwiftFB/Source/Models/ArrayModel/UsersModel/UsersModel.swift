@@ -32,20 +32,13 @@ class UsersModel: ArrayModel<UserModel>, Save {
     // MARK: Loading Model
     
     override func performLoading() {
-        let array = NSKeyedUnarchiver.unarchiveObject(withFile: self.plistName)
-        
-        guard let users = array as? [UserModel] else { self.state = .didFailLoading; return }
-        
-        self.add(objects: users)
-        self.state = .didLoad
+         self.state = .didLoad
     }
     
     // MARK: Protocol Save
     
     func save() {
-        let result = NSKeyedArchiver.archiveRootObject(self.array, toFile: self.fullPlistName())
-        
-        print("\(result)")
+        print("Should be saved")
     }
     
     // MARL: Private Methods

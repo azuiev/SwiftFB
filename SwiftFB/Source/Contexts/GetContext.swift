@@ -36,7 +36,6 @@ class GetContext: Context {
     func finishLoading(with response: [String : Any]) {
         
     }
-    
 
     // MARK: Override Methods
     
@@ -51,24 +50,25 @@ class GetContext: Context {
             switch requestResult {
             case .failed(let error):
                 print("Error \(error). Trying to load data from FS")
-                let response = self.loadSavedResponse()
-                response.map() { [weak self] in
-                    self?.finishLoading(with: $0)
-                    
-                    completionHandler(.didLoad)
+                self.loadSavedResponse()
+                    .map { [weak self] in
+                        self?.finishLoading(with: $0)
+                        
+                        completionHandler(.didLoad)
                 }
             case .success(let graphResponse):
-                graphResponse.dictionaryValue.map() { [weak self] in
-                    self?.save(response: $0)
-                    self?.finishLoading(with: $0)
-                    
-                    completionHandler(.didLoad)
+                graphResponse.dictionaryValue
+                    .map { [weak self] in
+                        self?.save(response: $0)
+                        self?.finishLoading(with: $0)
+                        
+                        completionHandler(.didLoad)
                 }
             }
         }
     }
     
-   // MARK: Private methods
+    // MARK: Private methods
     
     func save(response : JSON) {
         NSKeyedArchiver.archiveRootObject(response, toFile: self.fileName())
@@ -79,15 +79,11 @@ class GetContext: Context {
     }
     
     func fileName() -> String {
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let result = dir.appendingPathComponent(String.removeIllegalSymbols(from: self.graphPath)).path
-            
-            print("PATH = \(result)")
-            
-            return result
-            //return [NSString stringWithFormat:@"%@/%@.plist", result, [NSString removeIllegalSymbols:self.graphPath]];
+        if let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path {
+            return path.appending("/").appending(self.graphPath)
         } else {
             return ""
         }
     }
 }
+

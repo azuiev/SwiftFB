@@ -14,7 +14,7 @@ class FileSystemImageModel: ImageModel {
     
     var fileSystemName: String {
         get {
-            return self.imagePath?.appending(self.url.pathWithRemovingIllegalSymbols()) ?? ""
+            return self.imagePath?.appending(self.url.path) ?? ""
         }
     }
     

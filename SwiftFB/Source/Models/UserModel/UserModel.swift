@@ -64,21 +64,4 @@ class UserModel: Model {
             self.picture = ImageModel(url: url)
         }
     }
-    
-    // MARK: TODO NSCoding
-    
-    public convenience required init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.decodeObject(forKey: Constants.NameKey) as? String,
-            let surname = aDecoder.decodeObject(forKey: Constants.SurnameKey) as? String,
-            let picture = aDecoder.decodeObject(forKey: Constants.PictureKey) as? String
-            else { return nil }
-        
-        self.init(name: name, surname: surname, imagePath: picture)
-    }
-
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.name, forKey: Constants.NameKey)
-        aCoder.encode(self.surname, forKey: Constants.SurnameKey)
-        aCoder.encode(self.picture, forKey: Constants.PictureKey)
-    }
 }

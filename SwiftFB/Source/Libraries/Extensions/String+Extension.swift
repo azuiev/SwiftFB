@@ -9,9 +9,9 @@
 import Foundation
 
 extension String {
-    static func removeIllegalSymbols(from string: String) -> String {
-        let removal: [Character] = ["/", "\\", "?", "%", "*", "|", "\"", "<", ">"]
-        
-        return String(string.characters.filter { !removal.contains($0) })
+    func asURL() -> URL? {
+        _ = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .map { return URL(fileURLWithPath: $0) }
+        return nil
     }
 }
