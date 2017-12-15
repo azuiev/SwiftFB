@@ -43,7 +43,7 @@ class ImageModel: Model {
     // MARK: Initialization
     
     static func model(with url: URL) -> ImageModel? {
-        let cache = Cache.shared(ImageModel.self)
+        let cache = ImageModelCache.shared
         var model = cache.object(with: url)
         
         if model == nil {
@@ -52,7 +52,7 @@ class ImageModel: Model {
             cache.set(object: model, for: url)
         }
         
-        return model as? ImageModel
+        return model
     }
     
     required init(url: URL) {
