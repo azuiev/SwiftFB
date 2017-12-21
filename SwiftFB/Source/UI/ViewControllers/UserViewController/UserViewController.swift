@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 // MARK: Protocol RootView
 
@@ -21,8 +23,14 @@ class UserViewController: FBViewController, RootView {
     override var observationController: ObservableObject.ObservationController? {
         didSet {
             self.observationController?[.didLoad] = { [weak self] model, _ in
-                self?.rootView?.loadingView?.set(visible: false)
-                self?.rootView?.fill(with: model as? UserModel)
+                self?.rootView
+                    .map {
+                        $0.loadingView?.set(visible: false)
+                        
+                        if let userModel = model as? UserModel {
+                            $0.fill(with: UserViewModel(userModel: userModel))
+                        }
+                }
             }
             
             self.observationController?[.willLoad] = { [weak self] model, _ in
@@ -60,16 +68,16 @@ class UserViewController: FBViewController, RootView {
         self.showFriendsController()
     }
     
-    // MARK: IBActions
-    
-    @IBAction func onFriends() {
-        self.showViewController();
-    }
-
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.rootView?.FriendsButton?.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.showViewController()
+            })
+            .disposed(by: self.disposeBag)
         
         self.context = UserContext(model: self.model, currentUser: self.currentUser);
     }

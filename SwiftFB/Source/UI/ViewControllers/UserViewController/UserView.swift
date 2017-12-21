@@ -10,7 +10,7 @@ import UIKit
 
 class UserView: FBView {
 
-    // MARK: Public properties
+    // MARK: Public Properties
     
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var surnameLabel: UILabel?
@@ -23,18 +23,12 @@ class UserView: FBView {
 
     // MARK: Public Methods
     
-    func fill(with model: UserModel?) {
-        self.nameLabel?.text = model?.name
-        self.surnameLabel?.text = model?.surname
-        self.middleNameLabel?.text = model?.middleName
-        self.userImage?.model = model?.picture
-        if let date = model?.birthday {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/yyyy"
-            self.birthdayLabel?.text = dateFormatter.string(from: date)
-        }
-    
-        self.genderLabel?.text = model?.gender.rawValue;
+    func fill(with viewModel: UserViewModel) {
+        self.nameLabel?.text = viewModel.name
+        self.surnameLabel?.text = viewModel.surname
+        self.middleNameLabel?.text = viewModel.middlename
+        self.userImage?.model = viewModel.picture
+        self.birthdayLabel?.text = viewModel.birthdayAsString()
+        self.genderLabel?.text = viewModel.gender
     }
-    
 }

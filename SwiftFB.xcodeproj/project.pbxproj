@@ -22,6 +22,7 @@
 		1D5FB6531FC44BDB008BEE38 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5FB6511FC44BDB008BEE38 /* FriendsViewController.xib */; };
 		1D5FB6551FC44BDB008BEE38 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6541FC44BDB008BEE38 /* FriendsView.swift */; };
 		1D5FB6571FC44BDB008BEE38 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FB6561FC44BDB008BEE38 /* UITableView+Extension.swift */; };
+		1D6347D51FEC4DCB0012EAED /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6347D41FEC4DCB0012EAED /* UserViewModel.swift */; };
 		1D6E81B91FBFB15C00B94CF8 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E81B81FBFB15C00B94CF8 /* ImageView.swift */; };
 		1D6E81BB1FBFB24800B94CF8 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E81BA1FBFB24800B94CF8 /* ImageModel.swift */; };
 		1D75F9EF1FCD912900CAB0E3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D75F9EE1FCD912900CAB0E3 /* RootView.swift */; };
@@ -78,6 +79,7 @@
 		1D5FB6511FC44BDB008BEE38 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		1D5FB6541FC44BDB008BEE38 /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		1D5FB6561FC44BDB008BEE38 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		1D6347D41FEC4DCB0012EAED /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1D6E81B81FBFB15C00B94CF8 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		1D6E81BA1FBFB24800B94CF8 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		1D75F9EE1FCD912900CAB0E3 /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				1D943B851FBCD62700B07695 /* UserView.swift */,
+				1D6347D41FEC4DCB0012EAED /* UserViewModel.swift */,
 				1D943B861FBCD62700B07695 /* UserViewController.swift */,
 				1D943B871FBCD62700B07695 /* UserViewController.xib */,
 			);
@@ -665,6 +668,7 @@
 				1D943B8E1FBCD62700B07695 /* AppDelegate.swift in Sources */,
 				1D7D11881FC2ECE400878834 /* Global.swift in Sources */,
 				1D9491E61FD9C36D00C74C2F /* WeakReference.swift in Sources */,
+				1D6347D51FEC4DCB0012EAED /* UserViewModel.swift in Sources */,
 				1D5EF6771FCEDEB600AB0C72 /* String+Extension.swift in Sources */,
 				1D943BA41FBCD62700B07695 /* FBView.swift in Sources */,
 				1D5BBB3F1FC70A27004A5A6C /* ArrayModelRemoveOption.swift in Sources */,

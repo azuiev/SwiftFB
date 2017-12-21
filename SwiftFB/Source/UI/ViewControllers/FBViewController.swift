@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FBViewController: UIViewController {
 
     // Public Properties
+    
+    var disposeBag = DisposeBag()
     
     var observationController: ObservableObject.ObservationController?
     
@@ -55,12 +59,22 @@ class FBViewController: UIViewController {
     // MARK: UI LifeCycle
     
     func prepareNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        var logoutButton = UIBarButtonItem(
             title: "Logout",
             style: .done,
             target: self,
-            action: #selector(FBViewController.onLogout)
+            action: nil
         )
+        
+        logoutButton
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.logout()
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.navigationItem.rightBarButtonItem = logoutButton
     }
     
     override func viewDidLoad() {
