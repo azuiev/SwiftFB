@@ -18,7 +18,7 @@ class LoginViewController: FBViewController, RootView {
     
     override var observationController: ObservableObject.ObservationController? {
         didSet {
-            self.observationController?[.didLoad] = { [weak self] user in
+            self.observationController?[.didLoad] = { [weak self] user, _ in
                 self?.showViewController()
             }
         }

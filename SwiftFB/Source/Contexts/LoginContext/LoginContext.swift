@@ -44,7 +44,7 @@ class LoginContext: GetContext {
         guard let user = self.model as? CurrentUserModel else { return }
         if !user.isAuthorized() {
             let manager = LoginManager()
-            manager.logIn([.publicProfile, .userFriends]) { loginResult in
+            manager.logIn(readPermissions: [.userFriends, .publicProfile]) { loginResult in
                 switch loginResult {
                 case .failed(let error):
                     print(error)
@@ -53,7 +53,7 @@ class LoginContext: GetContext {
                 case .success(_, _, let token):
                     let result = self.fillUser(with: token)
                     _ = result
-                        .map { object in
+                        .map { _ in
                             completionHandler(.didLoad)
                     }
                 }

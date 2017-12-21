@@ -69,7 +69,7 @@ class FBViewController: UIViewController {
         self.prepareNavigationBar();
     }
 
-    func onLogout() {
+    @objc func onLogout() {
         self.logout()
     }
 }

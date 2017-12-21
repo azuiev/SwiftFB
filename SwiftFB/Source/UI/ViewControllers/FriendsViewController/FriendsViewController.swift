@@ -68,14 +68,14 @@ class FriendsViewController: FBViewController, UITableViewDelegate, UITableViewD
     
     // MARK: UI Actions
     
-    func onDelete() {
+    @objc func onDelete() {
         let user = self.friends.first()
         if let deleteUser = user {
             self.friends.remove(object: deleteUser)
         }
     }
     
-    func onMove() {
+    @objc func onMove() {
         self.rootView.tableView?.isEditing = !(self.rootView.tableView?.isEditing ?? true)
     }
 
