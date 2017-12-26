@@ -7,49 +7,47 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class LoginViewController: FBViewController, RootView {
+
+class LoginViewController: UIViewController, RootView {
     
-    // MARK: protocol rootView
+    // MARK: Protocol rootView
     
     typealias ViewType = LoginView
     
     // MARK: Public Properties
     
-    override var observationController: ObservableObject.ObservationController? {
-        didSet {
-            self.observationController?[.didLoad] = { [weak self] user, _ in
-                self?.showViewController()
-            }
-        }
-    }
+    var disposeBag = DisposeBag()
+    var viewModel: LoginViewModel
     
     // MARK: Initialization
     
-    init(model: Model) {
-        super.init()
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
         
-        self.model = model
+        super.init(nibName: toString(type(of: self)), bundle: .main)
+        
+        self.viewModel.subject
+            .subscribe(onNext: ({ [weak self] in
+                _ = $0.map {
+                    self?.finishLogging($0)
+                }
+            }))
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
     
     // MARK: Public Methods
     
-    override func showViewController() {
-        guard let user = self.model as? CurrentUserModel else { return }
-        let controller = UserViewController(model: self.model, currentUser: user)
+    func finishLogging(_ user: CurrentUserModel) {
+        let controller = UserViewController(model: user, currentUser: user)
         let navigationController = UINavigationController(rootViewController: controller)
         self.present(navigationController, animated: true)
-    }
-    
-    // MARK: Private Methods
-    
-    func login() {
-        guard let user = self.model as? CurrentUserModel else { return }
-        self.context = LoginContext(currentUser:user)
     }
     
     // MARK: UI Lifecycle
@@ -58,9 +56,14 @@ class LoginViewController: FBViewController, RootView {
         super.viewDidLoad()
         
         self.rootView?.loadingView?.set(visible: false)
-    }
-    
-    @IBAction func onLogin() {
-        self.login();
+        
+        self.rootView?.LoginButton?
+            .rx
+            .tap
+            .subscribe(onNext: ({ [weak self] in
+                self?.viewModel.tryLogin()
+            }))
+        .disposed(by: self.disposeBag)
+        
     }
 }

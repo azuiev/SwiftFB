@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow();
         window?.perform {
-            let controller = LoginViewController(model: CurrentUserModel())
+            let controller = LoginViewController(viewModel: LoginViewModel(currentUserModel: CurrentUserModel()))
             
             $0.rootViewController = controller
             $0.makeKeyAndVisible()

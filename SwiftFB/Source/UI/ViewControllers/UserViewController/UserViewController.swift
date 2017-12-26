@@ -73,7 +73,9 @@ class UserViewController: FBViewController, RootView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.FriendsButton?.rx.tap
+        self.rootView?.FriendsButton?
+            .rx
+            .tap
             .subscribe(onNext: { [weak self] _ in
                 self?.showViewController()
             })

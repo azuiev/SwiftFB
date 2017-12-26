@@ -39,6 +39,7 @@ class UserViewModel {
             .map {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = dateFormat
+                
                 return dateFormatter.string(from: $0)
         } ?? ""
     }

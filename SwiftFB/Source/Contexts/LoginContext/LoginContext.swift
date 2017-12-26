@@ -9,6 +9,8 @@
 import UIKit
 import FacebookCore
 import FacebookLogin
+import RxSwift
+import RxCocoa
 
 class LoginContext: GetContext {
     
@@ -34,7 +36,9 @@ class LoginContext: GetContext {
     
     // MARK: Initialization
     
-    init(currentUser: CurrentUserModel) {
+    init(currentUser: CurrentUserModel, subject: PublishSubject<Result<CurrentUserModel>>) {
+        self.subject = subject
+        
         super.init(model: currentUser, currentUser: currentUser)
     }
     
@@ -47,31 +51,33 @@ class LoginContext: GetContext {
             manager.logIn(readPermissions: [.userFriends, .publicProfile]) { loginResult in
                 switch loginResult {
                 case .failed(let error):
-                    print(error)
+                    self.subject.onNext(Result.Failure(error.localizedDescription))
                 case .cancelled:
                     print("User cancelled login.")
                 case .success(_, _, let token):
-                    let result = self.fillUser(with: token)
-                    _ = result
-                        .map { _ in
-                            completionHandler(.didLoad)
-                    }
+                    self.subject.onNext(self.fillUser(with: token))
                 }
             }
         } else {
-            completionHandler(.willLoad)
+            self.subject.onNext(Result.Failure("No token"))
         }
     }
     
+    // MARK: Private Properties
+    
+    var subject: PublishSubject<Result<CurrentUserModel>>
+    
     // MARK: Private Methods
     
-    func fillUser(with token: AccessToken) -> Result<UserModel> {
+    func fillUser(with token: AccessToken) -> Result<CurrentUserModel> {
         guard let user = self.model as? CurrentUserModel else {
-            return Result.Failure()
+            return Result.Failure("Invalid parameter")
         }
         user.userID = token.userId
         user.token = token.authenticationToken
         
-        return Result.Success(value: user)
+        return Result.Success(user)
     }
+    
+    
 }

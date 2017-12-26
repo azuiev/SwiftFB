@@ -22,21 +22,21 @@ func toString<T>(_ cls: T.Type) -> String {
 // MARK: Struct Result
 
 enum Result<T> {
-    case Success(value: T)
-    case Failure()
+    case Success(T)
+    case Failure(String)
     
     func map<U>(f: (T) -> U) -> Result<U> {
         switch self {
-        case let .Success(value: value):
-            return .Success(value: f(value))
-        case .Failure():
-            return .Failure()
+        case .Success(let value):
+            return .Success(f(value))
+        case .Failure(let description):
+            return .Failure(description)
         }
     }
     
     func isSuccess() -> Bool {
         switch self {
-        case .Success(value: ):
+        case .Success(_):
             return true
         default:
             return false
